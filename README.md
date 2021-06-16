@@ -30,219 +30,337 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ### Abstract Factory
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Builder
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Factory Method
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Object Pool
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Prototype
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Singleton
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ## Structural Patterns
 
 ### Adapter
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Bridge
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Composite
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Decorator
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Facade
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Flyweight
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Private Class Data
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Proxy
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ## Behavioral Patterns
 
 ### Chain of Responsibility
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Command
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Interpreter
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Iterator
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Mediator
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Null Object
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Observer
 
-**Veja um exemplo:**
+**Definição**
 
-#### **Pontos Positivos**
+**Utilização**
 
-#### **Pontos Negativos**
+##### Diagrama de Classe
 
-#### Diagrama de Classe
-
-##### State
+##### Classe 
 
 **Veja um exemplo:**
 
@@ -250,13 +368,29 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 #### **Pontos Negativos**
 
-#### Diagrama de Classe
+### State
+
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
+**Veja um exemplo:**
+
+#### **Pontos Positivos**
+
+#### **Pontos Negativos**
 
 ### Strategy
 
 **Definição**
 
 > *Define uma família de algoritmos, encapsular cada uma delas e as torna intercambiáveis. Esse padrão permite que o algoritmo varie independentemente dos clientes que o utilizam.*
+
+**Utilização**
 
 O Strategy é um padrão que deve ser utilizado quando ***uma classe possuir diversos algoritmos que possam ser utilizados de forma intercambiável***. A solução proposta pelo padrão consiste em delegar a execução do algoritmo para uma instância que compõe a classe principal. Dessa forma, quando a funcionalidade for invocada, no momento da execução do algoritmo, será invocado um método da instância que a compõe.
 
@@ -331,23 +465,35 @@ class Strategy {
 
 ### Template Method
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ### Visitor
 
+**Definição**
+
+**Utilização**
+
+##### Diagrama de Classe
+
+##### Classe 
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
-
-#### Diagrama de Classe
 
 ## Fontes
 
