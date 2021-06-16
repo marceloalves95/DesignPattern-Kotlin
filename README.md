@@ -1,7 +1,4 @@
-# DesignPattern-Kotlin
-> Projeto de estudo baseado nos conceitos das Design Pattern aplicados em Kotlin. 
-
-Projeto em construção.
+# **Design Pattern**
 
 | Creational Patterns | Structural Patterns |   Behavioral Patterns   |
 | :-----------------: | :-----------------: | :---------------------: |
@@ -255,8 +252,8 @@ O Strategy é um padrão que deve ser utilizado quando ***uma classe possuir div
 
 ##### Diagrama de Classe - Strategy
 
-|      |
-| :--: |
+| ![src/uml/Strategy.png]() |
+| :-----------------------: |
 
 ##### Classe Strategy
 
