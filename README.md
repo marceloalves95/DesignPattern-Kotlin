@@ -244,7 +244,7 @@
 
 **Definição**
 
-> *Defini famílias de algoritmos implementados por uma hierarquia de classes onde os objetos dessas classes são utilizados em objetos de classes clientes por meio de composição, permitindo assim a mudança de comportamento dos objetos clientes pelo intercâmbio de objetos de estratégia.*
+> *Define uma família de algoritmos, encapsular cada uma delas e as torna intercambiáveis. Esse padrão permite que o algoritmo varie independentemente dos clientes que o utilizam.*
 
 O Strategy é um padrão que deve ser utilizado quando ***uma classe possuir diversos algoritmos que possam ser utilizados de forma intercambiável***. A solução proposta pelo padrão consiste em delegar a execução do algoritmo para uma instância que compõe a classe principal. Dessa forma, quando a funcionalidade for invocada, no momento da execução do algoritmo, será invocado um método da instância que a compõe.
 
@@ -294,13 +294,23 @@ class Strategy {
 }
 ```
 
-### 
-
 #### **Pontos Positivos**
+
+- **Leitura mais eficiente:** quando usamos esse padrão em nosso projeto, ou em parte dele, isso torna o nosso *código mais legível e organizado*.
+- **Reutilização de código:**  isso é bem evidente nesse padrão de projeto, sendo que as famílias de algoritmos podem ser *utilizadas por outras classes com diversos contextos diferentes*.
+- **Evolução eficiente no seu projeto:** Isso é possível porque o foco aqui é a **composição**. Isso *evita que as classes e subclasses sejam alteradas caso novas funcionalidades sejam adicionadas ou atualizadas*. 
+
+- **O algoritmo pode ser alterado sem a modificação da classe:** a partir dessa estrutura, *novas implementações dele podem ser criadas e introduzidas posteriormente*.
+- **A lógica condicional na classe principal é reduzida:** como a escolha do algoritmo está na implementação do objeto que está compondo a classe, isso *elimina a necessidade de ter condicionais para selecionar a lógica a ser executada*. 
+- **A implementação pode ser trocada em tempo de execução:** isso faz com que o *comportamento da classe possa ser trocado dinamicamente*. Além disso, o seu projeto se *torna mais dinâmico permitindo assim mais opções de funcionalidades*.
+
+> **Composição (de Objetos):** em ciência da computação, composição de objetos é uma maneira de se combinar objetos simples ou tipos de dados em objetos mais complexos.
 
 #### **Pontos Negativos**
 
-#### Diagrama de Classe
+- **Complexidade na criação do objeto:** a instância da dependência *precisa ser criada e configurada*. Caso o atributo seja nulo, *a classe pode apresentar um comportamento inesperado*. 
+- **Aumento no número de classes:** há uma para cada algoritmo, criando uma *maior dificuldade em seu gerenciamento*. Isso pode ser muito ruim, se houverem muitas funcionalidades que não podem ser implementadas por classes de uma mesma família de classes Strategy.
+- **Complexidade do projeto:** o projeto pode ficar mais *complexo caso uma solução com herança seja mais simples de implementar e manter*.
 
 ### Template Method
 
