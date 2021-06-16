@@ -15,7 +15,7 @@ class Strategy {
 
     }
 
-    class Leao: Felino(CorrerCurtaDistancia()) {
+    class Leao:Felino(CorrerCurtaDistancia()) {
 
         override fun display() = println("Leão a vista")
         override fun rugir() = println("Urghhhhh!")
