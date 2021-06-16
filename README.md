@@ -252,7 +252,7 @@ O Strategy é um padrão que deve ser utilizado quando ***uma classe possuir div
 
 ##### Diagrama de Classe - Strategy
 
-| ![src/uml/Strategy.png]() |
+| ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
 ##### Classe Strategy
