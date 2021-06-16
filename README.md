@@ -1,5 +1,17 @@
 # **Design Pattern**
 
+> *Design Patterns ou Padrões de Projetos são soluções generalistas para problemas recorrentes durante o desenvolvimento de um software. Não se trata de um framework ou um código pronto, mas de uma definição de alto nível de como um problema comum pode ser solucionado.*
+
+Esses conceitos ficaram realmente conhecidos em 1994, quando os engenheiros de software Erich Gamma, Richard Helm, Ralph Johnson e John Vlissides escreveram o livro **“Design Patterns: Elements of Reusable Object-Oriented Software”** com o objetivo de catalogar problemas comuns aos projetos de desenvolvimento de software e as formas de resolver esses problemas. Os autores catalogaram 23 padrões que utilizaram ao longo de suas carreiras. 
+
+### Quais os benefícios de utilizar Design Pattern?
+
+Design Patterns são modelos que já foram utilizados e testados anteriormente, portanto podem representar um bom **ganho de produtividade** para os desenvolvedores. Seu uso também contribui para a **organização e manutenção** de projetos, já que esses padrões se baseiam em baixo acoplamento entre as classes e padronização do código. Além disso, com a padronização dos termos, as **discussões técnicas** são **facilitadas**. É mais fácil falar o nome de um Design Pattern em vez de ter que explicar todo o seu comportamento.
+
+Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented Software”** agruparam os Design Patterns em três tipos diferentes: Creational (Criação), Structural (Estrutura), Behavioral (Comportamental). Assim como podemos ver na tabela abaixo. 
+
+> **Observação:** Nessa tabela também foram acrescentadas novos Design Patterns. 
+
 | Creational Patterns | Structural Patterns |   Behavioral Patterns   |
 | :-----------------: | :-----------------: | :---------------------: |
 |  Abstract Factory   |       Adapter       | Chain of Responsibility |
@@ -339,8 +351,8 @@ class Strategy {
 
 ## Fontes
 
-**Livro:** Design Patterns com Java - Projeto orientado a objetos guiados por padrões - Eduardo Guerra
+1. https://www.opus-software.com.br/design-patterns/
+2. **Livro:** Design Patterns com Java - Projeto orientado a objetos guiados por padrões - Eduardo Guerra
+3. https://www.thiengo.com.br/padrao-de-projeto-strategy-estrategia
 
-https://www.thiengo.com.br/padrao-de-projeto-strategy-estrategia
-
-https://sourcemaking.com/design_patterns/strategy
+4. https://sourcemaking.com/design_patterns/strategy
