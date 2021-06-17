@@ -36,6 +36,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Diagrama de Classe
 
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
 ##### Classe 
 
 **Veja um exemplo:**
@@ -51,6 +54,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
@@ -68,6 +74,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Diagrama de Classe
 
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
 ##### Classe 
 
 **Veja um exemplo:**
@@ -83,6 +92,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
@@ -100,6 +112,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Diagrama de Classe
 
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
 ##### Classe 
 
 **Veja um exemplo:**
@@ -115,6 +130,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
@@ -134,6 +152,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Diagrama de Classe
 
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
 ##### Classe 
 
 **Veja um exemplo:**
@@ -149,6 +170,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
@@ -166,6 +190,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Diagrama de Classe
 
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
 ##### Classe 
 
 **Veja um exemplo:**
@@ -181,6 +208,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
@@ -198,6 +228,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Diagrama de Classe
 
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
 ##### Classe 
 
 **Veja um exemplo:**
@@ -213,6 +246,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
@@ -230,6 +266,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Diagrama de Classe
 
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
 ##### Classe 
 
 **Veja um exemplo:**
@@ -245,6 +284,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
@@ -264,6 +306,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Diagrama de Classe
 
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
 ##### Classe 
 
 **Veja um exemplo:**
@@ -279,6 +324,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
@@ -296,6 +344,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Diagrama de Classe
 
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
 ##### Classe 
 
 **Veja um exemplo:**
@@ -311,6 +362,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
@@ -328,6 +382,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Diagrama de Classe
 
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
 ##### Classe 
 
 **Veja um exemplo:**
@@ -340,11 +397,63 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 **Definição**
 
+> *O padrão Null Object propõe a criação de uma classe para representar objetos nulos em uma aplicação.*
+
 **Utilização**
+
+Essa classe deve estender a classe original e implementar seus métodos de forma a executar o comportamento esperado da aplicação quando um valor nulo for recebido. Dessa forma, em vez de se retornar um valor nulo, retorna-se uma instância dessa nova classe.
 
 ##### Diagrama de Classe
 
-##### Classe 
+| ![](src/uml/Null Object.png) |
+| :--------------------------: |
+
+##### Classe Null Object
+
+```kotlin
+class NullObject {
+
+    abstract class ClienteAbstrato{
+
+        abstract fun isNulo():Boolean
+        abstract fun getNome():String
+    }
+    class ClienteReal(private var nome:String):ClienteAbstrato(){
+
+        override fun isNulo(): Boolean = false
+        override fun getNome(): String = nome
+
+    }
+    class ClienteNulo:ClienteAbstrato(){
+
+        override fun isNulo(): Boolean = true
+        override fun getNome(): String = "Não existe esse nome na lista"
+
+    }
+    class ClienteFactory{
+
+        companion object Fabrica{
+
+            val listaNomes = listOf("Lucas", "João", "Maria")
+
+            fun getCliente(nome:String):ClienteAbstrato{
+
+                listaNomes.forEach { nomes->
+
+                    if (nomes == nome) {
+                        return ClienteReal(nome)
+                    }
+
+                }
+
+                return ClienteNulo()
+
+            }
+        }
+    }
+
+}
+```
 
 **Veja um exemplo:**
 
@@ -359,6 +468,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
@@ -375,6 +487,9 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
@@ -471,6 +586,9 @@ class Strategy {
 
 ##### Diagrama de Classe
 
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
 ##### Classe 
 
 **Veja um exemplo:**
@@ -486,6 +604,9 @@ class Strategy {
 **Utilização**
 
 ##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
 
 ##### Classe 
 
