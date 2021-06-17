@@ -405,7 +405,7 @@ Essa classe deve estender a classe original e implementar seus métodos de forma
 
 ##### Diagrama de Classe
 
-| ![](src/uml/Null Object.png) |
+| ![](src/uml/NullObject.png) |
 | :--------------------------: |
 
 ##### Classe Null Object
