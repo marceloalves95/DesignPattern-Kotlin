@@ -621,5 +621,4 @@ class Strategy {
 1. https://www.opus-software.com.br/design-patterns/
 2. **Livro:** Design Patterns com Java - Projeto orientado a objetos guiados por padrões - Eduardo Guerra
 3. https://www.thiengo.com.br/padrao-de-projeto-strategy-estrategia
-
 4. https://sourcemaking.com/design_patterns/strategy
