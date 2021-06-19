@@ -16,11 +16,11 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | :-----------------: | :-----------------: | :---------------------: |
 |  Abstract Factory   |       Adapter       | Chain of Responsibility |
 |       Builder       |       Bridge        |         Command         |
-|   Factory Method    |      Composite      |       Interpreter       |
-|     Object Pool     |      Decorator      |        Iterator         |
-|      Prototype      |       Facade        |        Mediator         |
-|      Singleton      |      Flyweight      |       Null Object       |
-|                     | Private Class Data  |        Observer         |
+|       Factory       |      Composite      |       Interpreter       |
+|   Factory Method    |      Decorator      |        Iterator         |
+|     Object Pool     |       Facade        |        Mediator         |
+|      Prototype      |      Flyweight      |       Null Object       |
+|      Singleton      | Private Class Data  |        Observer         |
 |                     |        Proxy        |          State          |
 |                     |                     |        Strategy         |
 |                     |                     |     Template Method     |
@@ -34,14 +34,110 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 **Utilização**
 
-##### Diagrama de Classe
+**Veja um exemplo:**
+
+##### Diagrama de Classes
 
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
 
-**Veja um exemplo:**
+```kotlin
+interface Forma{
+    fun desenhar()
+}
+class RetanguloArredondado:Forma {
+    override fun desenhar() {
+        println("Dentro RetanguloArredondado::desenhar() method.")
+    }
+}
+class QuadradoArredondado:Forma {
+    override fun desenhar() {
+        println("Dentro QuadradoArredondado::desenhar() method.")
+    }
+}
+class Retangulo: Forma {
+    override fun desenhar(){
+        println("Dentro Retangulo::desenhar() method.")
+    }
+}
+abstract class AbstractFactory {
+    abstract fun getForma(tipoForma:String):Forma?
+}
+class FormaAbstractFactory:AbstractFactory(){
+
+    override fun getForma(tipoForma: String): Forma? {
+        when (tipoForma) {
+            "RETANGULO" -> {
+                return Retangulo()
+            }
+            "QUADRADO" -> {
+                return Quadrado()
+            }
+        }
+        return null
+    }
+}
+class FormaArredondadoFactory:AbstractFactory() {
+
+    override fun getForma(tipoForma: String): Forma? {
+        when (tipoForma) {
+            "RETANGULO" -> {
+                return RetanguloArredondado()
+            }
+            "QUADRADO" -> {
+                return QuadradoArredondado()
+            }
+        }
+        return null
+    }
+}
+class FactoryProducer {
+    companion object{
+        fun getFactory(arrendondado:Boolean):AbstractFactory{
+            return if (arrendondado){
+                FormaArredondadoFactory()
+            } else{
+                FormaAbstractFactory()
+
+            }
+        }
+    }
+}
+//Arquivo AbstractFactory.kt
+fun main() {
+
+    //Pega a formFactory
+    val formaFactory = FactoryProducer.getFactory(false)
+    //Pega um objeto com forma retangular
+    val forma1 = formaFactory.getForma("RETANGULO")
+    //Chama o metodo desenhar do formato retangular
+    forma1?.desenhar()
+    //Pega um objeto com forma quadrada
+    val forma2 = formaFactory.getForma("QUADRADO")
+    //Chama o metodo desenhar do formato quadrado
+    forma2?.desenhar()
+
+    //Pega a formFactory
+    val formaFactory1 = FactoryProducer.getFactory(true)
+    //Pega um objeto com forma retangular
+    val forma3 = formaFactory1.getForma("RETANGULO")
+    //Chama o metodo desenhar do formato retangular
+    forma3?.desenhar()
+    //Pega um objeto com forma quadrada
+    val forma4 = formaFactory1.getForma("QUADRADO")
+    //Chama o metodo desenhar do formato quadrado
+    forma4?.desenhar()
+
+    //Saída
+    //Dentro Retangulo::desenhar() method.
+    //Dentro Quadrado::desenhar() method.
+    //Dentro RetanguloArredondado::desenhar() method.
+    //Dentro QuadradoArredondado::desenhar() method.
+
+}
+```
 
 #### **Pontos Positivos**
 
@@ -53,6 +149,131 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 **Utilização**
 
+**Veja um exemplo:**
+
+##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
+##### Classes
+
+```kotlin
+interface Embalagem{
+    fun pacote():String
+}
+interface Item{
+    fun nome():String
+    fun embalagem():Embalagem
+    fun preco():Float
+}
+class Embrulho:Embalagem{
+    override fun pacote(): String = "Embrulho"
+}
+class Garrafa:Embalagem{
+    override fun pacote() = "Garrafa"
+}
+abstract class Hamburguer:Item{
+    override fun embalagem(): Embalagem = Embrulho()
+}
+abstract class BebidaGelada:Item{
+    override fun embalagem(): Embalagem = Garrafa()
+}
+class HamburguerVegetariano:Hamburguer(){
+    override fun nome(): String = "Hamburguer Vegetariano"
+    override fun preco(): Float = 25.0f
+}
+class HamburguerFrango:Hamburguer(){
+    override fun nome(): String = "Hamburguer de Frango"
+    override fun preco(): Float = 50.5f
+}
+class Cola:BebidaGelada(){
+    override fun nome(): String = "Coca Cola"
+    override fun preco(): Float = 30.0f
+}
+class Pepsi:BebidaGelada(){
+    override fun nome(): String = "Pepsi"
+    override fun preco(): Float = 35.0f
+}
+class Refeicao{
+    
+    private val items = mutableListOf<Item>()
+    
+    fun addItem(item: Item){
+        items.add(item)
+    }
+    fun getCusto():Float{
+        var custo = 0.0f
+        items.forEach { item-> custo += item.preco() }
+            return custo
+    }
+    fun mostrarItens(){
+        for (item in items){
+            println("Item: ${item.nome()}, Embalagem: ${item.embalagem().pacote()}, Preço: ${item.preco()}")
+        }
+    }
+}
+class RefeicaoBuilder{
+    
+    fun prepararRefeicaoVegetariana():Refeicao{
+        
+        val refeicao = Refeicao()
+        refeicao.addItem(HamburguerVegetariano())
+        refeicao.addItem(Cola())
+        
+        return refeicao
+    }
+    
+    fun prepararRefeicaoNaoVegetariana():Refeicao{
+        
+        val refeicao = Refeicao()
+        refeicao.addItem(HamburguerFrango())
+        refeicao.addItem(Pepsi())
+
+        return refeicao
+    }
+}
+//Arquivo Builder.kt
+fun main() {
+
+    val refeicaoBuilder = RefeicaoBuilder()
+
+    val refeicaoVegetariana = refeicaoBuilder.prepararRefeicaoVegetariana()
+    println("Refeição Vegetariana")
+    refeicaoVegetariana.mostrarItens()
+    println("Custo total: ${refeicaoVegetariana.getCusto()}\n")
+    
+    val refeicaoNaoVegetariana = prepararRefeicaoNaoVegetariana()
+    println("Refeição Não Vegetariana")
+    refeicaoNaoVegetariana.mostrarItens()
+    println("Custo total: ${refeicaoNaoVegetariana.getCusto()}")
+    
+     //Saída
+    //Refeição Vegetariana 
+    //Item: Hamburguer Vegetariano, Embalagem: Embrulho, Preço: 25.0
+    //Item: Coca Cola, Embalagem: Garrafa, Preço: 30.0
+    //Custo total: 55.0
+    
+    //Refeição Não Vegetariana
+    //Item: Hamburguer de Frango, Embalagem: Embrulho, Preço: 50.5
+    //Item: Pepsi, Embalagem: Garrafa, Preço: 35.0
+    //Custo total: 85.5
+
+}
+```
+
+#### **Pontos Positivos**
+
+#### **Pontos Negativos**
+
+### Factory
+
+**Definição**
+
+**Utilização**
+
+**Veja um exemplo:**
+
 ##### Diagrama de Classe
 
 | ![](src/uml/Strategy.png) |
@@ -60,7 +281,64 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Classe 
 
-**Veja um exemplo:**
+```kotlin
+interface Forma{
+    fun desenhar()
+}
+class Circulo: Forma {
+    override fun desenhar() {
+        println("Dentro Circulo::desenhar() method.")
+    }
+}
+class Quadrado: Forma {
+    override fun desenhar(){
+        println("Dentro Quadrado::desenhar() method.")
+    }
+}
+class Retangulo: Forma {
+    override fun desenhar(){
+        println("Dentro Retangulo::desenhar() method.")
+    }
+}
+class FormaFactory{
+    fun getForma(tipoForma:String): Forma? {
+        when {
+            tipoForma.equals("CIRCULO", true) -> {
+                return Circulo()
+            }
+            tipoForma.equals("RETANGULO", true) -> {
+                return Retangulo()
+            }
+            tipoForma.equals("QUADRADO", true) -> {
+                return Quadrado()
+            }
+            else -> tipoForma.let {
+                return null
+            }
+        }
+    }
+}
+//Arquivo Factory.kt
+fun main() {
+
+    val formaFactory = FormaFactory()
+    //Pega o objeto Circulo e chama o metodo desenhar
+    val forma1 = formaFactory.getForma("CIRCULO")
+    forma1?.desenhar()
+    //Pega o objeto Retangulo e chama o metodo desenhar
+    val forma2 = formaFactory.getForma("RETANGULO")
+    forma2?.desenhar()
+    //Pega o objeto Quadrado e chama o metodo desenhar
+    val forma3 = formaFactory.getForma("QUADRADO")
+    forma3?.desenhar()
+
+    //Saída
+    //Dentro Circulo::desenhar() method.
+    //Dentro Retangulo::desenhar() method.
+    //Dentro Quadrado::desenhar() method.
+
+}
+```
 
 #### **Pontos Positivos**
 
@@ -79,6 +357,10 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ##### Classe 
 
+```
+
+```
+
 **Veja um exemplo:**
 
 #### **Pontos Positivos**
@@ -96,7 +378,11 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classe
+
+```
+
+```
 
 **Veja um exemplo:**
 
@@ -115,7 +401,13 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
+
+```kotlin
+
+```
+
+#####  
 
 **Veja um exemplo:**
 
@@ -134,7 +426,13 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classe
+
+```kotlin
+object Singleton {/*....*/}
+```
+
+#####  
 
 **Veja um exemplo:**
 
@@ -155,7 +453,59 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
+
+```kotlin
+interface Pato {
+    fun grasnar()
+    fun voar()
+}
+
+class PatoMarreco : Pato {
+    override fun grasnar() = println("Quack, quack, quack")
+    override fun voar() = println("Voar, voar, voar")
+}
+
+interface Peru {
+    fun soar()
+    fun voar()
+}
+
+class PeruAustraliano : Peru {
+    override fun soar() = println("Blulu, brulu, brulu")
+    override fun voar() = println("Voar")
+}
+
+class PeruAdapter(private val peru: Peru) : Pato {
+
+    override fun grasnar() = peru.soar()
+    override fun voar() = peru.voar()
+
+}
+//Arquivo Adapter.kt
+fun main() {
+
+    val patoMarreco = PatoMarreco()
+    val peru = PeruAustraliano()
+
+    val peruAdapter = PeruAdapter(peru)
+
+    val patos = arrayOf(patoMarreco, peruAdapter)
+
+    patos.forEach { pato->
+        pato.grasnar()
+        pato.voar()
+    }
+    
+    //Saida
+    
+    //Quack, quack, quack
+    //Voar, voar, voar
+    //Blulu, brulu, brulu
+    //Voar
+
+}
+```
 
 **Veja um exemplo:**
 
@@ -174,7 +524,43 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes 
+
+```kotlin
+interface DesenhoAPI {
+    fun desenharCirculo(raio: Int, x: Int, y: Int)
+}
+class CirculoVermelho : DesenhoAPI {
+    override fun desenharCirculo(raio: Int, x: Int, y: Int) {
+        println("Desenhando Circulo [cor:vermelho, raio: $raio, x: $x, y: $y]")
+    }
+}
+class CirculoVerde : DesenhoAPI {
+    override fun desenharCirculo(raio: Int, x: Int, y: Int){
+        println("Desenhando Circulo [cor:verde, raio: $raio, x: $x, y: $y]")
+    }
+}
+abstract class Forma(protected val desenhoApi: DesenhoAPI) {
+    abstract fun desenhar()
+}
+class Circulo(private val x: Int, private val y: Int, private val raio: Int, desenhoAPI: DesenhoAPI) : Forma(desenhoAPI) {
+    override fun desenhar() = desenhoApi.desenharCirculo(raio, x, y)
+}
+//Arquivo Bridge.kt
+fun main() {
+
+    val circuloVermelho = Circulo(100, 100, 10, CirculoVermelho())
+    val circuloVerde = Circulo(100, 100, 10, CirculoVerde())
+
+    circuloVermelho.desenhar()
+    circuloVerde.desenhar()
+
+    //Saída
+    //Desenhando Circulo [cor:vermelho, raio: 10, x: 100, y: 100]
+    //Desenhando Circulo [cor:verde, raio: 10, x: 100, y: 100]
+
+}
+```
 
 **Veja um exemplo:**
 
@@ -193,7 +579,66 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
+
+```kotlin
+class Empregado(private val nome: String, private val departamento: String, private val salario: Int) {
+
+    private val subordinados: MutableList<Empregado> = ArrayList()
+    
+    fun adicionar(e: Empregado) = subordinados.add(e)
+    fun getSubordinados(): List<Empregado> = subordinados
+
+    override fun toString(): String {
+        return "Empregado:[Nome:$nome, departamento:$departamento, salario:$salario]"
+    }
+}
+//Arquivo Composite.kt
+fun main() {
+
+    val ceo = Empregado("João", "CEO", 30000)
+    val chefeVendas = Empregado("Roberto", "Chefe de Vendas", 20000)
+    val chefeMarkerting = Empregado("Michel", "Chefe de Markerting", 20000)
+
+    val escriturario1 = Empregado("Laura", "Marketing", 10000)
+    val escriturario2 = Empregado("Bob", "Marketing", 10000)
+
+    val executivoVendas1 = Empregado("Richard", "Vendas", 10000)
+    val executivoVendas2 = Empregado("Lucas", "Vendas", 10000)
+
+    ceo.adicionar(chefeVendas)
+    ceo.adicionar(chefeMarkerting)
+
+    chefeVendas.adicionar(executivoVendas1)
+    chefeVendas.adicionar(executivoVendas2)
+
+    chefeMarkerting.adicionar(escriturario1)
+    chefeMarkerting.adicionar(escriturario2)
+
+    //Lista com todos os empregados da empresa
+    println(ceo)
+    ceo.getSubordinados().forEach { chefeEmpregados->
+
+        println(chefeEmpregados)
+
+        chefeEmpregados.getSubordinados().forEach { empregado -> println(empregado)}
+
+    }
+
+    //Saída
+
+    //Empregado:[Nome:João, departamento:CEO, salario:30000]
+    //Empregado:[Nome:Roberto, departamento:Chefe de Vendas, salario:20000]
+    //Empregado:[Nome:Richard, departamento:Vendas, salario:10000]
+    //Empregado:[Nome:Lucas, departamento:Vendas, salario:10000]
+    //Empregado:[Nome:Michel, departamento:Chefe de Markerting, salario:20000]
+    //Empregado:[Nome:Laura, departamento:Marketing, salario:10000]
+    //Empregado:[Nome:Bob, departamento:Marketing, salario:10000]
+
+}
+```
+
+#####  
 
 **Veja um exemplo:**
 
@@ -212,7 +657,65 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
+
+```kotlin
+interface Shape {
+    fun desenhar()
+}
+
+class Retangulo : Shape {
+    override fun desenhar() = println("Forma: Retângulo")
+}
+
+class CirculoDecorator : Shape {
+    override fun desenhar() = println("Forma: Circulo")
+}
+
+abstract class FormaDecorator(private val decoratedForma: Shape) : Shape {
+    override fun desenhar() = decoratedForma.desenhar()
+}
+
+class FormaVermelhaDecorator(private val decoratedForma: Shape) : FormaDecorator(decoratedForma) {
+    
+    override fun desenhar() {
+        decoratedForma.desenhar()
+        setBordaVermelha()
+    }
+
+    private fun setBordaVermelha() = println("Cor da Borda: Vermelha")
+
+}
+//Arquivo Decorator.kt
+fun main() {
+
+    val circulo = CirculoDecorator()
+    val circuloVermelho = FormaVermelhaDecorator(CirculoDecorator())
+    val retanguloVermelho = FormaVermelhaDecorator(Retangulo())
+    println("Circulo com a borda normal")
+    circulo.desenhar()
+
+    println("\nCirculo com a borda Vermelha")
+    circuloVermelho.desenhar()
+
+    println("\nRetângulo com a borda Vermelha")
+    retanguloVermelho.desenhar()
+    
+    //Saída
+    
+    //Circulo com a borda normal
+    //Forma: Circulo
+    
+    //Circulo com a borda Vermelha
+    //Forma: Circulo
+    //Cor da Borda: Vermelha
+    
+    //Retângulo com a borda Vermelha
+    //Forma: Retângulo
+    //Cor da Borda: Vermelha
+
+}
+```
 
 **Veja um exemplo:**
 
@@ -231,7 +734,53 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
+
+```kotlin
+interface Formas {
+    fun desenharCircle()
+    fun desenharRectangle()
+    fun desenharSquare()
+}
+
+class Rectangle : Forma {
+    override fun desenhar() = println("Rectangle::desenhar()")
+}
+
+class Square : Forma {
+    override fun desenhar() = println("Square::desenhar()")
+}
+
+class Circle : Forma {
+    override fun desenhar() = println("Circle::desenhar()")
+}
+
+class CriadorForma : Formas {
+
+    private val circle: Forma = Circle()
+    private val rectangle: Forma = Rectangle()
+    private val square: Forma = Square()
+
+    override fun desenharCircle() = circle.desenhar()
+    override fun desenharRectangle() = rectangle.desenhar()
+    override fun desenharSquare() = square.desenhar()
+}
+//Arquivo Facade.kt
+fun main() {
+
+    val criadorForma = CriadorForma()
+    criadorForma.desenharCircle()
+    criadorForma.desenharRectangle()
+    criadorForma.desenharSquare()
+    
+    //Saída
+    
+    //Circle::desenhar()
+    //Rectangle::desenhar()
+    //Square::desenhar()
+
+}
+```
 
 **Veja um exemplo:**
 
@@ -250,7 +799,59 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
+
+```kotlin
+interface Shape {
+    fun desenhar()
+}
+class CircleFlyweight(private val color: String) : Shape {
+
+    var x: Int = 0
+    var y: Int = 0
+    var radius: Int = 0
+
+    override fun desenhar() {
+        println("CircleFlyweight: Draw() [Color:$color, x:$x, y:$y, radius:$radius]")
+    }
+
+}
+
+class ShapeFactory {
+    private val circleMap: HashMap<*, *> = HashMap<Any?, Any?>()
+
+    fun getCircle(color: String): Shape {
+        var circle = circleMap[color] as CircleFlyweight?
+
+        if (circle == null) {
+            circle = CircleFlyweight(color)
+            println("Criando a cor do circulo: $color")
+        }
+        return circle
+    }
+}
+//Arquivo Flyweight.kt
+class Flyweight{
+    
+    private val colors = arrayOf("Red", "Green", "Blue", "White", "Black")
+
+    fun getRandomColor():String = colors[(Math.random() * colors.size).toInt()]
+    fun getRandomX():Int = (Math.random() * 100).toInt()
+    fun getRandomY():Int = (Math.random() * 100).toInt()
+    
+}
+fun main() {
+
+    for (i in 0..19){
+        val circle = Flyweight.ShapeFactory().getCircle(Flyweight().getRandomColor()) as Flyweight.CircleFlyweight
+        circle.x = Flyweight().getRandomX()
+        circle.y = Flyweight().getRandomY()
+        circle.radius = 100
+        circle.desenhar()
+    }
+
+}
+```
 
 **Veja um exemplo:**
 
@@ -288,7 +889,51 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
+
+```kotlin
+interface Image {
+    fun display()
+}
+
+class RealImage(private val fileName: String) : Image {
+
+    init {
+        loadFromDisk(fileName)
+    }
+
+    override fun display() = println("Displaying: $fileName\n")
+
+    private fun loadFromDisk(fileName: String) = println("Loading $fileName")
+
+}
+
+class ProxyImage(private val fileName: String) : Image {
+
+    private var realImage: RealImage? = null
+    override fun display() {
+
+        if (realImage == null) {
+            realImage = RealImage(fileName)
+        }
+        realImage!!.display()
+    }
+
+}
+//Arquivo Proxy.kt
+fun main() {
+
+    val image = ProxyImage("MinhaFoto.png")
+
+    //Imagem será lida pelo disco
+    image.display()
+    //Imagem não será lida pelo disco
+    image.display()
+
+}
+```
+
+#####  
 
 **Veja um exemplo:**
 
@@ -309,7 +954,78 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
+
+```kotlin
+abstract class AbstractLogger {
+
+    companion object {
+        const val INFO = 1
+        const val DEBUG = 2
+        const val ERROR = 3
+    }
+
+    var nextLogger: AbstractLogger? = null
+
+    open var level = 0
+
+    open fun logMessage(level: Int, message: String?) {
+        if (this.level <= level) {
+            write(message)
+        }
+        nextLogger?.logMessage(level, message)
+    }
+
+    protected abstract fun write(message: String?)
+
+}
+
+class ConsoleLogger(override var level: Int) : AbstractLogger() {
+
+    override fun write(message: String?) = println("Standard Console::Logger:$message")
+}
+
+class ErrorLogger(override var level: Int) : AbstractLogger() {
+
+    override fun write(message: String?) = println("Error Console::Logger:$message")
+}
+
+class FileLogger(override var level: Int) : AbstractLogger() {
+
+    override fun write(message: String?) = println("File::Logger:$message")
+}
+//Arquivo ChainOfResponsibility.kt
+class ChainOfResponsibility{
+    fun getChainOfLoggers():AbstractLogger{
+        
+        val errorLogger = ErrorLogger(ERROR)
+        val fileLogger = FileLogger(DEBUG)
+        val consoleLogger = ConsoleLogger(INFO)
+
+        errorLogger.nextLogger = fileLogger
+        fileLogger.nextLogger = consoleLogger
+
+        return errorLogger
+    }
+}
+fun main() {
+
+    val loggerChain = ChainResponsibility().getChainOfLoggers()
+    loggerChain.logMessage(INFO, "This is an information.")
+    loggerChain.logMessage(DEBUG, "This is an debug level information.")
+    loggerChain.logMessage(ERROR, "This is an error information.")
+    
+    //Saída
+    
+    //Standard Console::Logger:This is an information.
+    //File::Logger:This is an debug level information.
+    //Standard Console::Logger:This is an debug level information.
+    //Error Console::Logger:This is an error information.
+    //File::Logger:This is an error information.
+    //Standard Console::Logger:This is an error information.
+
+}
+```
 
 **Veja um exemplo:**
 
@@ -323,14 +1039,76 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 **Utilização**
 
+**Veja um exemplo:**
+
 ##### Diagrama de Classe
 
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
 
-**Veja um exemplo:**
+```kotlin
+interface Pedido {
+    fun executar()
+}
+
+class Estoque {
+
+    private val nome = "ABC"
+    private val quantidade = 10
+
+    fun comprar() = println("Estoque [Nome: $nome, Quantidade: $quantidade] comprado")
+
+    fun vender() = println("Estoque [Nome: $nome, Quantidade: $quantidade] vendido")
+
+}
+
+class ComprarEstoque(private val estoque: Estoque) : Pedido {
+    override fun executar() = estoque.comprar()
+
+}
+
+class VenderEstoque(private val estoque: Estoque) : Pedido {
+    override fun executar() = estoque.vender()
+}
+
+class Corretor {
+
+    private val listaPedidos: MutableList<Pedido> = ArrayList()
+
+    fun levarPedido(pedido: Pedido) {
+        listaPedidos.add(pedido)
+    }
+
+    fun colocarPedidos() {
+
+        listaPedidos.forEach { pedido -> pedido.executar() }
+        listaPedidos.clear()
+
+    }
+}
+//Arquivo Command.kt
+fun main() {
+
+    val estoque = Estoque()
+
+    val comprarPedidosEstoque = ComprarEstoque(estoque)
+    val venderPedidosEstoque = VenderEstoque(estoque)
+
+    val corretor = Corretor()
+    corretor.levarPedido(comprarPedidosEstoque)
+    corretor.levarPedido(venderPedidosEstoque)
+
+    corretor.colocarPedidos()
+
+    //Saída
+
+    //Estoque [Nome: ABC, Quantidade: 10] comprado
+    //Estoque [Nome: ABC, Quantidade: 10] vendido
+    
+}
+```
 
 #### **Pontos Positivos**
 
@@ -385,7 +1163,34 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
+
+```kotlin
+class ChatRoom {
+
+    fun mostrarMensagem(usuario: Usuario, message: String) {
+        val hoje = LocalDateTime.now().toString()
+        println("$hoje [${usuario.nome}]: $message")
+    }
+}
+
+class Usuario(val nome: String) {
+
+    fun enviarMensagem(message: String) {
+        ChatRoom().mostrarMensagem(this, message)
+    }
+}
+//Arquivo Mediator.kt
+fun main() {
+
+    val robert = Usuario("Roberto")
+    val john = Usuario("John")
+
+    robert.enviarMensagem("Olá! John")
+    john.enviarMensagem("Oi! Roberto")
+
+}
+```
 
 **Veja um exemplo:**
 
@@ -410,51 +1215,69 @@ Essa classe deve estender a classe original e implementar seus métodos de forma
 | ![](src/uml/NullObject.png) |
 | :--------------------------: |
 
-##### Classe Null Object
+##### Classes
 
 ```kotlin
+abstract class ClienteAbstrato{
+    abstract fun isNulo():Boolean
+    abstract fun getNome():String
+}
+class ClienteReal(private var nome:String):ClienteAbstrato(){
+    override fun isNulo(): Boolean = false
+    override fun getNome(): String = nome
+}
+class ClienteNulo:ClienteAbstrato(){
+    override fun isNulo(): Boolean = true
+    override fun getNome(): String = "Não existe esse nome na lista"
+}
+//Arquivo NullObject.kt
 class NullObject {
 
-    abstract class ClienteAbstrato{
+    companion object {
 
-        abstract fun isNulo():Boolean
-        abstract fun getNome():String
-    }
-    class ClienteReal(private var nome:String):ClienteAbstrato(){
+        val listaNomes = listOf("Lucas", "João", "Maria")
 
-        override fun isNulo(): Boolean = false
-        override fun getNome(): String = nome
+        fun getCliente(nome: String): ClienteAbstrato {
 
-    }
-    class ClienteNulo:ClienteAbstrato(){
+            listaNomes.forEach { nomes ->
 
-        override fun isNulo(): Boolean = true
-        override fun getNome(): String = "Não existe esse nome na lista"
-
-    }
-    class ClienteFactory{
-
-        companion object Fabrica{
-
-            val listaNomes = listOf("Lucas", "João", "Maria")
-
-            fun getCliente(nome:String):ClienteAbstrato{
-
-                listaNomes.forEach { nomes->
-
-                    if (nomes == nome) {
-                        return ClienteReal(nome)
-                    }
-
+                if (nomes == nome) {
+                    return ClienteReal(nome)
                 }
 
-                return ClienteNulo()
-
             }
+
+            return ClienteNulo()
+
         }
     }
 
 }
+
+fun main() {
+
+    val cliente1 = NullObject.getCliente("Lucas")
+    val cliente2 = NullObject.getCliente("Marcelo")
+    val cliente3 = NullObject.getCliente("Maria")
+    val cliente4 = NullObject.getCliente("Matheus")
+
+    println("Clientes")
+    println()
+    println(cliente1.getNome())
+    println(cliente2.getNome())
+    println(cliente3.getNome())
+    println(cliente4.getNome())
+
+    //Saída
+    //Clientes
+
+    //Lucas
+    //Não existe esse nome na lista
+    //Maria
+    //Não existe esse nome na lista
+     
+}
+
 ```
 
 #### **Pontos Positivos**
@@ -498,7 +1321,83 @@ class NullObject {
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
+
+```kotlin
+abstract class Observer {
+    abstract fun atualizar()
+}
+
+class Sujeito {
+    private val observers: MutableList<Observer> = ArrayList()
+    var state = 0
+        set(state) {
+            field = state
+            notifyAllObservers()
+        }
+
+    fun attach(observer: Observer) = observers.add(observer)
+    fun notifyAllObservers() = observers.forEach { observer -> observer.atualizar() }
+}
+
+class BinaryObserver(private val sujeito: Sujeito) : Observer() {
+
+    init {
+        sujeito.attach(this)
+    }
+
+    override fun atualizar(){
+        println("Binary String: ${Integer.toBinaryString(sujeito.state)}\n")
+    }
+
+}
+
+class HexaObserver(private val sujeito: Sujeito) : Observer() {
+
+    init {
+        sujeito.attach(this)
+    }
+    
+    override fun atualizar() = println("Hexa String: ${Integer.toHexString(sujeito.state).uppercase(Locale.getDefault())}")
+
+}
+
+class OctalObserver(private val sujeito: Sujeito) : Observer() {
+
+    init {
+        sujeito.attach(this)
+    }
+
+    override fun atualizar() = println("Octal String: ${Integer.toOctalString(sujeito.state)}")
+
+}
+//Arquivo Observer.kt
+fun main() {
+
+    val sujeito = Sujeito()
+    HexaObserver(sujeito)
+    OctalObserver(sujeito)
+    BinaryObserver(sujeito)
+
+    println("O primeiro estado muda para: 15")
+    sujeito.state = 15
+    println("O segundo estado muda para: 10")
+    sujeito.state = 10
+
+    //Saída
+
+    //O primeiro estado muda para: 15
+    //Hexa String: F
+    //Octal String: 17
+    //Binary String: 1111
+
+    //O segundo estado muda para: 10
+    //Hexa String: A
+    //Octal String: 12
+    //Binary String: 1010
+
+}
+```
 
 **Veja um exemplo:**
 
@@ -517,7 +1416,60 @@ class NullObject {
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
+
+```kotlin
+interface State {
+    fun doAction(context: Context)
+}
+
+class Context {
+    var state: State? = null
+}
+
+class IniciarEstado : State {
+    override fun doAction(context: Context) {
+        println("O jogador iniciou o estado")
+        context.state = this
+    }
+
+    override fun toString(): String = "Estado Iniciado"
+
+}
+
+class PararEstado : State {
+    override fun doAction(context: Context) {
+        println("O jogador parou o estado")
+        context.state = this
+    }
+
+    override fun toString(): String = "Estado Parado"
+
+}
+//Arquivo State.kt
+fun main() {
+
+    val context = Context()
+
+    val iniciarEstado = IniciarEstado()
+    iniciarEstado.doAction(context)
+
+    println(context.state.toString())
+
+    val pararEstado = PararEstado()
+    pararEstado.doAction(context)
+
+    println(context.state.toString())
+
+    //Saída
+    //O jogador iniciou o estado
+    //Estado Iniciado
+    //O jogador parou o estado
+    //Estado Parado
+}
+```
+
+#####  
 
 **Veja um exemplo:**
 
@@ -533,7 +1485,7 @@ class NullObject {
 
 **Utilização**
 
-O Strategy é um padrão que deve ser utilizado quando ***uma classe possuir diversos algoritmos que possam ser utilizados de forma intercambiável***. A solução proposta pelo padrão consiste em delegar a execução do algoritmo para uma instância que compõe a classe principal. Dessa forma, quando a funcionalidade for invocada, no momento da execução do algoritmo, será invocado um método da instância que a compõe.
+O Strategy é um padrão que deve ser utilizado quando ***uma classe possuir diversos algoritmos que possam ser utilizados de forma intercambiável***. A solução proposta pelo padrão consiste em ***delegar a execução do algoritmo para uma instância que compõe a classe principal***. Dessa forma, quando a funcionalidade for invocada, no momento da execução do algoritmo, será invocado um método da instância que a compõe.
 
 **Veja um exemplo:**
 
@@ -542,41 +1494,46 @@ O Strategy é um padrão que deve ser utilizado quando ***uma classe possuir div
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe Strategy
+##### Classes
 
 ```kotlin
-class Strategy {
+interface OperationStrategy {
+    fun doOperation(num1:Double, num2: Double):Double
+}
+class Soma:OperationStrategy {
+    override fun doOperation(num1: Double, num2: Double): Double = num1.plus(num2)
+}
+class Subtracao:OperationStrategy {
+    override fun doOperation(num1: Double, num2: Double): Double = num1.minus(num2)
+}
+class Multiplicacao:OperationStrategy {
+    override fun doOperation(num1: Double, num2: Double): Double = num1.times(num2)
+}
+class Divisao:OperationStrategy {
+    override fun doOperation(num1: Double, num2: Double): Double = num1.div(num2)
+}
+class Context(private val strategy: OperationStrategy) {
 
-    abstract class Felino(private val correrStrategy:CorrerStrategy){
+    fun executeOperation(num1:Double, num2:Double):Double = strategy.doOperation(num1, num2)
 
-        abstract fun display()
-        abstract fun rugir()
-        fun perfomarCorrer() = correrStrategy.correr()
-        fun getCorrerStrategy(correrStrategy:CorrerStrategy) = correrStrategy.correr()
+}
+//Arquivo Strategy.kt
+fun main() {
 
-    }
+    val soma = Context(Soma())
+    println("10 + 5 = ${soma.executeOperation(10.0, 5.0)}")
+    val subtracao = Context(Subtracao())
+    println("10 - 5 = ${subtracao.executeOperation(10.0, 5.0)}")
+    val multiplicacao = Context(Multiplicacao())
+    println("10 * 5 = ${multiplicacao.executeOperation(10.0, 5.0)}")
+    val divisao = Context(Divisao())
+    println("10 / 5 = ${divisao.executeOperation(10.0, 5.0)}")
 
-    class Leao:Felino(CorrerCurtaDistancia()) {
-
-        override fun display() = println("Leão a vista")
-        override fun rugir() = println("Urghhhhh!")
-
-    }
-    class Leopardo:Felino(CorrerLongaDistancia()){
-
-        override fun display() = println("Leopardo a vista")
-        override fun rugir() = println("Arghh!")
-
-    }
-    interface CorrerStrategy{
-        fun correr()
-    }
-    class CorrerCurtaDistancia:CorrerStrategy{
-        override fun correr() = println("Correr curta distância, porém com o objetivo bem próximo.")
-    }
-    class CorrerLongaDistancia:CorrerStrategy{
-        override fun correr() = println("Correr longa distância, caso necessário.")
-    }
+    //Saída
+    //10 + 5 = 15.0
+    //10 - 5 = 5.0
+    //10 * 5 = 50.0
+    //10 / 5 = 2.0
 
 }
 ```
@@ -625,14 +1582,62 @@ class Strategy {
 
 **Definição**
 
+> *Define o esqueleto ou passos do algoritmo em uma operação, permitindo que subclasses implementem alguns passos específicos do processamento.*
+
 **Utilização**
 
-##### Diagrama de Classe
+Este padrão é aplicável quando se deseja ***definir um algoritmo geral***, que ***estabelece uma série de passos para cumprir um requisito da aplicação***. Porém, seus passos podem variar e é desejável que a estrutura da implementação forneça uma forma para que eles sejam facilmente substituídos.
+
+##### Diagrama de Classe - Template Method
 
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classe Template Method
+
+```kotlin
+abstract class Game{
+    
+    abstract fun initialize()
+    abstract fun startPlay()
+    abstract fun endPlay()
+    
+    fun play(){
+        initialize()
+        startPlay()
+        endPlay()
+    }
+}
+class Volei:Game(){
+    override fun initialize() = println("Volei Game Initialized! Start playing.")
+    override fun startPlay() = println("Volei Game Started. Enjoy the game!")
+    override fun endPlay() = println("Volei Game Finished!")
+}
+class Football:Game(){
+    override fun initialize() = println("Football Game Initialized! Start playing.")
+    override fun startPlay() = println("Football Game Started. Enjoy the game!")
+    override fun endPlay() = println("Football Game Finished!")
+}
+fun main() {
+    
+    var game:Game = Volei()
+    game.play()
+    println()
+    game = Football()
+    game.play()
+    
+    //Saída de dados
+    
+    //Volei Game Initialized! Start playing.
+    //Volei Game Started. Enjoy the game!
+    //Volei Game Finished!
+    
+    //Football Game Initialized! Start playing.
+    //Football Game Started. Enjoy the game!
+    //Football Game Finished!
+   
+}
+```
 
 **Veja um exemplo:**
 
@@ -646,14 +1651,83 @@ class Strategy {
 
 **Utilização**
 
+**Veja um exemplo:**
+
 ##### Diagrama de Classe
 
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
 
-**Veja um exemplo:**
+```kotlin
+interface PartesComputadorVisitor {
+    fun visit(computador: Computador)
+    fun visit(monitor: Monitor)
+    fun visit(teclado: Teclado)
+    fun visit(mouse: Mouse)
+}
+
+interface PartesComputador {
+    fun aceitar(partesComputadorVisitor: PartesComputadorVisitor)
+}
+
+class Computador : PartesComputador {
+
+    private val partes: Array<PartesComputador> = arrayOf(Mouse(), Teclado(), Monitor())
+
+    override fun aceitar(partesComputadorVisitor: PartesComputadorVisitor) {
+
+        partes.forEach { partesComputador -> partesComputador.aceitar(partesComputadorVisitor) }
+        partesComputadorVisitor.visit(this)
+    }
+
+}
+
+class Monitor : PartesComputador {
+    override fun aceitar(partesComputadorVisitor: PartesComputadorVisitor) {
+        partesComputadorVisitor.visit(this)
+    }
+
+}
+
+class Teclado : PartesComputador {
+    override fun aceitar(partesComputadorVisitor: PartesComputadorVisitor) {
+        partesComputadorVisitor.visit(this)
+    }
+
+}
+
+class Mouse : PartesComputador {
+    override fun aceitar(partesComputadorVisitor: PartesComputadorVisitor) {
+        partesComputadorVisitor.visit(this)
+    }
+
+}
+
+class ParteComputadorDisplayVisitor : PartesComputadorVisitor {
+
+    override fun visit(computador: Computador) = println("Displaying Computador.")
+    override fun visit(monitor: Monitor) = println("Displaying Monitor.")
+    override fun visit(teclado: Teclado) = println("Displaying Teclado.")
+    override fun visit(mouse: Mouse) = println("Displaying Mouse.")
+
+}
+//Arquivo Visitor.kt
+fun main() {
+
+    val computador:PartesComputador = Computador()
+    computador.aceitar(ParteComputadorDisplayVisitor())
+
+    //Saída
+
+    //Displaying Mouse.
+    //Displaying Teclado.
+    //Displaying Monitor.
+    //Displaying Computador.
+
+}
+```
 
 #### **Pontos Positivos**
 
@@ -665,5 +1739,7 @@ class Strategy {
 2. **Livro:** Design Patterns com Java - Projeto orientado a objetos guiados por padrões - Eduardo Guerra
 3. http://www.cs.sjsu.edu/faculty/pearce/patterns/hanbod/hanbod.html
 4. https://www.pcmag.com/encyclopedia/term/binding-time
-5. https://www.thiengo.com.br/padrao-de-projeto-strategy-estrategia
-6. https://sourcemaking.com/design_patterns/strategy
+5. https://www.thiengo.com.br/padrao-de-projeto-template-method-metodo-template
+6. https://www.thiengo.com.br/padrao-de-projeto-strategy-estrategia
+7. https://sourcemaking.com/design_patterns/strategy
+8. https://www.geeksforgeeks.org/prototype-design-pattern/
