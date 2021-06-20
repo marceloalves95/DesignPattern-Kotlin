@@ -38,8 +38,7 @@ fun main() {
     val cliente3 = NullObject.getCliente("Maria")
     val cliente4 = NullObject.getCliente("Matheus")
 
-    println("Clientes")
-    println()
+    println("Clientes\n")
     println(cliente1.getNome())
     println(cliente2.getNome())
     println(cliente3.getNome())

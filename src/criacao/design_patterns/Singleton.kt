@@ -6,4 +6,11 @@ package criacao.design_patterns
  */
 object Singleton {
 
+    init {
+        println("Initializing with object: $this")
+    }
+
+    fun print() = println("Printing with object: $this")
+
 }
+
