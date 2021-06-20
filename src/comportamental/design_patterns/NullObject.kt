@@ -10,33 +10,31 @@ import comportamental.exemplos.ClienteReal
  */
 class NullObject {
 
-    companion object {
+    private val listaNomes = listOf("Lucas", "João", "Maria")
 
-        val listaNomes = listOf("Lucas", "João", "Maria")
+    fun getCliente(nome: String): ClienteAbstrato {
 
-        fun getCliente(nome: String): ClienteAbstrato {
+        listaNomes.forEach { nomes ->
 
-            listaNomes.forEach { nomes ->
-
-                if (nomes == nome) {
-                    return ClienteReal(nome)
-                }
-
+            if (nomes == nome) {
+                return ClienteReal(nome)
             }
 
-            return ClienteNulo()
-
         }
+
+        return ClienteNulo()
+
     }
 
 }
 
 fun main() {
 
-    val cliente1 = NullObject.getCliente("Lucas")
-    val cliente2 = NullObject.getCliente("Marcelo")
-    val cliente3 = NullObject.getCliente("Maria")
-    val cliente4 = NullObject.getCliente("Matheus")
+
+    val cliente1 = NullObject().getCliente("Lucas")
+    val cliente2 = NullObject().getCliente("Marcelo")
+    val cliente3 = NullObject().getCliente("Maria")
+    val cliente4 = NullObject().getCliente("Matheus")
 
     println("Clientes\n")
     println(cliente1.getNome())
