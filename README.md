@@ -31,9 +31,6 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ###    ![](src/imagens/abstract-factory.png)    Abstract Factory  
 
-| ![](src/imagens/abstract-factory.png) | Abstract Factory |
-| ------------------------------------- | :--------------: |
-
 **Definição**
 
 >  *É um padrão de projeto de criação que permite que você produza famílias de objetos relacionados sem ter que especificar suas classes concretas.*
