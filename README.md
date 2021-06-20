@@ -149,7 +149,8 @@ Dentro QuadradoArredondado::desenhar() method.
 
 #### **Pontos Negativos**
 
-###    ![](src/imagens/builder.png)    Builder 
+![](src/imagens/builder.png)
+###  Builder 
 
 **Definição**
 
@@ -277,7 +278,8 @@ Custo total: 85.5
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/factory.png)Factory
+![](src/imagens/factory.png)
+### Factory
 
 **Definição**
 
@@ -360,7 +362,8 @@ Dentro Quadrado::desenhar() method.
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/factory-method.png)  Factory Method
+![](src/imagens/factory-method.png)
+###  Factory Method
 
 **Definição**
 
@@ -451,7 +454,8 @@ Sending an SMS notification
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/prototype.png)  Prototype
+![](src/imagens/prototype.png) 
+### Prototype
 
 **Definição**
 
@@ -524,7 +528,8 @@ Blue color added
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/singleton.png)  Singleton
+![](src/imagens/singleton.png)
+### Singleton
 
 **Definição**
 
@@ -568,7 +573,8 @@ Printing with object: Singleton@29453f44
 
 ## Structural Patterns
 
-### ![](src/imagens/adapter.png) Adapter
+![](src/imagens/adapter.png)
+### Adapter
 
 **Definição**
 
@@ -641,7 +647,8 @@ Voar
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/bridge.png) Bridge
+![](src/imagens/bridge.png)
+### Bridge
 
 **Definição**
 
@@ -699,7 +706,8 @@ Desenhando Circulo [cor:verde, raio: 10, x: 100, y: 100]
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/composite.png)  Composite
+![](src/imagens/composite.png)
+### Composite
 
 **Definição**
 
@@ -777,7 +785,8 @@ Empregado:[Nome:Bob, departamento:Marketing, salario:10000]
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/decorator.png)Decorator
+![](src/imagens/decorator.png)
+### Decorator
 
 **Definição**
 
@@ -856,7 +865,8 @@ Cor da Borda: Vermelha
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/facade.png)  Facade
+![](src/imagens/facade.png)
+### Facade
 
 **Definição**
 
@@ -923,7 +933,8 @@ Square::desenhar()
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/flyweight.png)  Flyweight
+![](src/imagens/flyweight.png)
+### Flyweight
 
 **Definição**
 
@@ -1039,7 +1050,8 @@ CircleFlyweight: Draw() [Color:Blue, x:78, y:32, radius:100]
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/proxy.png)Proxy
+![](src/imagens/proxy.png)
+### Proxy
 
 **Definição**
 
@@ -1111,7 +1123,8 @@ Displaying: MinhaFoto.png
 
 ## Behavioral Patterns
 
-### ![](src/imagens/chain-of-responsibility.png)  Chain of Responsibility
+![](src/imagens/chain-of-responsibility.png)
+### Chain of Responsibility
 
 **Definição**
 
@@ -1203,7 +1216,8 @@ Standard Console::Logger:This is an error information.
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/command.png)  Command
+![](src/imagens/command.png)
+### Command
 
 **Definição**
 
@@ -1369,7 +1383,8 @@ Julia é uma mulher casada? Resposta: true
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/iterator.png)  Iterator
+![](src/imagens/iterator.png)
+### Iterator
 
 **Definição**
 
@@ -1451,7 +1466,8 @@ Nome: Larissa
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/mediator.png) Mediator
+![](src/imagens/mediator.png)
+### Mediator
 
 **Definição**
 
@@ -1504,7 +1520,8 @@ fun main() {
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/memento.png) Memento
+![](src/imagens/memento.png)
+### Memento
 
 **Definição**
 
@@ -1684,7 +1701,8 @@ Não existe esse nome na lista
 - **Um objeto nulo pode ser usado para** permitir que uma classe do padrão *Visitor* *inspecione uma hierarquia com segurança e trate de uma situação nula*.
 - *Null Object* **é uma classe colaborativa.** Ela atua como o colaborador para um cliente que precisa de um. *O comportamento nulo*, ou seja, que não faz nada, *não foi projetado para ser misturado a um objeto que precisa de algum comportamento nulo*. Ele é projetado para uma classe que delega a outra todos os comportamentos que podem ou não ter comportamentos nulos.
 
-### ![](src/imagens/observer.png) Observer
+![](src/imagens/observer.png)
+### Observer
 
 **Definição**
 
@@ -1781,7 +1799,8 @@ Binary String: 1010
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/state.png)  State
+![](src/imagens/state.png)
+### State
 
 **Definição**
 
@@ -1855,7 +1874,8 @@ Estado Parado
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/strategy.png)  Strategy
+![](src/imagens/strategy.png)
+### Strategy
 
 **Definição**
 
@@ -1957,7 +1977,8 @@ fun main() {
 >
 > **Observação:** Linguagens orientadas a objetos tem o seu tempo de vinculação de forma tardia e atribuem tipos em tempo de execução quando a variável recebe um valor do teclado ou de outra fonte.
 
-### ![](src/imagens/template-method.png)Template Method
+![](src/imagens/template-method.png)
+### Template Method
 
 **Definição**
 
@@ -2025,7 +2046,8 @@ Football Game Finished!
 
 #### **Pontos Negativos**
 
-### ![](src/imagens/visitor.png)  Visitor
+![](src/imagens/visitor.png)
+### Visitor
 
 **Definição**
 
