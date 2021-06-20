@@ -29,7 +29,7 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ## Creational Patterns
 
-### ![](src/imagens/abstract-factory.png)   Abstract Factory
+###    ![](src/imagens/abstract-factory.png)    Abstract Factory  
 
 **Definição**
 
@@ -148,7 +148,7 @@ Dentro QuadradoArredondado::desenhar() method.
 
 #### **Pontos Negativos**
 
-###    ![](D:\Imagens\Design Pattern\Padrões de Projeto\builder.png)    Builder 
+###    ![](src/imagens/builder.png)    Builder 
 
 **Definição**
 
@@ -276,7 +276,7 @@ Custo total: 85.5
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\factory.png)Factory
+### ![](src/imagens/factory.png)Factory
 
 **Definição**
 
@@ -359,7 +359,7 @@ Dentro Quadrado::desenhar() method.
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\factory-method.png)  Factory Method
+### ![](src/imagens/factory-method.png)  Factory Method
 
 **Definição**
 
@@ -450,7 +450,7 @@ Sending an SMS notification
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\prototype.png)  Prototype
+### ![](src/imagens/prototype.png)  Prototype
 
 **Definição**
 
@@ -523,7 +523,7 @@ Blue color added
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\singleton.png)Singleton
+### ![](src/imagens/singleton.png)  Singleton
 
 **Definição**
 
@@ -567,7 +567,7 @@ Printing with object: Singleton@29453f44
 
 ## Structural Patterns
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\adapter.png) Adapter
+### ![](src/imagens/adapter.png) Adapter
 
 **Definição**
 
@@ -640,7 +640,7 @@ Voar
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\bridge.png) Bridge
+### ![](src/imagens/bridge.png) Bridge
 
 **Definição**
 
@@ -698,7 +698,7 @@ Desenhando Circulo [cor:verde, raio: 10, x: 100, y: 100]
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\composite.png)  Composite
+### ![](src/imagens/composite.png)  Composite
 
 **Definição**
 
@@ -776,7 +776,7 @@ Empregado:[Nome:Bob, departamento:Marketing, salario:10000]
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\decorator.png)Decorator
+### ![](src/imagens/decorator.png)Decorator
 
 **Definição**
 
@@ -855,7 +855,7 @@ Cor da Borda: Vermelha
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\facade.png)  Facade
+### ![](src/imagens/facade.png)  Facade
 
 **Definição**
 
@@ -922,7 +922,7 @@ Square::desenhar()
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\flyweight.png)  Flyweight
+### ![](src/imagens/flyweight.png)  Flyweight
 
 **Definição**
 
@@ -1038,7 +1038,7 @@ CircleFlyweight: Draw() [Color:Blue, x:78, y:32, radius:100]
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\proxy.png)Proxy
+### ![](src/imagens/proxy.png)Proxy
 
 **Definição**
 
@@ -1110,7 +1110,7 @@ Displaying: MinhaFoto.png
 
 ## Behavioral Patterns
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\chain-of-responsibility.png)  Chain of Responsibility
+### ![](src/imagens/chain-of-responsibility.png)  Chain of Responsibility
 
 **Definição**
 
@@ -1202,7 +1202,7 @@ Standard Console::Logger:This is an error information.
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\command.png)  Command
+### ![](src/imagens/command.png)  Command
 
 **Definição**
 
@@ -1368,7 +1368,7 @@ Julia é uma mulher casada? Resposta: true
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\iterator.png)  Iterator
+### ![](src/imagens/iterator.png)  Iterator
 
 **Definição**
 
@@ -1450,7 +1450,7 @@ Nome: Larissa
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\mediator.png) Mediator
+### ![](src/imagens/mediator.png) Mediator
 
 **Definição**
 
@@ -1503,7 +1503,7 @@ fun main() {
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\memento.png) Memento
+### ![](src/imagens/memento.png) Memento
 
 **Definição**
 
@@ -1683,7 +1683,7 @@ Não existe esse nome na lista
 - **Um objeto nulo pode ser usado para** permitir que uma classe do padrão *Visitor* *inspecione uma hierarquia com segurança e trate de uma situação nula*.
 - *Null Object* **é uma classe colaborativa.** Ela atua como o colaborador para um cliente que precisa de um. *O comportamento nulo*, ou seja, que não faz nada, *não foi projetado para ser misturado a um objeto que precisa de algum comportamento nulo*. Ele é projetado para uma classe que delega a outra todos os comportamentos que podem ou não ter comportamentos nulos.
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\observer.png) Observer
+### ![](src/imagens/observer.png) Observer
 
 **Definição**
 
@@ -1780,7 +1780,7 @@ Binary String: 1010
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\state.png)  State
+### ![](src/imagens/state.png)  State
 
 **Definição**
 
@@ -1854,7 +1854,7 @@ Estado Parado
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\strategy.png)  Strategy
+### ![](src/imagens/strategy.png)  Strategy
 
 **Definição**
 
@@ -1956,7 +1956,7 @@ fun main() {
 >
 > **Observação:** Linguagens orientadas a objetos tem o seu tempo de vinculação de forma tardia e atribuem tipos em tempo de execução quando a variável recebe um valor do teclado ou de outra fonte.
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\template-method.png)Template Method
+### ![](src/imagens/template-method.png)Template Method
 
 **Definição**
 
@@ -2024,7 +2024,7 @@ Football Game Finished!
 
 #### **Pontos Negativos**
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\visitor.png)  Visitor
+### ![](src/imagens/visitor.png)  Visitor
 
 **Definição**
 
