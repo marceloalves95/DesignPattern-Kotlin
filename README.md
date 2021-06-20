@@ -29,7 +29,7 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 ## Creational Patterns
 
-### ![](D:\Imagens\Design Pattern\Padrões de Projeto\abstract-factory.png)    **Abstract Factory** 
+### ![](src/imagens/abstract-factory.png)    **Abstract Factory** 
 
 **Definição**
 
