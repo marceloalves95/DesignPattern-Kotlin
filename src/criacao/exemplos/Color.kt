@@ -3,7 +3,8 @@ package criacao.exemplos
 abstract class Color : Cloneable{
 
     abstract fun addColor()
-    public override fun clone(): Any {
+
+    override fun clone(): Any {
         var clone: Any? = null
         try {
             clone = super.clone()

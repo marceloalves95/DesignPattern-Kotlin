@@ -1,7 +1,7 @@
 package estrutural.exemplos
 
-import criacao.exemplos.Forma
+import criacao.design_patterns.abstract_factory.Shape
 
-class Square: Forma {
-    override fun desenhar() = println("Square::desenhar()")
+class Square: Shape {
+    override fun draw() = println("Square::desenhar()")
 }

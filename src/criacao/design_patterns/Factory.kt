@@ -1,6 +1,6 @@
 package criacao.design_patterns
 
-import criacao.exemplos.*
+import criacao.design_patterns.factory.ShapeFactory
 
 /**
  * @author RubioAlves
@@ -8,20 +8,15 @@ import criacao.exemplos.*
  */
 fun main() {
 
-    val formaFactory = FormaFactory()
-    //Pega o objeto Circulo e chama o metodo desenhar
-    val forma1 = formaFactory.getForma("CIRCULO")
-    forma1?.desenhar()
-    //Pega o objeto Retangulo e chama o metodo desenhar
-    val forma2 = formaFactory.getForma("RETANGULO")
-    forma2?.desenhar()
-    //Pega o objeto Quadrado e chama o metodo desenhar
-    val forma3 = formaFactory.getForma("QUADRADO")
-    forma3?.desenhar()
+    val shapeFactory = ShapeFactory()
 
-    //Saída
-    //Dentro Circulo::desenhar() method.
-    //Dentro Retangulo::desenhar() method.
-    //Dentro Quadrado::desenhar() method.
+    val shape1 = shapeFactory.getShape("CIRCLE")
+    shape1?.draw()
+
+    val shape2 = shapeFactory.getShape("RECTANGLE")
+    shape2?.draw()
+
+    val shape3 = shapeFactory.getShape("SQUARE")
+    shape3?.draw()
 
 }

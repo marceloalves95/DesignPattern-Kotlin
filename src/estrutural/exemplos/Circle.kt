@@ -1,7 +1,7 @@
 package estrutural.exemplos
 
-import criacao.exemplos.Forma
+import criacao.design_patterns.abstract_factory.Shape
 
-class Circle: Forma {
-    override fun desenhar() = println("Circle::desenhar()")
+class Circle: Shape {
+    override fun draw() = println("Circle::desenhar()")
 }

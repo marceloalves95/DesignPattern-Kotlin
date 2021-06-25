@@ -1,6 +1,6 @@
 package criacao.design_patterns
 
-import criacao.exemplos.FactoryProducer
+import criacao.design_patterns.abstract_factory.Producer
 
 /**
  * @author RubioAlves
@@ -8,32 +8,21 @@ import criacao.exemplos.FactoryProducer
  */
 fun main() {
 
-    //Pega a formFactory
-    val formaFactory = FactoryProducer.getFactory(false)
-    //Pega um objeto com forma retangular
-    val forma1 = formaFactory.getForma("RETANGULO")
-    //Chama o metodo desenhar do formato retangular
-    forma1?.desenhar()
-    //Pega um objeto com forma quadrada
-    val forma2 = formaFactory.getForma("QUADRADO")
-    //Chama o metodo desenhar do formato quadrado
-    forma2?.desenhar()
+    val shapeFactory1 = Producer().getFactory(false)
 
-    //Pega a formFactory
-    val formaFactory1 = FactoryProducer.getFactory(true)
-    //Pega um objeto com forma retangular
-    val forma3 = formaFactory1.getForma("RETANGULO")
-    //Chama o metodo desenhar do formato retangular
-    forma3?.desenhar()
-    //Pega um objeto com forma quadrada
-    val forma4 = formaFactory1.getForma("QUADRADO")
-    //Chama o metodo desenhar do formato quadrado
-    forma4?.desenhar()
+    val shape1 = shapeFactory1.getShape("RECTANGLE")
+    shape1?.draw()
 
-    //Saída
-    //Dentro Retangulo::desenhar() method.
-    //Dentro Quadrado::desenhar() method.
-    //Dentro RetanguloArredondado::desenhar() method.
-    //Dentro QuadradoArredondado::desenhar() method.
+    val shape2 = shapeFactory1.getShape("SQUARE")
+    shape2?.draw()
+
+
+    val shapeFactory2 = Producer().getFactory(true)
+
+    val shape3 = shapeFactory2.getShape("RECTANGLE")
+    shape3?.draw()
+
+    val shape4 = shapeFactory2.getShape("SQUARE")
+    shape4?.draw()
 
 }
