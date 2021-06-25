@@ -18,19 +18,23 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 |       Builder       |       Bridge        |         Command         |
 |       Factory       |      Composite      |       Interpreter       |
 |   Factory Method    |      Decorator      |        Iterator         |
-|     Object Pool     |       Facade        |        Mediator         |
-|      Prototype      |      Flyweight      |       Null Object       |
-|      Singleton      | Private Class Data  |        Observer         |
-|                     |        Proxy        |          State          |
+|      Prototype      |       Facade        |        Mediator         |
+|      Singleton      |      Flyweight      |         Memento         |
+|                     |        Proxy        |       Null Object       |
+|                     |                     |        Observer         |
+|                     |                     |          State          |
 |                     |                     |        Strategy         |
 |                     |                     |     Template Method     |
 |                     |                     |         Visitor         |
 
 ## Creational Patterns
 
-### Abstract Factory
+![](src/imagens/abstract-factory.png) 
+### Abstract Factory  
 
 **Definição**
+
+>  *É um padrão de projeto de criação que permite que você produza famílias de objetos relacionados sem ter que especificar suas classes concretas.*
 
 **Utilização**
 
@@ -129,23 +133,28 @@ fun main() {
     val forma4 = formaFactory1.getForma("QUADRADO")
     //Chama o metodo desenhar do formato quadrado
     forma4?.desenhar()
-
-    //Saída
-    //Dentro Retangulo::desenhar() method.
-    //Dentro Quadrado::desenhar() method.
-    //Dentro RetanguloArredondado::desenhar() method.
-    //Dentro QuadradoArredondado::desenhar() method.
-
 }
+```
+
+**Saída**
+
+```
+Dentro Retangulo::desenhar() method.
+Dentro Quadrado::desenhar() method.
+Dentro RetanguloArredondado::desenhar() method.
+Dentro QuadradoArredondado::desenhar() method.
 ```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
-### Builder
+![](src/imagens/builder.png)
+###  Builder 
 
 **Definição**
+
+> *É um padrão de projeto de criação que permite que você construa objetos complexos passo a passo. Ele também permite que você produza diferentes tipos e representações de um objeto usando o mesmo código de construção.*
 
 **Utilização**
 
@@ -248,27 +257,33 @@ fun main() {
     refeicaoNaoVegetariana.mostrarItens()
     println("Custo total: ${refeicaoNaoVegetariana.getCusto()}")
     
-     //Saída
-    //Refeição Vegetariana 
-    //Item: Hamburguer Vegetariano, Embalagem: Embrulho, Preço: 25.0
-    //Item: Coca Cola, Embalagem: Garrafa, Preço: 30.0
-    //Custo total: 55.0
-    
-    //Refeição Não Vegetariana
-    //Item: Hamburguer de Frango, Embalagem: Embrulho, Preço: 50.5
-    //Item: Pepsi, Embalagem: Garrafa, Preço: 35.0
-    //Custo total: 85.5
-
 }
+```
+
+**Saída**
+
+```
+Refeição Vegetariana 
+Item: Hamburguer Vegetariano, Embalagem: Embrulho, Preço: 25.0
+Item: Coca Cola, Embalagem: Garrafa, Preço: 30.0
+Custo total: 55.0
+    
+Refeição Não Vegetariana
+Item: Hamburguer de Frango, Embalagem: Embrulho, Preço: 50.5
+Item: Pepsi, Embalagem: Garrafa, Preço: 35.0
+Custo total: 85.5
 ```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/factory.png)
 ### Factory
 
 **Definição**
+
+> 
 
 **Utilização**
 
@@ -332,33 +347,105 @@ fun main() {
     val forma3 = formaFactory.getForma("QUADRADO")
     forma3?.desenhar()
 
+}
+```
+
+**Saída**
+
+```
+Dentro Circulo::desenhar() method.
+Dentro Retangulo::desenhar() method.
+Dentro Quadrado::desenhar() method.
+```
+
+#### **Pontos Positivos**
+
+#### **Pontos Negativos**
+
+![](src/imagens/factory-method.png)
+###  Factory Method
+
+**Definição**
+
+> *É um padrão de projeto de criação que fornece uma interface para criar objetos em uma superclasse, mas permite que as subclasses alterem o tipo de objetos que serão criados.*
+
+**Utilização**
+
+##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
+##### Classes 
+
+```kotlin
+interface Notification {
+    fun notifyUser()
+}
+
+class SmsNotification : Notification {
+    override fun notifyUser() = println("Sending an SMS notification")
+}
+
+class EmailNotification : Notification {
+    override fun notifyUser() = println("Sending an e-mail notification")
+}
+
+class PushNotification : Notification {
+    override fun notifyUser() = println("Sending a push notification")
+}
+
+class NotificationFactory {
+
+    fun createNotification(channel: String): Notification? {
+
+        if (channel.isEmpty()) {
+            return null
+        }
+        when (channel) {
+            "SMS" -> {
+                return SmsNotification()
+            }
+            "EMAIL" -> {
+                return EmailNotification()
+            }
+            "PUSH" -> {
+                return PushNotification()
+            }
+        }
+
+        return null
+
+    }
+}
+//Arquivo FactoryMethod.kt
+fun main() {
+
+    val notificationFactory = NotificationFactory()
+    val notification = notificationFactory.createNotification("SMS")
+    notification?.notifyUser()
+    
+    /*
+    val notification = notificationFactory.createNotification("EMAIL")
+    notification?.notifyUser()
+
     //Saída
-    //Dentro Circulo::desenhar() method.
-    //Dentro Retangulo::desenhar() method.
-    //Dentro Quadrado::desenhar() method.
+    //Sending an e-mail notification
+
+    val notification = notificationFactory.createNotification("PUSH")
+    notification?.notifyUser()
+
+    //Saída
+    //Sending a push notification
+    */
 
 }
 ```
 
-#### **Pontos Positivos**
-
-#### **Pontos Negativos**
-
-### Factory Method
-
-**Definição**
-
-**Utilização**
-
-##### Diagrama de Classe
-
-| ![](src/uml/Strategy.png) |
-| :-----------------------: |
-
-##### Classe 
+**Saída**
 
 ```
-
+Sending an SMS notification
 ```
 
 **Veja um exemplo:**
@@ -367,32 +454,12 @@ fun main() {
 
 #### **Pontos Negativos**
 
-### Object Pool
-
-**Definição**
-
-**Utilização**
-
-##### Diagrama de Classe
-
-| ![](src/uml/Strategy.png) |
-| :-----------------------: |
-
-##### Classe
-
-```
-
-```
-
-**Veja um exemplo:**
-
-#### **Pontos Positivos**
-
-#### **Pontos Negativos**
-
+![](src/imagens/prototype.png) 
 ### Prototype
 
 **Definição**
+
+> *É um padrão de projeto de criação que permite copiar objetos existentes sem fazer seu código ficar dependente de suas classes.*
 
 **Utilização**
 
@@ -404,20 +471,69 @@ fun main() {
 ##### Classes
 
 ```kotlin
+abstract class Color : Cloneable {
 
+    abstract fun addColor()
+    public override fun clone(): Any {
+        var clone: Any? = null
+        try {
+            clone = super.clone()
+        } catch (e: CloneNotSupportedException) {
+            e.printStackTrace()
+        }
+        return clone!!
+    }
+}
+
+class BlueColor : Color() {
+    override fun addColor() = println("Blue color added")
+}
+
+class BlackColor : Color() {
+    override fun addColor() = println("Black color added")
+}
+
+class ColorStore {
+
+    private val colorMap: MutableMap<String, Color> = HashMap()
+
+    fun getColor(colorName: String): Color = colorMap[colorName]!!.clone() as Color
+
+    init {
+        colorMap["blue"] = BlueColor()
+        colorMap["black"] = BlackColor()
+    }
+}
+//Arquivo Prototype.kt
+fun main() {
+
+    ColorStore().getColor("blue").addColor()
+    ColorStore().getColor("black").addColor()
+    ColorStore().getColor("black").addColor()
+    ColorStore().getColor("blue").addColor()
+
+}
 ```
 
-#####  
+ **Saída**
 
-**Veja um exemplo:**
+```
+Blue color added
+Black color added
+Black color added
+Blue color added
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/singleton.png)
 ### Singleton
 
 **Definição**
+
+> *É um padrão de projeto de criação que permite a você garantir que uma classe tenha apenas uma instância, enquanto provê um ponto de acesso global para essa instância.*
 
 **Utilização**
 
@@ -429,12 +545,27 @@ fun main() {
 ##### Classe
 
 ```kotlin
-object Singleton {/*....*/}
+object Singleton {
+    init {
+        println("Initializing with object: $this")
+    }
+
+    fun print() = println("Printing with object: $this")
+}
+//Arquivo Singleton.kt
+fun main() {
+    println("Start")
+    Singleton.print()
+}
 ```
 
-#####  
+#####  Saída
 
-**Veja um exemplo:**
+```
+Start
+Initializing with object: Singleton@29453f44
+Printing with object: Singleton@29453f44
+```
 
 #### **Pontos Positivos**
 
@@ -442,9 +573,12 @@ object Singleton {/*....*/}
 
 ## Structural Patterns
 
+![](src/imagens/adapter.png)
 ### Adapter
 
 **Definição**
+
+> *É um padrão de projeto estrutural que permite que objetos com interfaces incompatíveis colaborarem entre si.*
 
 **Utilização**
 
@@ -497,25 +631,28 @@ fun main() {
         pato.voar()
     }
     
-    //Saida
-    
-    //Quack, quack, quack
-    //Voar, voar, voar
-    //Blulu, brulu, brulu
-    //Voar
-
 }
 ```
 
-**Veja um exemplo:**
+**Saída**
+
+```
+Quack, quack, quack
+Voar, voar, voar
+Blulu, brulu, brulu
+Voar
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/bridge.png)
 ### Bridge
 
 **Definição**
+
+> *É um padrão de projeto estrutural que permite que você divida uma classe grande ou um conjunto de classes intimamente ligadas em duas hierarquias separadas—abstração e implementação—que podem ser desenvolvidas independentemente umas das outras.*
 
 **Utilização**
 
@@ -555,22 +692,26 @@ fun main() {
     circuloVermelho.desenhar()
     circuloVerde.desenhar()
 
-    //Saída
-    //Desenhando Circulo [cor:vermelho, raio: 10, x: 100, y: 100]
-    //Desenhando Circulo [cor:verde, raio: 10, x: 100, y: 100]
-
 }
 ```
 
-**Veja um exemplo:**
+**Saída**
+
+```
+Desenhando Circulo [cor:vermelho, raio: 10, x: 100, y: 100]
+Desenhando Circulo [cor:verde, raio: 10, x: 100, y: 100]
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/composite.png)
 ### Composite
 
 **Definição**
+
+> *É um padrão de projeto estrutural que permite que você componha objetos em estruturas de árvores e então trabalhe com essas estruturas como se elas fossem objetos individuais.*
 
 **Utilização**
 
@@ -625,30 +766,31 @@ fun main() {
 
     }
 
-    //Saída
-
-    //Empregado:[Nome:João, departamento:CEO, salario:30000]
-    //Empregado:[Nome:Roberto, departamento:Chefe de Vendas, salario:20000]
-    //Empregado:[Nome:Richard, departamento:Vendas, salario:10000]
-    //Empregado:[Nome:Lucas, departamento:Vendas, salario:10000]
-    //Empregado:[Nome:Michel, departamento:Chefe de Markerting, salario:20000]
-    //Empregado:[Nome:Laura, departamento:Marketing, salario:10000]
-    //Empregado:[Nome:Bob, departamento:Marketing, salario:10000]
-
 }
 ```
 
-#####  
+**Saída**
 
-**Veja um exemplo:**
+```
+Empregado:[Nome:João, departamento:CEO, salario:30000]
+Empregado:[Nome:Roberto, departamento:Chefe de Vendas, salario:20000]
+Empregado:[Nome:Richard, departamento:Vendas, salario:10000]
+Empregado:[Nome:Lucas, departamento:Vendas, salario:10000]
+Empregado:[Nome:Michel, departamento:Chefe de Markerting, salario:20000]
+Empregado:[Nome:Laura, departamento:Marketing, salario:10000]
+Empregado:[Nome:Bob, departamento:Marketing, salario:10000]
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/decorator.png)
 ### Decorator
 
 **Definição**
+
+> *É um padrão de projeto estrutural que permite que você acople novos comportamentos para objetos ao colocá-los dentro de invólucros de objetos que contém os comportamentos.*
 
 **Utilização**
 
@@ -701,31 +843,34 @@ fun main() {
     println("\nRetângulo com a borda Vermelha")
     retanguloVermelho.desenhar()
     
-    //Saída
-    
-    //Circulo com a borda normal
-    //Forma: Circulo
-    
-    //Circulo com a borda Vermelha
-    //Forma: Circulo
-    //Cor da Borda: Vermelha
-    
-    //Retângulo com a borda Vermelha
-    //Forma: Retângulo
-    //Cor da Borda: Vermelha
-
 }
 ```
 
-**Veja um exemplo:**
+**Saída**
+
+```
+Circulo com a borda normal
+Forma: Circulo
+    
+Circulo com a borda Vermelha
+Forma: Circulo
+Cor da Borda: Vermelha
+    
+Retângulo com a borda Vermelha
+Forma: Retângulo
+Cor da Borda: Vermelha
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/facade.png)
 ### Facade
 
 **Definição**
+
+> *É um padrão de projeto estrutural que fornece uma interface simplificada para uma biblioteca, um framework, ou qualquer conjunto complexo de classes.*
 
 **Utilização**
 
@@ -773,24 +918,27 @@ fun main() {
     criadorForma.desenharRectangle()
     criadorForma.desenharSquare()
     
-    //Saída
-    
-    //Circle::desenhar()
-    //Rectangle::desenhar()
-    //Square::desenhar()
-
 }
 ```
 
-**Veja um exemplo:**
+**Saída**
+
+```
+Circle::desenhar()
+Rectangle::desenhar()
+Square::desenhar()
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/flyweight.png)
 ### Flyweight
 
 **Definição**
+
+> *É um padrão de projeto estrutural que permite a você colocar mais objetos na quantidade de RAM disponível ao compartilhar partes comuns de estado entre os múltiplos objetos ao invés de manter todos os dados em cada objeto.*
 
 **Utilização**
 
@@ -853,34 +1001,61 @@ fun main() {
 }
 ```
 
-**Veja um exemplo:**
+**Saída**
+
+```
+Criando a cor do circulo: Green
+CircleFlyweight: Draw() [Color:Green, x:39, y:51, radius:100]
+Criando a cor do circulo: White
+CircleFlyweight: Draw() [Color:White, x:4, y:44, radius:100]
+Criando a cor do circulo: Red
+CircleFlyweight: Draw() [Color:Red, x:74, y:14, radius:100]
+Criando a cor do circulo: Blue
+CircleFlyweight: Draw() [Color:Blue, x:53, y:52, radius:100]
+Criando a cor do circulo: Blue
+CircleFlyweight: Draw() [Color:Blue, x:26, y:8, radius:100]
+Criando a cor do circulo: Red
+CircleFlyweight: Draw() [Color:Red, x:35, y:77, radius:100]
+Criando a cor do circulo: Black
+CircleFlyweight: Draw() [Color:Black, x:66, y:35, radius:100]
+Criando a cor do circulo: Red
+CircleFlyweight: Draw() [Color:Red, x:82, y:55, radius:100]
+Criando a cor do circulo: Red
+CircleFlyweight: Draw() [Color:Red, x:82, y:2, radius:100]
+Criando a cor do circulo: Red
+CircleFlyweight: Draw() [Color:Red, x:90, y:18, radius:100]
+Criando a cor do circulo: White
+CircleFlyweight: Draw() [Color:White, x:57, y:36, radius:100]
+Criando a cor do circulo: Green
+CircleFlyweight: Draw() [Color:Green, x:17, y:49, radius:100]
+Criando a cor do circulo: Blue
+CircleFlyweight: Draw() [Color:Blue, x:19, y:87, radius:100]
+Criando a cor do circulo: Blue
+CircleFlyweight: Draw() [Color:Blue, x:1, y:9, radius:100]
+Criando a cor do circulo: White
+CircleFlyweight: Draw() [Color:White, x:65, y:89, radius:100]
+Criando a cor do circulo: White
+CircleFlyweight: Draw() [Color:White, x:4, y:98, radius:100]
+Criando a cor do circulo: Blue
+CircleFlyweight: Draw() [Color:Blue, x:6, y:50, radius:100]
+Criando a cor do circulo: Red
+CircleFlyweight: Draw() [Color:Red, x:10, y:63, radius:100]
+Criando a cor do circulo: White
+CircleFlyweight: Draw() [Color:White, x:97, y:92, radius:100]
+Criando a cor do circulo: Blue
+CircleFlyweight: Draw() [Color:Blue, x:78, y:32, radius:100]
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
-### Private Class Data
-
-**Definição**
-
-**Utilização**
-
-##### Diagrama de Classe
-
-| ![](src/uml/Strategy.png) |
-| :-----------------------: |
-
-##### Classe 
-
-**Veja um exemplo:**
-
-#### **Pontos Positivos**
-
-#### **Pontos Negativos**
-
+![](src/imagens/proxy.png)
 ### Proxy
 
 **Definição**
+
+> *É um padrão de projeto estrutural que permite que você forneça um substituto ou um espaço reservado para outro objeto. Um proxy controla o acesso ao objeto original, permitindo que você faça algo ou antes ou depois do pedido chegar ao objeto original.*
 
 **Utilização**
 
@@ -933,9 +1108,14 @@ fun main() {
 }
 ```
 
-#####  
+**Saída:**
 
-**Veja um exemplo:**
+```
+Loading MinhaFoto.png
+Displaying: MinhaFoto.png
+
+Displaying: MinhaFoto.png
+```
 
 #### **Pontos Positivos**
 
@@ -943,9 +1123,12 @@ fun main() {
 
 ## Behavioral Patterns
 
+![](src/imagens/chain-of-responsibility.png)
 ### Chain of Responsibility
 
 **Definição**
+
+> *É um padrão de projeto comportamental que permite que você passe pedidos por uma corrente de handlers. Ao receber um pedido, cada handler decide se processa o pedido ou o passa adiante para o próximo handler na corrente.*
 
 **Utilização**
 
@@ -1015,31 +1198,32 @@ fun main() {
     loggerChain.logMessage(DEBUG, "This is an debug level information.")
     loggerChain.logMessage(ERROR, "This is an error information.")
     
-    //Saída
-    
-    //Standard Console::Logger:This is an information.
-    //File::Logger:This is an debug level information.
-    //Standard Console::Logger:This is an debug level information.
-    //Error Console::Logger:This is an error information.
-    //File::Logger:This is an error information.
-    //Standard Console::Logger:This is an error information.
-
 }
 ```
 
-**Veja um exemplo:**
+**Saída**
+
+```
+Standard Console::Logger:This is an information.
+File::Logger:This is an debug level information.
+Standard Console::Logger:This is an debug level information.
+Error Console::Logger:This is an error information.
+File::Logger:This is an error information.
+Standard Console::Logger:This is an error information.
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/command.png)
 ### Command
 
 **Definição**
 
-**Utilização**
+> *É um padrão de projeto comportamental que transforma um pedido em um objeto independente que contém toda a informação sobre o pedido. Essa transformação permite que você parametrize métodos com diferentes pedidos, atrase ou coloque a execução do pedido em uma fila, e suporte operações que não podem ser feitas.*
 
-**Veja um exemplo:**
+**Utilização**
 
 ##### Diagrama de Classe
 
@@ -1101,13 +1285,15 @@ fun main() {
     corretor.levarPedido(venderPedidosEstoque)
 
     corretor.colocarPedidos()
-
-    //Saída
-
-    //Estoque [Nome: ABC, Quantidade: 10] comprado
-    //Estoque [Nome: ABC, Quantidade: 10] vendido
     
 }
+```
+
+**Saída**
+
+```
+Estoque [Nome: ABC, Quantidade: 10] comprado
+Estoque [Nome: ABC, Quantidade: 10] vendido
 ```
 
 #### **Pontos Positivos**
@@ -1118,6 +1304,8 @@ fun main() {
 
 **Definição**
 
+> 
+
 **Utilização**
 
 ##### Diagrama de Classe
@@ -1125,18 +1313,83 @@ fun main() {
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
 
-**Veja um exemplo:**
+```kotlin
+interface Expression {
+    fun interpret(context: String): Boolean
+}
+
+class TerminalExpression(private val data: String) : Expression {
+    override fun interpret(context: String): Boolean {
+        if (context.contains(data)) {
+            return true
+        }
+
+        return false
+    }
+
+}
+
+class OrExpression(private val firstExpression: Expression, private val secondExpression: Expression) : Expression {
+    override fun interpret(context: String): Boolean =
+        firstExpression.interpret(context) || secondExpression.interpret(context)
+}
+
+class AndExpression(private val firstExpression: Expression, private val secondExpression: Expression) : Expression {
+    override fun interpret(context: String): Boolean =
+        firstExpression.interpret(context) && secondExpression.interpret(context)
+}
+//Arquivo Interpreter.kt
+class Interpreter{
+    
+    //Regra: Roberto e John são do gênero masculino
+    fun getMaleExpression():Expression{
+
+        val roberto = TerminalExpression("Roberto")
+        val john = TerminalExpression("John")
+
+        return OrExpression(roberto, john)
+
+    }
+    //Regra: Julia é uma mulher casada
+    fun getMarriedWomanExpression():Expression{
+
+        val julia = TerminalExpression("Julia")
+        val married = TerminalExpression("Casada")
+
+        return AndExpression(julia, married)
+    }
+}
+fun main() {
+
+    val isMale = Interpreter().getMaleExpression()
+    val isMarriedWoman = Interpreter().getMarriedWomanExpression()
+
+    println("John é do gênero masculino? Resposta: ${isMale.interpret("John")}")
+    println("Julia é uma mulher casada? Resposta: ${isMarriedWoman.interpret("Julia Casada")}")
+
+}
+```
+
+**Saída**
+
+```
+John é do gênero masculino? Resposta: true
+Julia é uma mulher casada? Resposta: true
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/iterator.png)
 ### Iterator
 
 **Definição**
 
+> *É um padrão de projeto comportamental que permite a você percorrer elementos de uma coleção sem expor as representações dele (lista, pilha, árvore, etc.)*
+
 **Utilização**
 
 ##### Diagrama de Classe
@@ -1144,17 +1397,81 @@ fun main() {
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe 
+##### Classes
 
-**Veja um exemplo:**
+```kotlin
+interface Iterator {
+    fun hasNext(): Boolean
+    fun next(): Any?
+}
+
+interface Container {
+    fun getIterator(): Iterator
+}
+
+class NameRepository : Container {
+
+    val names = arrayOf("Roberto", "John", "Julia", "Larissa")
+
+    override fun getIterator(): Iterator {
+        return NameIterator()
+    }
+
+    inner class NameIterator : Iterator {
+
+        private var index: Int = 0
+
+        override fun hasNext(): Boolean {
+            if (index < names.size) {
+                return true
+            }
+            return false
+        }
+
+        override fun next(): Any? {
+            if (hasNext()) {
+                return names[index++]
+            }
+            return null
+        }
+
+    }
+    
+}
+//Arquivo Iterator.kt
+fun main() {
+
+    val namesRepository = NameRepository()
+
+    val iterator = getIterator()
+    
+    while (iterator.hasNext()){
+        val name = iterator.next() as String
+        println("Nome: $name")
+    }
+    
+}
+```
+
+**Saída**
+
+```
+Nome: Roberto
+Nome: John
+Nome: Julia
+Nome: Larissa
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/mediator.png)
 ### Mediator
 
 **Definição**
+
+> *É um padrão de projeto comportamental que permite que você reduza as dependências caóticas entre objetos. O padrão restringe comunicações diretas entre objetos e os força a colaborar apenas através do objeto mediador.*
 
 **Utilização**
 
@@ -1192,7 +1509,85 @@ fun main() {
 }
 ```
 
-**Veja um exemplo:**
+**Saída:**
+
+```
+2021-06-20T09:50:48.480 [Roberto]: Olá! John
+2021-06-20T09:50:48.481 [John]: Oi! Roberto
+```
+
+#### **Pontos Positivos**
+
+#### **Pontos Negativos**
+
+![](src/imagens/memento.png)
+### Memento
+
+**Definição**
+
+> *É um padrão de projeto comportamental que permite que você salve e restaure o estado anterior de um objeto sem revelar os detalhes de sua implementação.*
+
+**Utilização**
+
+##### Diagrama de Classe
+
+| ![](src/uml/Strategy.png) |
+| :-----------------------: |
+
+##### Classes
+
+```kotlin
+data class MementoPattern(val state: String)
+
+class Originator {
+
+    lateinit var state: String
+
+    fun saveStateToMemento(): MementoPattern = MementoPattern(state)
+    fun getStateFromMemento(memento: MementoPattern) {
+        state = memento.state
+    }
+}
+
+class CareTaker {
+
+    private val mementoList: MutableList<MementoPattern> = arrayListOf()
+
+    fun add(state: MementoPattern) = mementoList.add(state)
+    fun getIndex(index: Int): MementoPattern = mementoList[index]
+
+}
+//Arquivo Memento.kt
+fun main() {
+
+    val originator = Originator()
+    val careTaker = CareTaker()
+
+    originator.state = "State #1"
+    originator.state = "State #2"
+    careTaker.add(originator.saveStateToMemento())
+
+    originator.state = "State #3"
+    careTaker.add(originator.saveStateToMemento())
+
+    originator.state = "State #4"
+    println("Current State: ${originator.state}")
+
+    originator.getStateFromMemento(careTaker.getIndex(0))
+    println("First saved state: ${originator.state}")
+    originator.getStateFromMemento(careTaker.getIndex(1))
+    println("Second saved state: ${originator.state}")
+
+}
+```
+
+**Saída**
+
+```
+Current State: State #4
+First saved state: State #2
+Second saved state: State #3
+```
 
 #### **Pontos Positivos**
 
@@ -1202,13 +1597,11 @@ fun main() {
 
 **Definição**
 
-> *O padrão Null Object propõe a criação de uma classe para representar objetos nulos em uma aplicação.*
+> *É um padrão de projeto comportamental que permite que você crie uma classe para representar objetos nulos em uma aplicação.*
 
 **Utilização**
 
 Essa classe deve estender a classe original e implementar seus métodos de forma a executar o comportamento esperado da aplicação quando um valor nulo for recebido. Dessa forma, em vez de se retornar um valor nulo, retorna-se uma instância dessa nova classe.
-
-**Veja um exemplo:**
 
 ##### Diagrama de Classe
 
@@ -1233,51 +1626,49 @@ class ClienteNulo:ClienteAbstrato(){
 //Arquivo NullObject.kt
 class NullObject {
 
-    companion object {
+    private val listaNomes = listOf("Lucas", "João", "Maria")
 
-        val listaNomes = listOf("Lucas", "João", "Maria")
+    fun getCliente(nome: String): ClienteAbstrato {
 
-        fun getCliente(nome: String): ClienteAbstrato {
+        listaNomes.forEach { nomes ->
 
-            listaNomes.forEach { nomes ->
-
-                if (nomes == nome) {
-                    return ClienteReal(nome)
-                }
-
+            if (nomes == nome) {
+                return ClienteReal(nome)
             }
 
-            return ClienteNulo()
-
         }
+
+        return ClienteNulo()
+
     }
 
 }
-
 fun main() {
 
-    val cliente1 = NullObject.getCliente("Lucas")
-    val cliente2 = NullObject.getCliente("Marcelo")
-    val cliente3 = NullObject.getCliente("Maria")
-    val cliente4 = NullObject.getCliente("Matheus")
 
-    println("Clientes")
-    println()
+    val cliente1 = NullObject().getCliente("Lucas")
+    val cliente2 = NullObject().getCliente("Marcelo")
+    val cliente3 = NullObject().getCliente("Maria")
+    val cliente4 = NullObject().getCliente("Matheus")
+
+    println("Clientes\n")
     println(cliente1.getNome())
     println(cliente2.getNome())
     println(cliente3.getNome())
     println(cliente4.getNome())
 
-    //Saída
-    //Clientes
-
-    //Lucas
-    //Não existe esse nome na lista
-    //Maria
-    //Não existe esse nome na lista
-     
 }
+```
 
+**Saída**
+
+```
+Clientes
+
+Lucas
+Não existe esse nome na lista
+Maria
+Não existe esse nome na lista
 ```
 
 #### **Pontos Positivos**
@@ -1310,9 +1701,12 @@ fun main() {
 - **Um objeto nulo pode ser usado para** permitir que uma classe do padrão *Visitor* *inspecione uma hierarquia com segurança e trate de uma situação nula*.
 - *Null Object* **é uma classe colaborativa.** Ela atua como o colaborador para um cliente que precisa de um. *O comportamento nulo*, ou seja, que não faz nada, *não foi projetado para ser misturado a um objeto que precisa de algum comportamento nulo*. Ele é projetado para uma classe que delega a outra todos os comportamentos que podem ou não ter comportamentos nulos.
 
+![](src/imagens/observer.png)
 ### Observer
 
 **Definição**
+
+> *É um padrão de projeto comportamental que permite que você defina um mecanismo de assinatura para notificar múltiplos objetos sobre quaisquer eventos que aconteçam com o objeto que eles estão observando.*
 
 **Utilização**
 
@@ -1384,30 +1778,33 @@ fun main() {
     println("O segundo estado muda para: 10")
     sujeito.state = 10
 
-    //Saída
-
-    //O primeiro estado muda para: 15
-    //Hexa String: F
-    //Octal String: 17
-    //Binary String: 1111
-
-    //O segundo estado muda para: 10
-    //Hexa String: A
-    //Octal String: 12
-    //Binary String: 1010
-
 }
 ```
 
-**Veja um exemplo:**
+**Saída**
+
+```
+O primeiro estado muda para: 15
+Hexa String: F
+Octal String: 17
+Binary String: 1111
+
+O segundo estado muda para: 10
+Hexa String: A
+Octal String: 12
+Binary String: 1010
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/state.png)
 ### State
 
 **Definição**
+
+> *É um padrão de projeto comportamental que permite que um objeto altere seu comportamento quando seu estado interno muda. Parece como se o objeto mudasse de classe.*
 
 **Utilização**
 
@@ -1461,35 +1858,34 @@ fun main() {
 
     println(context.state.toString())
 
-    //Saída
-    //O jogador iniciou o estado
-    //Estado Iniciado
-    //O jogador parou o estado
-    //Estado Parado
 }
 ```
 
-#####  
+**Saída**
 
-**Veja um exemplo:**
+```
+O jogador iniciou o estado
+Estado Iniciado
+O jogador parou o estado
+Estado Parado
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/strategy.png)
 ### Strategy
 
 **Definição**
 
-> *Define uma família de algoritmos, encapsular cada uma delas e as torna intercambiáveis. Esse padrão permite que o algoritmo varie independentemente dos clientes que o utilizam.*
+> *É um padrão de projeto comportamental que permite que você defina uma família de algoritmos, coloque-os em classes separadas, e faça os objetos deles intercambiáveis.*
 
 **Utilização**
 
 O Strategy é um padrão que deve ser utilizado quando ***uma classe possuir diversos algoritmos que possam ser utilizados de forma intercambiável***. A solução proposta pelo padrão consiste em ***delegar a execução do algoritmo para uma instância que compõe a classe principal***. Dessa forma, quando a funcionalidade for invocada, no momento da execução do algoritmo, será invocado um método da instância que a compõe.
 
-**Veja um exemplo:**
-
-##### Diagrama de Classe - Strategy
+##### Diagrama de Classe
 
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
@@ -1529,13 +1925,16 @@ fun main() {
     val divisao = Context(Divisao())
     println("10 / 5 = ${divisao.executeOperation(10.0, 5.0)}")
 
-    //Saída
-    //10 + 5 = 15.0
-    //10 - 5 = 5.0
-    //10 * 5 = 50.0
-    //10 / 5 = 2.0
-
 }
+```
+
+**Saída**
+
+```
+10 + 5 = 15.0
+10 - 5 = 5.0
+10 * 5 = 50.0
+10 / 5 = 2.0
 ```
 
 #### **Pontos Positivos**
@@ -1578,22 +1977,23 @@ fun main() {
 >
 > **Observação:** Linguagens orientadas a objetos tem o seu tempo de vinculação de forma tardia e atribuem tipos em tempo de execução quando a variável recebe um valor do teclado ou de outra fonte.
 
+![](src/imagens/template-method.png)
 ### Template Method
 
 **Definição**
 
-> *Define o esqueleto ou passos do algoritmo em uma operação, permitindo que subclasses implementem alguns passos específicos do processamento.*
+> *É um padrão de projeto comportamental que define o esqueleto de um algoritmo na superclasse, mas deixa as subclasses sobrescreverem etapas específicas do algoritmo sem modificar sua estrutura.*
 
 **Utilização**
 
 Este padrão é aplicável quando se deseja ***definir um algoritmo geral***, que ***estabelece uma série de passos para cumprir um requisito da aplicação***. Porém, seus passos podem variar e é desejável que a estrutura da implementação forneça uma forma para que eles sejam facilmente substituídos.
 
-##### Diagrama de Classe - Template Method
+##### Diagrama de Classe
 
 | ![](src/uml/Strategy.png) |
 | :-----------------------: |
 
-##### Classe Template Method
+##### Classes
 
 ```kotlin
 abstract class Game{
@@ -1618,6 +2018,7 @@ class Football:Game(){
     override fun startPlay() = println("Football Game Started. Enjoy the game!")
     override fun endPlay() = println("Football Game Finished!")
 }
+//Arquivo TemplateMethod.kt
 fun main() {
     
     var game:Game = Volei()
@@ -1626,32 +2027,33 @@ fun main() {
     game = Football()
     game.play()
     
-    //Saída de dados
-    
-    //Volei Game Initialized! Start playing.
-    //Volei Game Started. Enjoy the game!
-    //Volei Game Finished!
-    
-    //Football Game Initialized! Start playing.
-    //Football Game Started. Enjoy the game!
-    //Football Game Finished!
-   
 }
 ```
 
-**Veja um exemplo:**
+**Saída**
+
+```
+Volei Game Initialized! Start playing.
+Volei Game Started. Enjoy the game!
+Volei Game Finished!
+    
+Football Game Initialized! Start playing.
+Football Game Started. Enjoy the game!
+Football Game Finished!
+```
 
 #### **Pontos Positivos**
 
 #### **Pontos Negativos**
 
+![](src/imagens/visitor.png)
 ### Visitor
 
 **Definição**
 
-**Utilização**
+> *É um padrão de projeto comportamental que permite que você separe algoritmos dos objetos nos quais eles operam.*
 
-**Veja um exemplo:**
+**Utilização**
 
 ##### Diagrama de Classe
 
@@ -1719,14 +2121,16 @@ fun main() {
     val computador:PartesComputador = Computador()
     computador.aceitar(ParteComputadorDisplayVisitor())
 
-    //Saída
-
-    //Displaying Mouse.
-    //Displaying Teclado.
-    //Displaying Monitor.
-    //Displaying Computador.
-
 }
+```
+
+**Saída**
+
+```
+Displaying Mouse.
+Displaying Teclado.
+Displaying Monitor.
+Displaying Computador.
 ```
 
 #### **Pontos Positivos**
@@ -1743,3 +2147,4 @@ fun main() {
 6. https://www.thiengo.com.br/padrao-de-projeto-strategy-estrategia
 7. https://sourcemaking.com/design_patterns/strategy
 8. https://www.geeksforgeeks.org/prototype-design-pattern/
+9. https://www.geeksforgeeks.org/factory-method-design-pattern-in-java/
