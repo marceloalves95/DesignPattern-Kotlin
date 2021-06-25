@@ -29,27 +29,27 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 > **Observação:** Nessa tabela também foram acrescentadas novos Design Patterns. 
 
-| Creational Patterns | Structural Patterns |   Behavioral Patterns   |
-| :-----------------: | :-----------------: | :---------------------: |
-|  Abstract Factory   |       Adapter       | Chain of Responsibility |
-|       Builder       |       Bridge        |         Command         |
-|   Factory Method    |      Composite      |       Interpreter       |
-|      Prototype      |      Decorator      |        Iterator         |
-|      Singleton      |       Facade        |        Mediator         |
-|                     |      Flyweight      |         Memento         |
-|                     |        Proxy        |       Null Object       |
-|                     |                     |        Observer         |
-|                     |                     |          State          |
-|                     |                     |        Strategy         |
-|                     |                     |     Template Method     |
-|                     |                     |         Visitor         |
+|     Creational Patterns      | Structural Patterns |   Behavioral Patterns   |
+| :--------------------------: | :-----------------: | :---------------------: |
+| [Abstract Factory](#ancora1) |       Adapter       | Chain of Responsibility |
+|           Builder            |       Bridge        |         Command         |
+|        Factory Method        |      Composite      |       Interpreter       |
+|          Prototype           |      Decorator      |        Iterator         |
+|          Singleton           |       Facade        |        Mediator         |
+|                              |      Flyweight      |         Memento         |
+|                              |        Proxy        |       Null Object       |
+|                              |                     |        Observer         |
+|                              |                     |          State          |
+|                              |                     |        Strategy         |
+|                              |                     |     Template Method     |
+|                              |                     |         Visitor         |
 
 ## Creational Patterns
 
 > Os padrões de criação fornecem vários mecanismos de criação de objetos, que aumentam a flexibilidade e reutilização de código já existente.
 
 ![](src/imagens/abstract-factory.png) 
-### Abstract Factory  
+### <a id="ancora1"></a>Abstract Factory  
 
 #### **Definição**
 
@@ -57,8 +57,8 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 #### **Aplicabilidade**
 
-1. Use o *Abstract Factory* quando seu código precisa ***trabalhar com diversas famílias de produtos relacionados***, mas que você ***não quer depender de classes concretas daqueles produtos***. Eles podem ser desconhecidos de antemão ou você simplesmente quer permitir uma futura escalabilidade.
-2. O Abstract Factory fornece a você uma interface para a ***criação de objetos de cada classe das famílias de produtos***. Desde que seu código crie objetos a partir dessa interface, você ***não precisará se preocupar em criar uma variante errada de um produto que não coincida com produtos já criados*** por sua aplicação.
+1. Use o padrão quando seu código precisa ***trabalhar com diversas famílias de produtos relacionados***, mas que você ***não quer depender de classes concretas daqueles produtos***. Eles podem ser desconhecidos de antemão ou você simplesmente quer permitir uma futura escalabilidade.
+2. O *Abstract Factory* fornece a você uma interface para a ***criação de objetos de cada classe das famílias de produtos***. Desde que seu código crie objetos a partir dessa interface, você ***não precisará se preocupar em criar uma variante errada de um produto que não coincida com produtos já criados*** por sua aplicação.
    - Considere implementar o *Abstract Factory* quando você tem uma classe com um conjunto de *Factory Method* que desfoquem sua responsabilidade principal.
    - Em um programa bem desenvolvido ***cada classe é responsável por apenas uma coisa***. Isso respeita o ***Single Responsibility Principle*** (Princípio da Responsabilidade Única). Quando uma classe lida com múltiplos tipos de produto, pode valer a pena extrair seus *Factory Method* em uma classe *Factory* sozinha ou uma implementação plena do *Abstract Factory*.
 
