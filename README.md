@@ -23,33 +23,33 @@ A maioria dos padrões são descritos formalmente para que as pessoas possam rep
 
 ### Quais os benefícios de utilizar Design Pattern?
 
-Design Patterns são modelos que já foram utilizados e testados anteriormente, portanto podem representar um bom **ganho de produtividade** para os desenvolvedores. Seu uso também contribui para a **organização e manutenção** de projetos, já que esses padrões se baseiam em baixo ***acoplamento*** entre as classes e padronização do código. Além disso, com a padronização dos termos, as **discussões técnicas** são **facilitadas**. É mais fácil falar o nome de um Design Pattern em vez de ter que explicar todo o seu comportamento.
+Design Patterns são modelos que já foram utilizados e testados anteriormente, portanto podem representar um bom **ganho de produtividade** para os desenvolvedores. Seu uso também contribui para a **organização e manutenção** de projetos, já que esses padrões se baseiam em baixo [**acoplamento**](#acoplamento) entre as classes e padronização do código. Além disso, com a padronização dos termos, as **discussões técnicas** são **facilitadas**. É mais fácil falar o nome de um Design Pattern em vez de ter que explicar todo o seu comportamento.
 
 Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented Software”** agruparam os Design Patterns em três tipos diferentes: Creational (Criação), Structural (Estrutura), Behavioral (Comportamental). Assim como podemos ver na tabela abaixo. 
 
-> **Observação:** Nessa tabela também foram acrescentadas novos Design Patterns. 
+> **Observação:** Nessa tabela também foram acrescentadas os padrões *Interpreter* e *Null Object*. 
 
-|     Creational Patterns      | Structural Patterns |   Behavioral Patterns   |
-| :--------------------------: | :-----------------: | :---------------------: |
-| [Abstract Factory](#ancora1) |       Adapter       | Chain of Responsibility |
-|           Builder            |       Bridge        |         Command         |
-|        Factory Method        |      Composite      |       Interpreter       |
-|          Prototype           |      Decorator      |        Iterator         |
-|          Singleton           |       Facade        |        Mediator         |
-|                              |      Flyweight      |         Memento         |
-|                              |        Proxy        |       Null Object       |
-|                              |                     |        Observer         |
-|                              |                     |          State          |
-|                              |                     |        Strategy         |
-|                              |                     |     Template Method     |
-|                              |                     |         Visitor         |
+| [Creational Patterns](#creational-patterns) | [Structural Pattern](structural-patterns) |     [Behavioral Patterns](behavioral-patterns)      |
+| :-----------------------------------------: | :---------------------------------------: | :-------------------------------------------------: |
+|    [Abstract Factory](#abstract-factory)    |            [Adapter](#adapter)            | [Chain of Responsibility](#chain-of-responsability) |
+|             [Builder](#builder)             |             [Bridge](#bridge)             |                 [Command](#command)                 |
+|      [Factory Method](#factory-method)      |          [Composite](#composite)          |             [Interpreter](#interpreter)             |
+|           [Prototype](#prototype)           |          [Decorator](#decorator)          |                [Iterator](#iterator)                |
+|           [Singleton](#singleton)           |             [Facade](#facade)             |                [Mediator](#mediator)                |
+|                                             |          [Flyweight](#flyweight)          |                 [Memento](#memento)                 |
+|                                             |              [Proxy](#proxy)              |             [Null Object](#null-object)             |
+|                                             |                                           |                [Observer](#observer)                |
+|                                             |                                           |                   [State](#state)                   |
+|                                             |                                           |                [Strategy](#strategy)                |
+|                                             |                                           |         [Template Method](#template-method)         |
+|                                             |                                           |                 [Visitor](#visitor)                 |
 
-## Creational Patterns
+## <a id="creational-patterns"></a>Creational Patterns
 
 > Os padrões de criação fornecem vários mecanismos de criação de objetos, que aumentam a flexibilidade e reutilização de código já existente.
 
 ![](src/imagens/abstract-factory.png) 
-### <a id="ancora1"></a>Abstract Factory  
+### <a id="abstract-factory"></a>Abstract Factory
 
 #### **Definição**
 
@@ -57,10 +57,10 @@ Os autores do livro **“Design Patterns: Elements of Reusable Object-Oriented S
 
 #### **Aplicabilidade**
 
-1. Use o padrão quando seu código precisa ***trabalhar com diversas famílias de produtos relacionados***, mas que você ***não quer depender de classes concretas daqueles produtos***. Eles podem ser desconhecidos de antemão ou você simplesmente quer permitir uma futura escalabilidade.
-2. O *Abstract Factory* fornece a você uma interface para a ***criação de objetos de cada classe das famílias de produtos***. Desde que seu código crie objetos a partir dessa interface, você ***não precisará se preocupar em criar uma variante errada de um produto que não coincida com produtos já criados*** por sua aplicação.
-   - Considere implementar o *Abstract Factory* quando você tem uma classe com um conjunto de *Factory Method* que desfoquem sua responsabilidade principal.
-   - Em um programa bem desenvolvido ***cada classe é responsável por apenas uma coisa***. Isso respeita o ***Single Responsibility Principle*** (Princípio da Responsabilidade Única). Quando uma classe lida com múltiplos tipos de produto, pode valer a pena extrair seus *Factory Method* em uma classe *Factory* sozinha ou uma implementação plena do *Abstract Factory*.
+1. Use o padrão quando seu código precisa **trabalhar com diversas famílias de produtos relacionados**, mas que você **não quer depender de classes concretas daqueles produtos**. Eles podem ser desconhecidos de antemão ou você simplesmente quer permitir uma futura escalabilidade.
+2. O padrão *Abstract Factory* fornece a você uma interface para a **criação de objetos de cada classe das famílias de produtos**. Desde que seu código crie objetos a partir dessa interface, você **não precisará se preocupar em criar uma variante errada de um produto que não coincida com produtos já criados** por sua aplicação.
+   - Considere implementar o *Abstract Factory* quando *você tem uma classe com um conjunto de* [*Factory Method*](#factory-method) *que desfoquem sua responsabilidade principal*.
+   - Em um programa bem desenvolvido *cada classe é responsável por apenas uma coisa*. Isso respeita o ***[Single Responsibility Principle](#single-responsibility-principle)***. Quando uma classe *lida com múltiplos tipos de produto, pode valer a pena extrair seus* [*Factory Method*](#factory-method) *em uma classe fábrica (ou Factory) sozinha ou uma implementação plena* do *Abstract Factory*.
 
 > **Observação:** o fato da *Abstract Factory* ser definida a partir de uma abstração **permite que os clientes possam interagir de forma transparente em diferentes contextos**. Essa abstração também **permite que cada classe tenha suas particularidades**.
 
@@ -178,25 +178,25 @@ Inside RoundedSquare::draw() method.
 
 - **Manutenção:** você pode *extrair o código de criação do produto para um lugar*, fazendo o código ser de fácil manutenção. 
 
-- **Código maleável:** Você pode *introduzir novas variantes de produtos sem quebrar o código cliente existente*. Isso respeita o **Open-Closed Principle** (Princípio Aberto-Fechado).
+- **Código maleável:** Você pode *introduzir novas variantes de produtos sem quebrar o código cliente existente*. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle).
 
-- **Encapsulamento de Código:** quando há o encapsulamento do código de criação em pontos únicos do projeto, isso remove o forte acoplamento entre as classes que não deveriam ter um alto nível de relacionamento umas com as outras.
+-  **Encapsulamento de Código:** quando há o [**encapsulamento**](#encapsulamento) do código de criação em *pontos únicos do projeto, isso remove o forte acoplamento entre as classes que não deveriam ter um alto nível de relacionamento umas com as outras*.
 
 #### **Pontos Negativos**👎
 
-- **Complexidade do código:** o código pode tornar-se mais complicado do que deveria ser, uma vez que muitas novas interfaces e classes são introduzidas junto com o padrão. Isso também pode piorar a performance do projeto.
+- **Complexidade do código:** o código pode tornar-se mais complicado do que deveria ser, *uma vez que muitas novas interfaces e classes são introduzidas junto com o padrão. Isso também pode piorar a performance do projeto*.
 
 #### Relações com outros padrões
 
-- **Muitos projetos começam usando o padrão de projeto** *Factory Method* (menos complicado e tem mais customização através de subclasses) e evoluem para os padrões *Abstract Factory*, *Prototype*, ou *Builder* (ele é mais flexíveis e complicado).
-- O padrão de projeto *Abstract Factory* se especializa em **criar famílias de objetos relacionados**. Já o padrão de projeto *Builder* foca em **construir objetos complexos passo a passo**. O *Abstract Factory* **retorna o produto imediatamente**, enquanto que o *Builder* permite que você **execute algumas etapas de construção antes de buscar o produto**.
-- As classes *Abstract Factory* são **quase sempre baseadas em um conjunto de** *Factory Method*, mas você também pode usar o *Prototype* para **compor métodos dessas classes**.
-- O *Abstract Factory* pode **servir como uma alternativa para o padrão** *Facade* quando você precisa apenas **esconder do código cliente a forma com que são criados os objetos do subsistema**.
-- Você pode **usar o** *Abstract Factory* **junto com o padrão** *Bridge*. Esse pareamento é **útil quando algumas abstrações definidas pelo** *Bridge* **só podem trabalhar com implementações específicas**. Neste caso, o *Abstract Factory* pode **encapsular essas relações e esconder a complexidade do código cliente**.
-- Os padrões de projeto *Abstract Factory*, *Builder* e *Prototype* podem **todos ser implementados como um** *Singleton*.
+- **Muitos projetos começam usando o padrão de projeto** [*Factory Method*](#factory-method) (menos complicado e tem mais customização através de subclasses) e evoluem para os padrões *Abstract Factory*, *[Prototype](#prototype)*, ou *[Builder](#builder)* (ele é mais flexíveis e complicado).
+- O padrão de projeto *Abstract Factory* se especializa em **criar famílias de objetos relacionados**. Já o padrão de projeto *[Builder](#builder)* foca em **construir objetos complexos passo a passo**. O *Abstract Factory* **retorna o produto imediatamente**, enquanto que o *[Builder](#builder)* permite que você **execute algumas etapas de construção antes de buscar o produto**.
+- As classes *Abstract Factory* são **quase sempre baseadas em um conjunto de** [*Factory Method*](#factory-method), mas você também pode usar o *[Prototype](#prototype)* para **compor métodos dessas classes**.
+- O *Abstract Factory* pode **servir como uma alternativa para o padrão** *[Facade](#facade)* quando você precisa apenas **esconder do código cliente a forma com que são criados os objetos do subsistema**.
+- Você pode **usar o** *Abstract Factory* **junto com o padrão** *[Bridge](#Bridge)*. Esse pareamento é **útil quando algumas abstrações definidas pelo** *[Bridge](#Bridge)* **só podem trabalhar com implementações específicas**. Neste caso, o *Abstract Factory* pode **encapsular essas relações e esconder a complexidade do código cliente**.
+- Os padrões de projeto *Abstract Factory*, *[Builder](#builder)* e *[Prototype](#prototype)* podem **todos ser implementados como um** *[Singleton](#singleton)*.
 
 ![](src/imagens/builder.png)
-###  Builder 
+###  <a id="builder"></a>Builder 
 
 #### Definição
 
@@ -204,15 +204,15 @@ Inside RoundedSquare::draw() method.
 
 #### Aplicabilidade
 
-1. Use o padrão *Builder* para se **livrar de um *“construtor telescópico”***. 
+1. Use o padrão para se **livrar de um *“construtor telescópico”***. 
    - Digamos que você tenha um construtor com dez parâmetros opcionais. Chamar um monstro desses é muito inconveniente; portanto, você sobrecarrega o construtor e cria diversas versões curtas com menos parâmetros. Esses construtores ainda se referem ao principal, passando alguns valores padrão para qualquer parâmetro omitido.
-   - O padrão *Builder* permite que você ***construa objetos passo a passo, usando apenas aquelas etapas que você realmente precisa***. Após implementar o padrão, você não vai mais precisar amontoar dúzias de parâmetros em seus construtores.
-2. Use o padrão *Builder* quando você quer que seu código seja **capaz de criar diferentes representações do mesmo produto**.
-   - O padrão *Builder* pode ser aplicado quando a ***construção de várias representações do produto envolvem etapas similares que diferem apenas nos detalhes***.
-   - A interface base do *Builder*  ***define todas as etapas de construção possíveis***, e os construtores concretos implementam essas etapas para construir representações particulares do produto (entenda aqui como função ou método) . Enquanto isso, a classe que implementa a interface (essa classe também pode ser chamada de diretor) guia a ordem de construção.
-3. Use o *Builder* para construir árvores *Composite* ou outros objetos complexos.
-   - O padrão *Builder* permite que você construa produtos passo a passo. ***Você pode adiar a execução de algumas etapas sem quebrar o produto final***. Você pode até *chamar etapas **recursivamente**, o que é bem útil quando você precisa construir uma árvore de objetos*.
-   - Um classe *Builder* ***não expõe o produto não finalizado enquanto o processo de construção estiver executando etapas***. Isso previne o código cliente de obter um resultado incompleto.
+   - O padrão *Builder* permite que você *construa objetos passo a passo, usando apenas aquelas etapas que você realmente precisa*. Após implementar o padrão, você não vai mais precisar amontoar dúzias de parâmetros em seus construtores.
+2. Use o padrão quando você quer que seu código seja **capaz de criar diferentes representações do mesmo produto**.
+   - O padrão *Builder* pode ser aplicado quando a *construção de várias representações do produto envolvem etapas similares que diferem apenas nos detalhes*.
+   - A interface base do *Builder*  *define todas as etapas de construção possíveis*, e os construtores concretos implementam essas etapas para construir representações particulares do produto (entenda aqui como função ou método) . Enquanto isso, a classe que implementa a interface (essa classe também pode ser chamada de diretor) guia a ordem de construção.
+3. Use o padrão para **construir árvores** [Composite](#composite) **ou outros objetos complexos**.
+   - O padrão *Builder* permite que você construa produtos passo a passo. *Você pode adiar a execução de algumas etapas sem quebrar o produto final*. Você pode até chamar etapas **[recursivamente](#recursividade)**, o que é bem útil quando você precisa construir uma árvore de objetos.
+   - Um classe *Builder* *não expõe o produto não finalizado enquanto o processo de construção estiver executando etapas*. Isso previne o código cliente de obter um resultado incompleto.
 
 #### Classes de exemplo
 
@@ -338,7 +338,7 @@ Custo total: 85.5
 #### **Pontos Positivos**👍
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores*.
-- **Facilidade:** de *construir objetos passo a passo*, *adiar as etapas de construção* ou *rodar etapas recursivamente*.
+- **Facilidade:** de *construir objetos passo a passo*, *adiar as etapas de construção* ou *rodar etapas* **[recursivamente](#recursividade)**.
 
 - **Reusabilidade:** você pode reutilizar o mesmo código de construção quando *construindo várias representações de produtos*.
 - **Isolamento do Código:** você pode *isolar um código de construção complexo da lógica de negócio do produto*.
@@ -349,29 +349,26 @@ Custo total: 85.5
 
 #### Relações com outros padrões
 
-- **Muitos projetos começam usando o padrão de projeto** *Factory Method* (menos complicado e tem mais customização através de subclasses) e evoluem para os padrões *Abstract Factory*, *Prototype*, ou *Builder* (ele é mais flexíveis e complicado).
-- O padrão de projeto *Builder* foca em **construir objetos complexos passo a passo**. Já o padrão *Abstract Factory* se especializa em **criar famílias de objetos relacionados**. O padrão *Builder* permite que você **execute algumas etapas de construção antes de buscar o produto**, enquanto o padrão *Abstract Factory* **retorna o produto imediatamente**.
-- Você pode usar o Builder quando criar árvores Composite complexas porque **você pode programar suas etapas de construção para trabalhar recursivamente**.
-- **Você pode combinar o Builder com o Bridge**: a classe principal chamada diretor tem um papel de abstração, enquanto que diferentes construtores agem como implementações.
-- Os padrões de projeto *Abstract Factory*, *Builder* e *Prototype* podem **todos ser implementados como um** *Singleton*.
+- **Muitos projetos começam usando o padrão de projeto** [*Factory Method*](#factory-method) (menos complicado e tem mais customização através de subclasses) e evoluem para os padrões *[Abstract Factory](#abstract-factory)*, *[Prototype](#prototype)*, ou *Builder* (ele é mais flexíveis e complicado).
+- O padrão de projeto *Builder* foca em **construir objetos complexos passo a passo**. Já o padrão *[Abstract Factory](#abstract-factory)* se especializa em **criar famílias de objetos relacionados**. O padrão *Builder* permite que você **execute algumas etapas de construção antes de buscar o produto**, enquanto o padrão *[Abstract Factory](#abstract-factory)* **retorna o produto imediatamente**.
+- Você pode usar o Builder quando criar árvores *[Composite](#composite)* complexas porque **você pode programar suas etapas de construção para trabalhar [recursivamente](#recursividade)**.
+- **Você pode combinar o Builder com o** *[Bridge](#Bridge)*: a classe principal chamada diretor tem um papel de abstração, enquanto que diferentes construtores agem como implementações.
+- Os padrões de projeto *[Abstract Factory](#abstract-factory)*, *Builder* e *[Prototype](#prototype)* podem **todos ser implementados como um** *[Singleton](#singleton)*.
 
 ![](src/imagens/factory-method.png)
-###  Factory Method
+###  <a id="factory-method"></a>Factory Method
 
 #### Definição
 
 > *É um padrão de projeto de criação que fornece uma interface para criar objetos em uma superclasse, mas permite que as subclasses alterem o tipo de objetos que serão criados.*
 
-> **Observação:** O padrão *Factory Method* utiliza um ***hook method*** para delegar a criação da instância para a subclasse. Isso permite que métodos mais gerais na superclasse possam utilizar essa instância mesmo sem conhecer a classe concreta. Isso pode ser feito invocando o método abstrato
-> de criação que é implementado na subclasse.
-
 #### Aplicabilidade
 
-1. Use o *Factory Method* quando **não souber de antemão os tipos e dependências exatas dos objetos com os quais seu código deve funcionar**.
+1. Use o padrão quando **não souber de antemão os tipos e dependências exatas dos objetos com os quais seu código deve funcionar**.
    - O *Factory Method* *separa o código de construção do produto do código que realmente usa o produto*. Portanto, é mais fácil estender o código de construção do produto independentemente do restante do código.
-2. Use o Factory Method quando **desejar fornecer aos usuários da sua biblioteca ou framework uma maneira de estender seus componentes internos**.
-   - Herança é provavelmente a maneira mais fácil de estender o comportamento padrão de uma biblioteca ou framework. Mas como o framework reconheceria que sua subclasse deve ser usada em vez de um componente padrão? A solução é reduzir o código que constrói componentes no framework em um único método fábrica e permitir que qualquer pessoa sobrescreva esse método, além de estender o próprio componente.
-3. Use o Factory Method quando **deseja economizar recursos do sistema reutilizando objetos existentes em vez de recriá-los sempre**.
+2. Use o padrão quando **desejar fornecer aos usuários da sua biblioteca ou framework uma maneira de estender seus componentes internos**.
+   - **[Herança](#heranca)** é provavelmente a maneira mais fácil de estender o comportamento padrão de uma biblioteca ou framework. Mas como o framework reconheceria que sua subclasse deve ser usada em vez de um componente padrão? A solução é reduzir o código que constrói componentes no framework em um único método fábrica e permitir que qualquer pessoa sobrescreva esse método, além de estender o próprio componente.
+3. Use o padrão quando **deseja economizar recursos do sistema reutilizando objetos existentes em vez de recriá-los sempre**.
    - Você irá enfrentar essa necessidade ao lidar com objetos grandes e pesados, como conexões com bancos de dados, sistemas de arquivos e recursos de rede, por exemplo.
 
 #### Classes de exemplo
@@ -453,10 +450,10 @@ Sending an SMS notification
 #### **Pontos Positivos**👍
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores*.
-- **Baixo *acoplamento*:** você *evita acoplamentos firmes entre o criador e os produtos concretos*.
-- **Manutenção**: você pode *mover o código de criação do produto para um único local do programa, facilitando a manutenção do código*. Isso também respeita o ***Single Responsibility Principle***.
-- **Código consistente:** você pode *introduzir novos tipos de produtos no programa sem quebrar o código cliente existente*. Isso também respeita o **Open-Closed Principle**. 
-- **Ótimo uso de *Encapsulamento*:** esse padrão é ótimo para encapsular os códigos das instâncias de classes. *Cada código de criação fica em um único local, em sua própria classe, criando assim um ponto único de atualização*. Por exemplo: caso tenha de alterar o construtor da classe, digo, como ele é utilizado pelas classes clientes, deverá alterar apenas esse algoritmo no método de criação e não em todos os códigos clientes que utilizariam a criação direta.
+- **Baixo acoplamento**: você *evita [acoplamentos](#acoplamentos) firmes entre o criador e os produtos concretos*.
+- **Manutenção**: você pode *mover o código de criação do produto para um único local do programa, facilitando a manutenção do código*. Isso também respeita o ***[Single Responsibility Principle](#single-responsibility-principle)***.
+- **Código consistente:** você pode *introduzir novos tipos de produtos no programa sem quebrar o código cliente existente*. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle). 
+- **Ótimo uso de [Encapsulamento](#encapsulamento):** esse padrão é ótimo para encapsular os códigos das instâncias de classes. *Cada código de criação fica em um único local, em sua própria classe, criando assim um ponto único de atualização*. Por exemplo: caso tenha de alterar o construtor da classe, digo, como ele é utilizado pelas classes clientes, deverá alterar apenas esse algoritmo no método de criação e não em todos os códigos clientes que utilizariam a criação direta.
 
 #### **Pontos Negativos**👎
 
@@ -464,14 +461,14 @@ Sending an SMS notification
 
 #### Relações com outros padrões
 
-- **Muitos projetos começam usando o padrão de projeto** *Factory Method* (menos complicado e tem mais customização através de subclasses) e evoluem para os padrões *Abstract Factory*, *Prototype*, ou *Builder* (ele é mais flexíveis e complicado).
-- As classes *Abstract Factory* são **quase sempre baseadas em um conjunto de** *Factory Method*, mas você também pode usar o *Prototype* para **compor métodos dessas classes**.
-- Você pode usar o *Factory Method* junto com o *Iterator* para **permitir que uma coleção de subclasses retornem diferentes tipos de iteradores que são compatíveis com as coleções**.
-- O *Prototype* não é baseado em heranças, então ele não tem os inconvenientes dela. Por outro lado, o *Prototype* precisa de uma inicialização complicada do objeto clonado. O *Factory Method* é **baseado em herança mas não precisa de uma etapa de inicialização**.
-- O *Factory Method* **é uma especialização do** *Template Method*. Ao mesmo tempo, o *Factory Method* pode servir como um *Template Method* grande.
+- **Muitos projetos começam usando o padrão de projeto** *Factory Method* (menos complicado e tem mais customização através de subclasses) e evoluem para os padrões *[Abstract Factory](#abstract-factory)*, *[Prototype](#prototype)*, ou *[Builder](#builder)* (ele é mais flexíveis e complicado).
+- As classes *[Abstract Factory](#abstract-factory)* são **quase sempre baseadas em um conjunto de** *Factory Method*, mas você também pode usar o *[Prototype](#prototype)* para **compor métodos dessas classes**.
+- Você pode usar o *Factory Method* junto com o *[Iterator](#Iterator)* para **permitir que uma coleção de subclasses retornem diferentes tipos de iteradores que são compatíveis com as coleções**.
+- O *[Prototype](#prototype)* não é baseado em [herança](#heranca), então ele não tem os inconvenientes dela. Por outro lado, o *[Prototype](#prototype)* precisa de uma inicialização complicada do objeto clonado. O *Factory Method* é **baseado em herança mas não precisa de uma etapa de inicialização**.
+- O *Factory Method* **é uma especialização do** *[Template Method](#Template Method)*. Ao mesmo tempo, o *Factory Method* pode servir como um *[Template Method](#Template Method)* grande.
 
 ![](src/imagens/prototype.png) 
-### Prototype
+### <a id="prototype"></a>Prototype
 
 #### Definição
 
@@ -479,17 +476,17 @@ Sending an SMS notification
 
 #### Aplicabilidade
 
-1. Utilize o padrão *Prototype* quando seu código **não deve depender de classes concretas de objetos que você precisa copiar**.
+1. Utilize o padrão quando seu código **não deve depender de classes concretas de objetos que você precisa copiar**.
 
-   - Isso acontece muito quando seu código funciona com objetos passados para você de um código de terceiros através de alguma interface. As classes concretas desses objetos são desconhecidas, e você não pode depender delas mesmo que quisesse.
+   - Isso acontece muito quando *seu código funciona com objetos passados para você de um código de terceiros através de alguma interface. As classes concretas desses objetos são desconhecidas, e você não pode depender delas mesmo que quisesse*.
 
-   - O padrão *Prototype* fornece o código cliente com uma interface geral para trabalhar com todos os objetos que suportam clonagem. Essa interface faz o código do cliente ser independente das classes concretas dos objetos que ele clona.
+   - O padrão *Prototype* fornece o *código cliente com uma interface geral para trabalhar com todos os objetos que suportam clonagem. Essa interface faz o código do cliente ser independente das classes concretas dos objetos que ele clona*.
 
-2. Utilize o padrão Prototype quando você precisa **reduzir o número de subclasses que somente diferem na forma que inicializam seus respectivos objetos**. Alguém pode ter criado essas subclasses para ser capaz de criar objetos com uma configuração específica.
+2. Utilize o padrão quando você precisa **reduzir o número de subclasses que somente diferem na forma que inicializam seus respectivos objetos**. Alguém pode ter criado essas subclasses para ser capaz de criar objetos com uma configuração específica.
 
-   - O padrão Prototype permite que você use um conjunto de objetos pré construídos, configurados de diversas formas, como protótipos.
+   - O padrão *Prototype* permite que você *use um conjunto de objetos pré construídos, configurados de diversas formas, como protótipos*.
 
-   - Ao invés de instanciar uma subclasse que coincide com alguma configuração, o cliente pode simplesmente procurar por um protótipo apropriado e cloná-lo.
+   - Ao invés de instanciar uma subclasse que coincide com alguma configuração, *o cliente pode simplesmente procurar por um protótipo apropriado e cloná-lo*.
 
 #### Classes de exemplo
 
@@ -551,28 +548,28 @@ Blue color added
 #### Pontos Positivos👍
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
-- **Clonagem:** Você pode *clonar objetos sem acoplá-los a suas classes concretas*.
+- **Clonagem:** Você pode *clonar objetos sem [acoplá-los](#acoplamento) as suas classes concretas*.
 - **Protótipos pré-construídos:** você pode se *livrar de códigos de inicialização repetidos* em troca de clonar protótipos pré-construídos.
 
 - **Facilidade na criação de objetos complexos:** Você pode *produzir esses objetos de uma forma mais convenientemente*.
-- **Alternativa para Herança:** Você tem uma alternativa para herança *quando lidar com configurações pré determinadas para objetos complexos*.
+- **Alternativa para Herança:** Você tem uma alternativa para [herança](#heranca) *quando lidar com configurações pré determinadas para objetos complexos*.
 
 #### Pontos Negativos👎
 
-- **Clonagem de objetos complexos:** clonar objetos complexos que têm referências circulares pode ser bem complicado.
+- **Clonagem de objetos complexos:** *clonar objetos complexos que têm referências circulares pode ser bem complicado*.
 
 #### Relações com outros padrões
 
-- **Muitos projetos começam usando o padrão de projeto** *Factory Method* (menos complicado e tem mais customização através de subclasses) e evoluem para os padrões *Abstract Factory*, *Prototype*, ou *Builder* (ele é mais flexíveis e complicado).
-- As classes *Abstract Factory* são **quase sempre baseadas em um conjunto de** *Factory Method*, mas você também pode usar o *Prototype* para **compor métodos dessas classes**.
+- **Muitos projetos começam usando o padrão de projeto** [*Factory Method*](#factory-method) (menos complicado e tem mais customização através de subclasses) e evoluem para os padrões *[Abstract Factory](#abstract-factory)*, *Prototype*, ou *[Builder](#builder)* (ele é mais flexíveis e complicado).
+- As classes *[Abstract Factory](#abstract-factory)* são **quase sempre baseadas em um conjunto de** [*Factory Method*](#factory-method), mas você também pode usar o *Prototype* para **compor métodos dessas classes**.
 - O *Prototype* pode ajudar quando você **precisa salvar cópias de comandos no histórico**.
-- Projetos que fazem um uso pesado de *Composite* **e do** *Decorator* **podem se beneficiar com frequência do uso do** *Prototype*. Aplicando o padrão **permite que você clone estruturas complexas ao invés de reconstruí-las do zero**.
-- O *Prototype* **não é baseado em heranças**, então ele não tem os inconvenientes dela. Por outro lado, o *Prototype* **precisa de uma inicialização complicada do objeto clonado**. O *Factory Method* é baseado em herança mas não precisa de uma etapa de inicialização.
-- Algumas vezes o *Prototype* **pode ser uma alternativa mais simples a um** *Memento*. Isso funciona se o **objeto no qual você quer armazenar na história é razoavelmente intuitivo e não tem ligações para recursos externos**, ou as ligações são fáceis de se restabelecer.
-- Os padrões de projeto *Abstract Factory*, *Builder* e *Prototype* podem **todos ser implementados como um** *Singleton*.
+- Projetos que fazem um uso pesado de *[Composite](#composite)* **e do** *[Decorator](#Decorator)* **podem se beneficiar com frequência do uso do** *Prototype*. Aplicando o padrão **permite que você clone estruturas complexas ao invés de reconstruí-las do zero**.
+- O *Prototype* **não é baseado em [heranças](#heranca)**, então ele não tem os inconvenientes dela. Por outro lado, o *Prototype* **precisa de uma inicialização complicada do objeto clonado**. O [*Factory Method*](#factory-method) é baseado em [herança](#heranca), mas não precisa de uma etapa de inicialização.
+- Algumas vezes o *Prototype* **pode ser uma alternativa mais simples a um** [*Memento*](#memento). Isso funciona se o **objeto no qual você quer armazenar na história é razoavelmente intuitivo e não tem ligações para recursos externos**, ou as ligações são fáceis de se restabelecer.
+- Os padrões de projeto *[Abstract Factory](#abstract-factory)*, *[Builder](#builder)* e *Prototype* podem **todos ser implementados como um** [*Singleton*](#singleton).
 
 ![](src/imagens/singleton.png)
-### Singleton
+### <a id="singleton"></a>Singleton
 
 #### Definição
 
@@ -580,11 +577,11 @@ Blue color added
 
 #### Aplicabilidade
 
-1. Utilize o padrão Singleton quando uma **classe em seu programa deve ter apenas uma instância disponível para todos seus clientes**; por exemplo, um objeto de base de dados único compartilhado por diferentes partes do programa.
-   - O padrão Singleton desabilita todos os outros meios de criar objetos de uma classe, exceto pelo método especial de criação. Esse método tanto cria um novo objeto ou retorna um objeto existente se ele já tenha sido criado.
-2. Utilize o padrão Singleton quando **você precisa de um controle mais estrito sobre as variáveis globais**.
-   - Ao contrário das variáveis globais, o padrão Singleton garante que há apenas uma instância de uma classe. Nada, a não ser a própria classe Singleton pode substituir a instância salva em cache.
-   - Observe que você sempre pode ajustar essa limitação e permitir a criação de qualquer número de instâncias Singleton. O único pedaço de código que requer mudanças é o corpo do método `getInstance`.
+1. Utilize o padrão quando uma **classe em seu programa deve ter apenas uma instância disponível para todos seus clientes**; por exemplo, um objeto de base de dados único compartilhado por diferentes partes do programa.
+   - *O padrão Singleton desabilita todos os outros meios de criar objetos de uma classe, exceto pelo método especial de criação*. Esse método tanto cria um novo objeto ou retorna um objeto existente se ele já tenha sido criado.
+2. Utilize o padrão quando **você precisa de um controle mais estrito sobre as variáveis globais**.
+   - Ao contrário das variáveis globais, *o padrão Singleton garante que há apenas uma instância de uma classe. Nada, a não ser a própria classe Singleton pode substituir a instância salva em cache*.
+   - Observe que *você sempre pode ajustar essa limitação e permitir a criação de qualquer número de instâncias Singleton*. O único pedaço de código que requer mudanças é o corpo do método `getInstance`.
 
 #### Classe de exemplo
 
@@ -611,7 +608,7 @@ Initializing with object: Singleton@29453f44
 Printing with object: Singleton@29453f44
 ```
 
-> **Observações:** a linguagem Kotlin oferece um suporte de primeira classe para o padrão *Singleton*. Ele faz isso por meio do uso da ***declaração de objetos***. O exemplo acima mostra um exemplo do uso da ***declaração de objetos***. Para mais detalhes clique aqui.
+> **Observações:** a linguagem Kotlin oferece um suporte de primeira classe para o padrão *Singleton*. Ele faz isso por meio do uso da **[declaração de objetos](#declaracao-objetos). **O exemplo acima mostra um exemplo do uso da **declaração de objetos**. 
 
 #### Pontos Positivos👍
 
@@ -623,26 +620,26 @@ Printing with object: Singleton@29453f44
 
 #### Pontos Negativos👎
 
-- **Viola o *Single Responsibility Principle***. O padrão *resolve dois problemas de uma só vez*.
+- **Viola o** ***[Single Responsibility Principle](#single-responsibility-principle)***. O padrão *resolve dois problemas de uma só vez*.
 - **O padrão Singleton pode mascarar um design ruim: **por exemplo, quando os *componentes do programa sabem muito sobre cada um*.
 - **Tratamento especial:** o padrão requer *tratamento especial em um ambiente multithread para que múltiplas threads não possam criar um objeto Singleton várias vezes*.
-- **Dificuldade em realizar testes unitários:** pode ser difícil realizar testes unitários do código cliente do Singleton *porque muitos frameworks de teste dependem de herança quando produzem objetos simulados*. Já que o construtor da classe Singleton é privado e sobrescrever métodos estáticos é impossível na maioria das linguagem, você terá que pensar em uma maneira criativa de simular o Singleton. Ou apenas não escreva os testes. Ou não use o padrão Singleton.
+- **Dificuldade em realizar testes unitários:** pode ser difícil realizar testes unitários do código cliente do Singleton *porque muitos frameworks de teste dependem de [herança](#heranca) quando produzem objetos simulados*. Já que o construtor da classe Singleton é privado e sobrescrever métodos estáticos é impossível na maioria das linguagem, você terá que pensar em uma maneira criativa de simular o Singleton. Ou apenas não escreva os testes. Ou não use o padrão Singleton.
 - **Problema de desempenho:** utilizar a versão de inicialização direta, ainda na declaração da instância Singleton, *pode trazer problemas de desempenho se seu software não for utilizar com frequência a classe que implementa o padrão*.
 
 #### Relações com outros padrões
 
-- Uma classe *Facade* **pode frequentemente ser transformada em um** *Singleton* já que um único objeto fachada é suficiente na maioria dos casos.
-- O *Flyweight* **seria parecido com o** *Singleton* **se você, de algum modo, reduzisse todos os estados de objetos compartilhados para apenas um objeto** *Flyweight*. Mas há duas mudanças fundamentais entre esses padrões:
-  1. Deve haver apenas uma única instância *Singleton*, enquanto que uma classe *Flyweight* pode ter múltiplas instâncias com diferentes estados intrínsecos.
-  2. O objeto *Singleton* pode ser mutável. Objetos *Flyweight* são imutáveis.
-- Os padrões de projeto *Abstract Factory*, *Builder* e *Prototype* podem **todos ser implementados como um** *Singleton*.
+- Uma classe *[Facade](#facade)* **pode frequentemente ser transformada em um** *Singleton* já que um único objeto fachada é suficiente na maioria dos casos.
+- O *[Flyweight](#flyweight)* **seria parecido com o** *Singleton* **se você, de algum modo, reduzisse todos os estados de objetos compartilhados para apenas um objeto** *[Flyweight](#flyweight)*. Mas há duas mudanças fundamentais entre esses padrões:
+  1. Deve haver apenas uma única instância *Singleton*, enquanto que uma classe *[Flyweight](#flyweight)* pode ter múltiplas instâncias com diferentes estados intrínsecos.
+  2. O objeto *Singleton* pode ser mutável. Objetos *[Flyweight](#flyweight)* são imutáveis.
+- Os padrões de projeto *[Abstract Factory](#abstract-factory)*, *[Builder](#builder)* e *[Prototype](#prototype)* podem **todos ser implementados como um** *Singleton*.
 
-## Structural Patterns
+## <a id="structural-patterns"></a>Structural Patterns
 
 > Os padrões estruturais explicam como montar objetos e classes em estruturas maiores mas ainda mantendo essas estruturas flexíveis e eficientes.
 
 ![](src/imagens/adapter.png)
-### Adapter
+### <a id="adapter"></a>Adapter
 
 #### Definição
 
@@ -653,10 +650,10 @@ Printing with object: Singleton@29453f44
 1. Utilize a classe Adaptador quando **você quer usar uma classe existente, mas sua interface não for compatível com o resto do seu código**.
    - O padrão *Adapter* permite que *você crie uma classe de meio termo que serve como um tradutor entre seu código e a classe antiga, uma classe de terceiros, ou qualquer outra classe com uma interface estranha*.
 2. Utilize o padrão quando **você quer reutilizar diversas subclasses existentes que não possuam alguma funcionalidade comum que não pode ser adicionada a superclasse**.
-   - Você pode *estender cada subclasse e colocar a funcionalidade faltante nas novas classes filhas*. Contudo, você terá que duplicar o código em todas as novas classes, o que cheira muito mal (**Code Smells**).
-   - Uma solução muito mais elegante seria *colocar a funcionalidade faltante dentro da classe adaptadora*. Então você encobriria os objetos com as funcionalidades faltantes dentro do adaptador, ganhando tais funcionalidades de forma dinâmica. Para isso funcionar, as classes alvo devem ter uma interface em comum, e o campo do adaptador deve seguir aquela interface. Essa abordagem se parece muito com o padrão *Decorator*.
+   - Você pode *estender cada subclasse e colocar a funcionalidade faltante nas novas classes filhas*. Contudo, você terá que duplicar o código em todas as novas classes, o que cheira muito mal (**[Code Smells](#code-smells)**).
+   - Uma solução muito mais elegante seria *colocar a funcionalidade faltante dentro da classe adaptadora*. Então você encobriria os objetos com as funcionalidades faltantes dentro do adaptador, ganhando tais funcionalidades de forma dinâmica. Para isso funcionar, as classes alvo devem ter uma interface em comum, e o campo do adaptador deve seguir aquela interface. Essa abordagem se parece muito com o padrão *[Decorator](#decorator)*.
 
-> **Curiosidade:** o padrão *Adapter* tende a *ser implementado em código já existente que realmente precisa de uma adaptação onde herança não é a melhor escolha*, ou seja, ele é quase um método de **refatoração**.
+> **Curiosidade:** o padrão *Adapter* tende a *ser implementado em código já existente que realmente precisa de uma adaptação onde [herança](#heranca) não é a melhor escolha*, ou seja, ele é quase um método de **[refatoração](#refatoracao)**.
 
 #### Classes de exemplo
 
@@ -718,25 +715,25 @@ Voar
 #### **Pontos Positivos**👍
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
-- **Separação das classes:** você pode *separar a conversão de interface ou de dados da lógica primária do negócio do programa*. Isso também respeita o ***Single Responsibility Principle***.
-- **Facilidade em introduzir novas classes Adapter:** você pode introduzir novos tipos de adaptadores no programa sem quebrar o código cliente existente, desde que eles trabalhem com os adaptadores através da interface cliente. Isso também respeita o **Open-Closed Principle**. 
-- **Fácil modularidade:** ela modulariza o projeto ainda mais, evitando condicionais grandes e complexas.
+- **Separação das classes:** você pode *separar a conversão de interface ou de dados da lógica primária do negócio do programa*. Isso também respeita o ***[Single Responsibility Principle](#single-responsibility-principle)***.
+- **Facilidade em introduzir novas classes Adapter:** você pode *introduzir novos tipos de adaptadores no programa sem quebrar o código cliente existente, desde que eles trabalhem com os adaptadores através da interface cliente*. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle). 
+- **Fácil modularidade:** ela modulariza o projeto ainda mais, *evitando condicionais grandes e complexas*.
 
 #### **Pontos Negativos**👎
 
 - **Alta complexidade:** a complexidade geral do código *aumenta porque você precisa introduzir um conjunto de novas interfaces e classes*. Algumas vezes é mais simples mudar a classe serviço para que ela se adeque com o resto do seu código.
-- **Uso de mais de uma versão adaptadora:** cair na tentação de suportar mais de uma versão em uma classe adaptadora é, ao menos, o problema de leitura de código criado, prejudicando a fácil evolução dele.
+- **Uso de mais de uma versão adaptadora:** cair na tentação de suportar mais de uma versão em uma classe adaptadora é, ao menos, *o problema de leitura de código criado, prejudicando a fácil evolução dele*.
 
 #### Relações com outros padrões
 
-- O padrão *Adapter* é comumente **usado em aplicações existentes para fazer com que classes incompatíveis trabalhem bem juntas**. Por outro lado, o padrão *Bridge* é geralmente definido com antecedência, permitindo que você desenvolva partes de uma aplicação independentemente umas das outras. 
-- O *Adapter* **muda a interface de um objeto existente**, enquanto que o *Decorator* **melhora um objeto sem mudar sua interface**. Além disso, o *Decorator* **suporta *composição recursiva***, o que não seria possível quando você usa o *Adapter*.
-- O *Adapter* **fornece uma interface diferente para um objeto encapsulado**, o *Proxy* **fornece a ele a mesma interface**, e o *Decorator* **fornece a ele com uma interface melhorada**.
-- O *Adapter* tenta **fazer uma interface existente ser utilizável**, enquanto que o *Facade* **define uma nova interface para objetos existentes**. O *Adapter* geralmente **envolve apenas um objeto**, enquanto que o *Facade* **trabalha com um inteiro subsistema de objetos**.
-- O *Bridge*, *State*, *Strategy* (e de certa forma o *Adapter*) têm estruturas muito parecidas. De fato, **todos esses padrões estão baseados em *composição***. Contudo, **todos eles resolvem problemas diferentes**. Um padrão não é apenas uma receita para estruturar seu código de uma maneira específica. Ele também pode comunicar a outros desenvolvedores o problema que o padrão resolve.
+- O padrão *Adapter* é comumente **usado em aplicações existentes para fazer com que classes incompatíveis trabalhem bem juntas**. Por outro lado, o padrão *[Bridge](#bridge)* é geralmente definido com antecedência, permitindo que você desenvolva partes de uma aplicação independentemente umas das outras. 
+- O *Adapter* **muda a interface de um objeto existente**, enquanto que o *[Decorator](#decorator)* melhora um objeto sem mudar sua interface. Além disso, o *[Decorator](#decorator)* suporta [composição recursiva](#composicao-recursiva), o que não seria possível quando você usa o *Adapter*.
+- O *Adapter* **fornece uma interface diferente para um objeto encapsulado**, o *[Proxy](#proxy)* fornece a ele a mesma interface, e o *[Decorator](#decorator)* fornece a ele com uma interface melhorada.
+- O *Adapter* tenta **fazer uma interface existente ser utilizável**, enquanto que o *[Facade](#facade)* define uma nova interface para objetos existentes. O *Adapter* geralmente **envolve apenas um objeto**, enquanto que o *[Facade](#facade)* trabalha com um inteiro subsistema de objetos.
+- O *[Bridge](#Bridge)*, *[State](#state)*, *[Strategy](#Strategy)* (e de certa forma o *Adapter*) têm estruturas muito parecidas. De fato, **todos esses padrões estão baseados em *[composição](#composicao)***. Contudo, **todos eles resolvem problemas diferentes**. Um padrão não é apenas uma receita para estruturar seu código de uma maneira específica. Ele também pode comunicar a outros desenvolvedores o problema que o padrão resolve.
 
 ![](src/imagens/bridge.png)
-### Bridge
+### <a id="bridge"></a>Bridge
 
 #### Definição
 
@@ -744,24 +741,24 @@ Voar
 
 #### Aplicabilidade
 
-1. Utilize o padrão *Bridge* quando **você quer dividir e organizar uma classe monolítica que tem diversas variantes da mesma funcionalidade** (por exemplo, se a classe pode trabalhar com diversos servidores de base de dados).
+1. Utilize o padrão quando **você quer dividir e organizar uma classe monolítica que tem diversas variantes da mesma funcionalidade** (por exemplo, se a classe pode trabalhar com diversos servidores de base de dados).
 
    - Quanto maior a classe se torna, mais difícil é de entender como ela funciona, e mais tempo se leva para fazer mudanças. *As mudanças feitas para uma das variações de funcionalidade podem precisar de mudanças feitas em toda a classe, o que quase sempre resulta em erros ou falha em lidar com efeitos colaterais*.
    - O padrão *Bridge* permite que *você divida uma classe monolítica em diversas hierarquias de classe*. Após isso, você pode modificar as classes em cada hierarquia independentemente das classes nas outras. Essa abordagem simplifica a manutenção do código e minimiza o risco de quebrar o código existente.
 
-2. Utilize o padrão *Bridge* se **você precisar ser capaz de trocar implementações durante o momento de execução**.
+2. Utilize o padrão se **você precisar ser capaz de trocar implementações durante o momento de execução**.
 
    - Embora seja opcional, o padrão *Bridge* *permite que você substitua o objeto de implementação dentro da abstração*. É tão fácil quanto designar um novo valor para um campo.
 
-     > **Observação:** este último item é o maior motivo pelo qual muitas pessoas confundem o *Bridge* com o padrão *Strategy*. Lembre-se que **um padrão é mais que apenas uma maneira de estruturar suas classes**. Ele também pode **comunicar intenções e resolver um problema**.
+     > **Observação:** este último item é o maior motivo pelo qual muitas pessoas confundem o *Bridge* com o padrão *[Strategy](#Strategy)*. Lembre-se que **um padrão é mais que apenas uma maneira de estruturar suas classes**. Ele também pode **comunicar intenções e resolver um problema**.
 
-3. Utilize o padrão *Bridge* quando **você precisa estender uma classe em diversas dimensões ortogonais (independentes)**.
+3. Utilize o padrão quando **você precisa estender uma classe em diversas dimensões ortogonais (independentes)**.
 
    - O *Bridge* sugere que *você extraia uma hierarquia de classe separada para cada uma das dimensões*. A classe original delega o trabalho relacionado para os objetos pertencentes àquelas hierarquias ao invés de fazer tudo por conta própria.
 
-> **Nota:** Um ponto interessante no *Bridge* é o fato de ***sua solução utilizar ao mesmo tempo herança e composição***. Muitas desenvolvedores dizem para utilizar sempre a composição no lugar da herança, porém a palavra "sempre” é muito complicada no contexto de design de software, pois **não existe bala de prata nem uma solução mágica que irá resolver todos os seus problemas**. A composição tem sim suas vantagens, porém é importante sempre avaliar com cuidado o problema e os requisitos da solução para que se busque a mais apropriada.
+> **Nota:** Um ponto interessante no *Bridge* é o fato de ***sua solução utilizar ao mesmo tempo herança e composição***. Muitas desenvolvedores dizem para utilizar sempre a [composição](#composição) no lugar da [herança](#herança), porém a palavra "sempre” é muito complicada no contexto de design de software, pois **não existe bala de prata nem uma solução mágica que irá resolver todos os seus problemas**. A composição tem sim suas vantagens, porém é importante sempre avaliar com cuidado o problema e os requisitos da solução para que se busque a mais apropriada.
 
-> **Observação:** o padrão *Bridge*, por exemplo, utiliza ao mesmo tempo um ***Hook Method*** e uma ***Hook Class*** como *forma de separar dois pontos de extensão cujo comportamento pode variar de modo independente*. Dessa maneira, *é importante não apenas conhecer os padrões, mas compreender os princípios por trás de sua estrutura para entender melhor as consequências trazidas por uma decisão de design*.
+> **Observação:** o padrão *Bridge*, por exemplo, utiliza ao mesmo tempo um **[Hook Method](#hook-method)** e uma **[Hook Class](#hook-class)** como *forma de separar dois pontos de extensão cujo comportamento pode variar de modo independente*. Dessa maneira, *é importante não apenas conhecer os padrões, mas compreender os princípios por trás de sua estrutura para entender melhor as consequências trazidas por uma decisão de design*.
 
 #### Classes de exemplo
 
@@ -814,22 +811,22 @@ Desenhando Circulo [cor:verde, raio: 10, x: 100, y: 100]
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
 - **Classes independentes:** você pode *criar classes e aplicações independentes de plataforma*.
 - **Trabalhar com classes abstratas de alto nível:** o código cliente trabalha com abstrações em alto nível. *Ele não fica exposto os detalhes da plataforma*.
-- **Novas abstrações e implementações independentes:** você pode introduzir novas abstrações e implementações independentemente uma das outras. Isso respeita o ***Open-Closed Principle***.
-- **Foco maior na lógica de alto nível do seu projeto:** você pode focar na lógica de alto nível na abstração e em detalhes de plataforma na implementação. Isso respeita o ***Single Responsibility Principle***.
+- **Novas abstrações e implementações independentes:** você pode introduzir novas abstrações e implementações independentemente uma das outras. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle).
+- **Foco maior na lógica de alto nível do seu projeto:** você pode focar na lógica de alto nível na abstração e em detalhes de plataforma na implementação. Isso respeita o ***[Single Responsibility Principle](#single-responsibility-principle)***.
 
 #### **Pontos Negativos**👎
 
-- **Código muito complexo:** você pode *tornar o código mais complicado ao aplicar o padrão em uma classe altamente **coesa***.
+- **Código muito complexo:** você pode *tornar o código mais complicado ao aplicar o padrão em uma classe altamente **[coesa](#coecao)***.
 
 #### Relações com outros padrões
 
-- O *Bridge* é geralmente **definido com antecedência, permitindo que você desenvolva partes de uma aplicação independentemente umas das outras**. Por outro lado, o Adapter é comumente usado em aplicações existentes para fazer com que classes incompatíveis trabalhem bem juntas.
-- O *Bridge*, *State*, *Strategy* (e de certa forma o *Adapter*) têm estruturas muito parecidas. De fato, **todos esses padrões estão baseados em *composição***. Contudo, **todos eles resolvem problemas diferentes**. Um padrão não é apenas uma receita para estruturar seu código de uma maneira específica. Ele também pode **comunicar a outros desenvolvedores o problema que o padrão resolve**.
-- **Você pode usar o** *Abstract Factory* **junto com o padrão** *Bridge*. Esse pareamento **é útil quando algumas abstrações definidas pelo** *Bridge* **só podem trabalhar com implementações específicas**. Neste caso, o *Abstract Factory* pode encapsular essas relações e esconder a complexidade do código cliente.
-- **Você pode combinar o** *Bridge* **com o** *Builder*:  a classe diretor tem um papel de abstração, enquanto que diferentes construtores agem como implementações.
+- O *Bridge* é geralmente **definido com antecedência, permitindo que você desenvolva partes de uma aplicação independentemente umas das outras**. Por outro lado, o *[Adapter](#adapter)* é comumente usado em aplicações existentes para fazer com que classes incompatíveis trabalhem bem juntas.
+- O *Bridge*, *[State](#State)*, *[Strategy](#strategy)* (e de certa forma o *[Adapter](#adapter)*) têm estruturas muito parecidas. De fato, **todos esses padrões estão baseados em *[composição](#composicao)***. Contudo, **todos eles resolvem problemas diferentes**. Um padrão não é apenas uma receita para estruturar seu código de uma maneira específica. Ele também pode **comunicar a outros desenvolvedores o problema que o padrão resolve**.
+- **Você pode usar o** *[Abstract Factory](#abstract-factory)* **junto com o padrão** *Bridge*. Esse pareamento **é útil quando algumas abstrações definidas pelo** *Bridge* **só podem trabalhar com implementações específicas**. Neste caso, o *[Abstract Factory](#abstract-factory)* pode encapsular essas relações e esconder a complexidade do código cliente.
+- **Você pode combinar o** *Bridge* **com o** *[Builder](#builder)*:  a classe diretor tem um papel de abstração, enquanto que diferentes construtores agem como implementações.
 
 ![](src/imagens/composite.png)
-### Composite
+### <a id="composite"></a>Composite
 
 #### Definição
 
@@ -837,9 +834,9 @@ Desenhando Circulo [cor:verde, raio: 10, x: 100, y: 100]
 
 #### Aplicabilidade
 
-1. Utilize o padrão *Composite* quando **você tem que implementar uma estrutura de objetos tipo árvore**.
-   - O padrão *Composite* *fornece a você com dois tipos básicos de elementos que compartilham uma interface comum: folhas simples e contêineres complexos*. Um **contêiner** pode ser *composto tanto de folhas como por outros contêineres*. Isso *permite a você construir uma estrutura de objetos recursiva aninhada que se assemelha a uma árvore*.
-2. Utilize o padrão *Composite* quando **você quer que o código cliente trate tanto os objetos simples como os compostos de forma uniforme**.
+1. Utilize o padrão quando **você tem que implementar uma estrutura de objetos tipo árvore**.
+   - O padrão *Composite* *fornece a você com dois tipos básicos de elementos que compartilham uma interface comum: folhas simples e contêineres complexos*. Um contêiner pode ser *composto tanto de folhas como por outros contêineres*. Isso *permite a você construir uma estrutura de objetos recursiva aninhada que se assemelha a uma árvore*.
+2. Utilize o padrão quando **você quer que o código cliente trate tanto os objetos simples como os compostos de forma uniforme**.
    - *Todos os elementos definidos pelo padrão* *Composite* *compartilham uma interface comum*. Usando essa interface o cliente não precisa se preocupar com a classe concreta dos objetos com os quais está trabalhando.
 
 #### Classes de exemplo
@@ -907,8 +904,8 @@ Empregado:[Nome:Bob, departamento:Marketing, salario:10000]
 #### **Pontos Positivos**👍
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
-- **Uso mais fácil de estruturas de árvore complexas:** você pode trabalhar com estruturas de árvore complexas mais convenientemente. Utilize o ***polimorfismo*** e a ***recursão*** a seu favor.
-- **Inserção de novos tipos de elementos na aplicação:** Você pode fazer isso sem quebrar o código existente, o que agora funciona com a árvore de objetos. Isso também respeita o **Open-Closed Principle**. 
+- **Uso mais fácil de estruturas de árvore complexas:** você pode *trabalhar com estruturas de árvore complexas mais convenientemente*. Utilize o ***[polimorfismo](#polimorfismo)*** e a ***[recursão](#recursividade)*** a seu favor.
+- **Inserção de novos tipos de elementos na aplicação:** Você pode fazer isso sem quebrar o código existente, o que agora funciona com a árvore de objetos. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle). 
 
 #### Pontos Negativos👎
 
@@ -916,26 +913,17 @@ Empregado:[Nome:Bob, departamento:Marketing, salario:10000]
 
 #### Relações com outros padrões
 
-- **Você pode usar o** *Builder* **quando criar árvores** *Composite* complexas porque *você pode programar suas etapas de construção para trabalhar recursivamente*.
-
-- O *Chain of Responsibility* **é frequentemente usado em conjunto com o** *Composite*. Neste caso, *quando um componente folha recebe um pedido, ele pode passá-lo através de uma corrente de todos os componentes pai até a raiz do objeto árvore*.
-
-- **Você pode usar** *Iteradores* para *percorrer árvores* *Composite*.
-
-- Você pode usar o Visitor para *executar uma operação sobre uma árvore Composite inteira*.
-
-- **Você pode implementar nós folha compartilhados da árvore** *Composite* **como** *Flyweights para salvar RAM*.
-
-- O *Composite* e o *Decorator* **tem diagramas estruturais parecidos já que ambos dependem de composição recursiva para organizar um número indefinido de objetos**.
-
-  > **Um** *Decorador* **é como um** *Composite* **mas tem apenas um componente filho**. Há outra diferença significativa: o *Decorador* **adiciona responsabilidades adicionais ao objeto envolvido**, enquanto que o *Composite* **apenas “soma” o resultado de seus filhos**.
-  >
-  > Contudo, os padrões também podem cooperar: **você pode usar o** *Decorador* **para estender o comportamento de um objeto específico na árvore** *Composite*
-
-- **Projetos que fazem um uso pesado de** *Composite* **e do** *Decorator* **podem se beneficiar com frequência do uso do** *Prototype*. *Aplicando o padrão permite que você clone estruturas complexas ao invés de reconstruí-las do zero*.
+- **Você pode usar o** *[Builder](#builder)* **quando criar árvores** *Composite* complexas porque *você pode programar suas etapas de construção para trabalhar recursivamente*.
+- O *[Chain of Responsibility](#chain-of-responsability)* **é frequentemente usado em conjunto com o** *Composite*. Neste caso, *quando um componente folha recebe um pedido, ele pode passá-lo através de uma corrente de todos os componentes pai até a raiz do objeto árvore*.
+- **Você pode usar** *[Iterator](#iterator)* para *percorrer árvores* *Composite*.
+- Você pode usar o *[Visitor](#visitor)* para *executar uma operação sobre uma árvore Composite inteira*.
+- **Você pode implementar nós folha compartilhados da árvore** *Composite* **como** *[Flyweights](#flyweight) para salvar RAM*.
+- O *Composite* e o *[Decorator](#decorator)* **tem diagramas estruturais parecidos já que ambos dependem de [composição recursiva](#composicao-recursiva) para organizar um número indefinido de objetos**.
+- Um *Decorador* é como um *Composite* mas tem apenas um componente filho. Há outra diferença significativa: o *Decorador* adiciona responsabilidades adicionais ao objeto envolvido, enquanto que o *Composite* **apenas “soma” o resultado de seus filhos**. Contudo, os padrões também podem cooperar: você pode usar o *Decorador* para estender o comportamento de um objeto específico na árvore *Composite*
+- **Projetos que fazem um uso pesado de** *Composite* **e do** *Decorator* **podem se beneficiar com frequência do uso do** *[Prototype](#prototype)*. *Aplicando o padrão permite que você clone estruturas complexas ao invés de reconstruí-las do zero*.
 
 ![](src/imagens/decorator.png)
-### Decorator
+### <a id="decorator"></a>Decorator
 
 #### Definição
 
@@ -943,11 +931,11 @@ Empregado:[Nome:Bob, departamento:Marketing, salario:10000]
 
 #### Aplicabilidade
 
-1. Utilize o padrão *Decorator* quando você **precisa ser capaz de projetar comportamentos adicionais para objetos em tempo de execução sem quebrar o código que usa esses objetos**.
+1. Utilize o padrão quando você **precisa ser capaz de projetar comportamentos adicionais para objetos em tempo de execução sem quebrar o código que usa esses objetos**.
 
    - O *Decorator* lhe *permite estruturar sua lógica de negócio em camadas, criar um decorador para cada camada, e compor objetos com várias combinações dessa lógica durante a execução*. O código cliente pode tratar de todos esses objetos da mesma forma, como todos seguem a mesma interface comum.
 
-2. Utilize o padrão quando é **complicado ou impossível estender o comportamento de um objeto usando herança**.
+2. Utilize o padrão quando é **complicado ou impossível estender o comportamento de um objeto usando [herança](#heranca)**.
 
    - Muitas linguagens de programação tem a palavra chave `final` que pode ser usada para prevenir a extensão de uma classe. Para uma classe final, a *única maneira de reutilizar seu comportamento existente seria envolver a classe com seu próprio invólucro usando o padrão* *Decorator*.
 
@@ -959,7 +947,7 @@ Empregado:[Nome:Bob, departamento:Marketing, salario:10000]
 
 > **Observação:** o principal objetivo desse padrão é *acrescentar funcionalidades a classes existentes de uma forma transparente a quem as utiliza*. Isso também pode ser *utilizado para uma melhor distribuição de responsabilidades, permitindo que a principal se foque na regra de negócio central e que outras classes que a encapsulam cuidem de outras funcionalidades*.
 
-> **Nota:** A estrutura do *Proxy* e do *Decorator* utiliza a **composição recursiva**. Isso significa que *ambos são compostos por uma classe que possui a mesma abstração que eles*.
+> **Nota:** A estrutura do *[Proxy](#proxy)* e do *Decorator* utiliza a **[composição recursiva](#composicao-recursiva)**. Isso significa que *ambos são compostos por uma classe que possui a mesma abstração que eles*.
 >
 > ​                                                           ![](src/imagens/proxy&decorator.png)
 >
@@ -1036,7 +1024,7 @@ Cor da Borda: Vermelha
 - **Facilidade de estender um comportamento:** você pode *estender o comportamento de um objeto sem fazer um nova subclasse*.
 - **Facilidade de adicionar ou remover responsabilidades:** Você pode *adicionar ou remover responsabilidades de um objeto no momento da execução*.
 - **Combinação de diversos comportamentos:** você pode *combinar diversos comportamentos ao envolver o objeto com múltiplos decoradores*.
-- **Facilidade em dividir uma classe monolítica:**  Você pode *dividir uma classe monolítica que implementa muitas possíveis variantes de um comportamento em diversas classes menores*. Isso respeita o ***Single Responsibility Principle***.
+- **Facilidade em dividir uma classe monolítica:**  Você pode *dividir uma classe monolítica que implementa muitas possíveis variantes de um comportamento em diversas classes menores*. Isso respeita o ***[Single Responsibility Principle](#single-responsibility-principle)***.
 - **Maior flexibilidade e evolução do código:** A expansão das funcionalidades é *dinâmica, em tempo de execução, e não estática, em tempo de compilação*.
 - **Simplicidade:** as classes de componente concreto *continuam simples e movem o embelezamento (novas funcionalidades) para classes decoradoras*.
 
@@ -1045,25 +1033,25 @@ Cor da Borda: Vermelha
 - **Dificuldade de remoção:** é difícil *remover um invólucro de uma pilha de invólucros*.
 - **Dificuldade de implementação de um decorador:** é *difícil implementar um decorador de tal maneira que seu comportamento não dependa da ordem do pilha de decoradores*.
 - **Design ruim:** *a configuração inicial do código de camadas pode ficar bastante feia*.
-- **Aumento no número de classes utilizadas no projeto:** aumenta muito o número de classes utilizadas no projeto quando *comparado com a versão que tinha somente mais atributos e métodos na* **classe base** *para a implementação das funcionalidades extras*.
+- **Aumento no número de classes utilizadas no projeto:** aumenta muito o número de classes utilizadas no projeto quando *comparado com a versão que tinha somente mais atributos e métodos na classe base para a implementação das funcionalidades extras*.
 - **Leitura e manutenção prejudicados:** isso pode acontecer *caso muitas classes sejam necessárias no projeto*.
 - **Diminuição da eficiência do projeto:** isso pode acontecer *caso muitas classes decoradoras forem necessárias para um componente abstrato com muitos métodos públicos* (lembrando que classes decoradoras têm que ter a mesma interface pública que classes componente concreto).
 
 #### Relações com outros padrões
 
-- O *Decorator* ***melhora um objeto sem mudar sua interface***, enquanto que o *Adapter* muda a interface de um objeto existente. Além disso, o *Decorator* suporta **composição recursiva**, o que não seria possível quando você usa o *Adapter*.
-- O *Adapter* fornece uma interface diferente para um objeto encapsulado, o *Proxy* fornece a ele a mesma interface, e o *Decorator* ***fornece a ele com uma interface melhorada***.
-- O *Chain of Responsibility* e o *Decorator* têm ***estruturas de classe muito parecidas***. Ambos ***os padrões dependem de*** **composição recursiva** ***para passar a execução através de uma série de objetos***. Contudo, há algumas diferenças cruciais.
+- O *Decorator* ***melhora um objeto sem mudar sua interface***, enquanto que o *[Adapter](#adapter)* muda a interface de um objeto existente. Além disso, o *Decorator* suporta **[composição recursiva](#composicao-recursiva)**, o que não seria possível quando você usa o *Adapter*.
+- O *Adapter* fornece uma interface diferente para um objeto encapsulado, o *[Proxy](#proxy)* fornece a ele a mesma interface, e o *Decorator* ***fornece a ele com uma interface melhorada***.
+- O *[Chain of Responsibility](#chain-of-responsability)* e o *Decorator* têm ***estruturas de classe muito parecidas***. Ambos ***os padrões dependem de*** **composição recursiva** ***para passar a execução através de uma série de objetos***. Contudo, há algumas diferenças cruciais.
   - Os handlers do *Chain of Responsibility* podem executar operações arbitrárias independentemente uma das outras. Eles também podem parar o pedido de ser passado adiante em qualquer ponto. Por outro lado, ***vários decoradores podem estender o comportamento do objeto enquanto mantém ele consistente com a interface base***. Além disso, ***os decoradores não tem permissão para quebrar o fluxo do pedido***.
-- O *Decorator* e o *Composite*  tem ***diagramas estruturais parecidos já que ambos dependem de*** **composição recursiva** ***para organizar um número indefinido de objetos***.
-  - Um *Decorator* ***é como um*** *Composite* ***mas tem apenas um componente filho***. Há outra diferença significativa: ***o*** *Decorator* ***adiciona responsabilidades adicionais ao objeto envolvido***, enquanto que o *Composite* ***apenas “soma” o resultado de seus filhos***.
+- O *Decorator* e o *[Composite](#composite)*  tem ***diagramas estruturais parecidos já que ambos dependem de*** **composição recursiva** ***para organizar um número indefinido de objetos***.
+  - Um *Decorator* *é como um* *Composite* *mas tem apenas um componente filho*. Há outra diferença significativa: ***o*** *Decorator* ***adiciona responsabilidades adicionais ao objeto envolvido***, enquanto que o *Composite* *apenas “soma” o resultado de seus filhos*.
   - Contudo, os padrões também podem cooperar: ***você pode usar o*** *Decorator* ***para estender o comportamento de um objeto específico na árvore*** *Composite*.
-- **Projetos que fazem um uso pesado de** *Composite* **e do** *Decorator* **podem se beneficiar com frequência do uso do** *Prototype*. *Aplicando o padrão permite que você clone estruturas complexas ao invés de reconstruí-las do zero*.
-- O padrão *Decorator* permite que você ***mude a aparência externa de um objeto***. Já o padrão *Strategy* permite que você ***mude o que tem dentro de um objeto***.
-- O *Decorator* e o *Proxy* têm ***estruturas semelhantes, mas propósitos muito diferentes***. Alguns padrões são construídos no princípio de composição, onde um objeto deve delegar parte do trabalho para outro. A diferença é que o *Proxy* geralmente gerencia o ciclo de vida de seu objeto serviço por conta própria, enquanto que ***a composição do decoradores é sempre controlada pelo cliente***.
+- **Projetos que fazem um uso pesado de** *Composite* **e do** *Decorator* **podem se beneficiar com frequência do uso do** *[Prototype](#prototype)*. *Aplicando o padrão permite que você clone estruturas complexas ao invés de reconstruí-las do zero*.
+- O padrão *Decorator* permite que você ***mude a aparência externa de um objeto***. Já o padrão *[Strategy](#strategy)* permite que você ***mude o que tem dentro de um objeto***.
+- O *Decorator* e o *Proxy* têm ***estruturas semelhantes, mas propósitos muito diferentes***. Alguns padrões são construídos no princípio de [composição](#composicao), onde um objeto deve delegar parte do trabalho para outro. A diferença é que o *Proxy* geralmente gerencia o ciclo de vida de seu objeto serviço por conta própria, enquanto que ***a composição do decoradores é sempre controlada pelo cliente***.
 
 ![](src/imagens/facade.png)
-### Facade
+### <a id="facade"></a>Facade
 
 #### Definição
 
@@ -1071,10 +1059,10 @@ Cor da Borda: Vermelha
 
 #### Aplicabilidade
 
-1. Utilize o padrão *Facade* quando **você precisa ter uma interface limitada mas simples para um subsistema complexo**.
+1. Utilize o padrão quando **você precisa ter uma interface limitada mas simples para um subsistema complexo**.
    - Com o passar do tempo, subsistemas ficam mais complexos. Até mesmo aplicar padrões de projeto tipicamente leva a criação de mais classes. Um subsistema pode tornar-se mais flexível e mais fácil de se reutilizar em vários contextos, mas a quantidade de códigos padrão e de configuração que ele necessita de um cliente cresce cada vez mais. O *Facade* tenta *consertar esse problema fornecendo um atalho para as funcionalidades mais usadas do subsistema que corresponde aos requerimentos do cliente*.
-2. Utilize o *Facade* quando **você quer estruturar um subsistema em camadas**.
-   - *Crie fachadas para definir pontos de entrada para cada nível de um subsistema*. *Você pode reduzir o* **acoplamento** *entre múltiplos subsistemas fazendo com que eles se comuniquem apenas através de fachadas*.
+2. Utilize o padrão quando **você quer estruturar um subsistema em camadas**.
+   - *Crie fachadas para definir pontos de entrada para cada nível de um subsistema*. *Você pode reduzir o* **[acoplamento](#acoplamento)** *entre múltiplos subsistemas fazendo com que eles se comuniquem apenas através de fachadas*.
 
 #### Classes de exemplo
 
@@ -1134,22 +1122,22 @@ Square::desenhar()
 
 #### Pontos Negativos👎
 
-- **Ele pode se tornar um *antipattern*:** uma *Facade* pode se tornar um **god object** *acoplado a todas as classes de uma aplicação*. Um **god object** vai totalmente contra o ***Single Responsability Principle***.
+- **Ele pode se tornar um *[antipattern](#anti-pattern)*:** uma *Facade* pode se tornar um **[god object](#god-object)** *acoplado a todas as classes de uma aplicação*. Um **god object** vai totalmente contra o ***[Single Responsibility Principle](#single-responsibility-principle)***.
 
 #### Relações com outros padrões
 
-- O *Facade* define uma **nova interface para objetos existentes**, enquanto que o *Adapter* tenta fazer uma interface existente ser utilizável. O *Facade* **trabalha com um inteiro subsistema de objetos**, enquanto o *Adapter* geralmente envolve apenas um objeto.
-- O *Abstract Factory* pode servir como uma alternativa para o *Facade* quando você *precisa apenas esconder do código cliente a forma com que são criados os objetos do subsistema*.
-- O *Facade* mostra como **fazer um único objeto que represente um subsistema inteiro**, enquanto o *Flyweight* mostra como fazer vários pequenos objetos.
-- O *Facade* e o *Mediator* **têm trabalhos parecidos**: eles ***tentam organizar uma colaboração entre classes firmemente acopladas***.
+- O *Facade* define uma **nova interface para objetos existentes**, enquanto que o *[Adapter](#adapter)* tenta fazer uma interface existente ser utilizável. O *Facade* **trabalha com um inteiro subsistema de objetos**, enquanto o *Adapter* geralmente envolve apenas um objeto.
+- O *[Abstract Factory](#abstract-factory)* pode servir como uma alternativa para o *Facade* quando você *precisa apenas esconder do código cliente a forma com que são criados os objetos do subsistema*.
+- O *Facade* mostra como **fazer um único objeto que represente um subsistema inteiro**, enquanto o *[Flyweight](#flyweight)* mostra como fazer vários pequenos objetos.
+- O *Facade* e o *[Mediator](#mediator)* **têm trabalhos parecidos**: eles ***tentam organizar uma colaboração entre classes firmemente acopladas***.
   - O *Facade* ***define uma interface simplificada para um subsistema de objetos, mas ele não introduz qualquer nova funcionalidade***. O próprio subsistema não está ciente da fachada. Objetos dentro do subsistema podem se comunicar diretamente.
   - O *Mediator* centraliza a comunicação entre componentes do sistema. Os componentes só sabem do objeto mediador e não se comunicam diretamente.
-- Uma classe *Facade* **pode frequentemente ser transformada em um** *Singleton* **já que um único objeto** *Facade* **é suficiente na maioria dos casos**.
-- O *Facade* é **parecido com o** *Proxy* no quesito que ***ambos colocam em*** **buffer** ***uma entidade complexa e inicializam ela sozinhos***. Ao contrário do *Facade*, o *Proxy* tem a mesma interface que seu objeto de serviço, o que os torna intermutáveis.
+- Uma classe *Facade* **pode frequentemente ser transformada em um** *[Singleton](#singleton)* **já que um único objeto** *Facade* **é suficiente na maioria dos casos**.
+- O *Facade* é **parecido com o** *[Proxy](#proxy)* no quesito que ***ambos colocam em*** **[buffer](#buffer)** ***uma entidade complexa e inicializam ela sozinhos***. Ao contrário do *Facade*, o *Proxy* tem a mesma interface que seu objeto de serviço, o que os torna intermutáveis.
 
 ![](src/imagens/flyweight.png)
 
-### Flyweight
+### <a id="flyweight"></a>Flyweight
 
 #### Definição
 
@@ -1157,7 +1145,7 @@ Square::desenhar()
 
 #### Aplicabilidade
 
-- Utilize o padrão Flyweight **apenas quando seu programa deve suportar um grande número de objetos que mal cabem na RAM disponível**.
+- Utilize o padrão **apenas quando seu programa deve suportar um grande número de objetos que mal cabem na RAM disponível**.
   - O benefício de *aplicar o padrão depende muito de como e onde ele é usado*. Ele é mais útil quando:
     - Uma aplicação precisa ***gerar um grande número de objetos similares***
     - Isso ***drena a RAM disponível no dispositivo alvo***
@@ -1271,20 +1259,20 @@ CircleFlyweight: Draw() [Color:Blue, x:78, y:32, radius:100]
 
 #### Pontos Negativos👎
 
-- **Troca de RAM po ciclos de CPU:** você pode estar trocando RAM por ciclos de CPU *quando parte dos dados de contexto precisa ser recalculado cada vez que alguém chama um método* *Flyweight*.
+- **Troca de RAM por ciclos de CPU:** você pode estar trocando RAM por ciclos de CPU *quando parte dos dados de contexto precisa ser recalculado cada vez que alguém chama um método* *Flyweight*.
 - **Código complicado:** o código fica muito mais complicado. *Novos membros de equipe sempre se perguntarão por que o estado de uma entidade foi separado de tal forma*.
 
 #### Relações com outros padrões
 
-- Você pode **implementar nós folha compartilhados** da árvore *Composite* como *Flyweights* **para salvar RAM**.
-- O *Flyweight* mostra como **fazer vários pequenos objetos**, enquanto o *Facade* mostra como fazer um único objeto que represente um subsistema inteiro.
-- O *Flyweight* **seria parecido com o** *Singleton* ***se você, de algum modo, reduzisse todos os estados de objetos compartilhados para apenas um objeto*** *Flyweight*. Mas há *duas mudanças fundamentais entre esses padrões*:
+- Você pode **implementar nós folha compartilhados** da árvore *[Composite](#composite)* como *Flyweights* **para salvar RAM**.
+- O *Flyweight* mostra como **fazer vários pequenos objetos**, enquanto o *[Facade](#facade)* mostra como fazer um único objeto que represente um subsistema inteiro.
+- O *Flyweight* **seria parecido com o** *[Singleton](#singleton)* ***se você, de algum modo, reduzisse todos os estados de objetos compartilhados para apenas um objeto*** *Flyweight*. Mas há *duas mudanças fundamentais entre esses padrões*:
   1. Deve haver apenas uma única instância *Singleton*, enquanto que uma classe *Flyweight* pode ter múltiplas instâncias com diferentes estados intrínsecos.
   2. Objetos *Flyweight* são imutáveis. O objeto *Singleton* pode ser mutável. 
 
 ![](src/imagens/proxy.png)
 
-### Proxy
+### <a id="proxy"></a>Proxy
 
 #### Definição
 
@@ -1292,7 +1280,7 @@ CircleFlyweight: Draw() [Color:Blue, x:78, y:32, radius:100]
 
 #### Aplicabilidade
 
-Há várias maneiras de utilizar o padrão *Proxy*. Vamos ver os usos mais populares.
+Há várias maneiras de utilizar este padrão. Vamos ver os usos mais populares.
 
 1. **Proxy Virtual** (também chamado de **Inicialização Preguiçosa**)**:** este é quando **você tem um objeto do serviço peso-pesado que gasta recursos do sistema por estar sempre rodando, mesmo quando você precisa dele de tempos em tempos**.
 
@@ -1300,7 +1288,7 @@ Há várias maneiras de utilizar o padrão *Proxy*. Vamos ver os usos mais popul
 
    > **Curiosidade:** A linguagem Kotlin fornece dois recursos que utilizam esse tipo de *Proxy*. Eles são usados em contextos diferentes e de formas diferentes. A linguagem Kotlin utiliza as palavras reservadas `lateinit` e `lazy`.
    >
-   > **LateInit:** A partir dela, podemos declarar **propriedades** similares a atributos no Java, ou seja, sem inicializar em sua declaração. Todas as vezes que utilizarmos uma declaração `lateinit`, ela *precisa de uma inicialização, caso contrário, será lançada uma exceção*. 
+   > **LateInit:** A partir dela, podemos declarar **[propriedades](#propriedades)** similares a atributos no Java, ou seja, sem inicializar em sua declaração. Todas as vezes que utilizarmos uma declaração `lateinit`, ela *precisa de uma inicialização, caso contrário, será lançada uma exceção*. 
    >
    > **Lazy:** A ideia do `lazy` é *permitir a inicialização da propriedade na primeira vez que for utilizada*, e então, nas próximas vezes de uso, o valor atribuído é devolvido imediatamente, como se fosse um *cache*.
 
@@ -1385,7 +1373,7 @@ Displaying: MinhaFoto.png
 - **Melhor controle do objeto:** você pode *controlar o objeto do serviço sem os clientes ficarem sabendo*.
 - **Gerenciamento do ciclo de vida de um objeto:** você pode gerenciar o ciclo de vida de um objeto do serviço *quando os clientes não se importam mais com ele*.
 - **Facilidade na inicialização de um objeto:** o *Proxy* trabalha *até mesmo se o objeto do serviço ainda não está pronto ou disponível*.
-- **Acréscimo de novas classes *Proxy*:** você pode *introduzir novos proxies sem mudar o serviço ou clientes*. Isso também respeita o **Open-Closed Principle**. 
+- **Acréscimo de novas classes *Proxy*:** você pode *introduzir novos proxies sem mudar o serviço ou clientes*. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle). 
 
 #### Pontos Negativos👎
 
@@ -1394,20 +1382,20 @@ Displaying: MinhaFoto.png
 
 #### Relações com outros padrões
 
-- O *Adapter* fornece uma interface diferente para um objeto encapsulado, o *Proxy* **fornece a ele a mesma interface**, e o *Decorator* fornece a ele com uma interface melhorada.
-- O *Facade* é parecido como o *Proxy* no quesito que *ambos colocam em* **buffer** *uma entidade complexa e inicializam ela sozinhos*. Ao contrário do *Facade*, o *Proxy* tem **a mesma interface que seu objeto de serviço, o que os torna intermutáveis**.
-- O *Proxy* e o *Decorator* **têm estruturas semelhantes, mas propósitos muito diferentes**. Alguns padrões são construídos no princípio de composição, onde um objeto deve delegar parte do trabalho para outro. A diferença é que o *Proxy* geralmente **gerencia o ciclo de vida de seu objeto serviço por conta própria**, enquanto que a composição do decoradores é sempre controlada pelo cliente.
+- O *[Adapter](#adapter)* fornece uma interface diferente para um objeto encapsulado, o *Proxy* **fornece a ele a mesma interface**, e o *[Decorator](#decorator)* fornece a ele com uma interface melhorada.
+- O *[Facade](#facade)* é parecido como o *Proxy* no quesito que *ambos colocam em* **[buffer](#buffer)** *uma entidade complexa e inicializam ela sozinhos*. Ao contrário do *[Facade](#facade)*, o *Proxy* tem **a mesma interface que seu objeto de serviço, o que os torna intermutáveis**.
+- O *Proxy* e o *Decorator* **têm estruturas semelhantes, mas propósitos muito diferentes**. Alguns padrões são construídos no princípio de [composição](#composicao), onde um objeto deve delegar parte do trabalho para outro. A diferença é que o *Proxy* geralmente **gerencia o ciclo de vida de seu objeto serviço por conta própria**, enquanto que a composição do decoradores é sempre controlada pelo cliente.
 
-## Behavioral Patterns
+## <a id="behavioral-patterns"></a>Behavioral Patterns
 
 >  Os padrões comportamentais são voltados aos algoritmos e a designação de responsabilidades entre objetos.
 
 ![](src/imagens/chain-of-responsibility.png)
-### Chain of Responsibility
+### <a id="chain-of-responsibility"></a>Chain of Responsibility
 
 #### Definição
 
-> *É um padrão de projeto comportamental que permite que você passe pedidos por uma corrente de handlers. Ao receber um pedido, cada handler decide se processa o pedido ou o passa adiante para o próximo handler na corrente.*
+> *É um padrão de projeto comportamental que permite que você passe pedidos por uma corrente de [handlers](#handles). Ao receber um pedido, cada handler decide se processa o pedido ou o passa adiante para o próximo handler na corrente.*
 
 #### Aplicabilidade
 
@@ -1498,8 +1486,8 @@ Standard Console::Logger:This is an error information.
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
 - **Tratamento:** você pode *controlar a ordem de tratamento dos pedidos*.
-- **Melhor desacoplação no código:** você pode desacoplar classes que *invocam operações de classes que realizam operações*. Isso também respeita o ***Single Responsibility Principle***.
-- **Acréscimo de novos handles:** você pode introduzir novos handlers na aplicação *sem quebrar o código cliente existente*. Isso também respeita o **Open-Closed Principle**. 
+- **Melhor desacoplação no código:** você pode desacoplar classes que *invocam operações de classes que realizam operações*. Isso também respeita o ***[Single Responsibility Principle](#single-responsibility-principle)***.
+- **Acréscimo de novos handles:** você pode introduzir novos handlers na aplicação *sem quebrar o código cliente existente*. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle). 
 
 #### Pontos Negativos👎
 
@@ -1509,18 +1497,18 @@ Standard Console::Logger:This is an error information.
 
 - Os padrões *Chain of Responsibility*, *Command*, *Mediator* e *Observer* **abrangem várias maneiras de se conectar remetentes e destinatários de pedidos**:
   - O *Chain of Responsibility* ***passa um pedido sequencialmente ao longo de um corrente dinâmica de potenciais destinatários até que um deles atua no pedido***.
-  - O *Command* estabelece conexões unidirecionais entre remetentes e destinatários.
-  - O *Mediator* elimina as conexões diretas entre remetentes e destinatários, forçando-os a se comunicar indiretamente através de um objeto mediador.
-  - O *Observer* permite que destinatários inscrevam-se ou cancelem sua inscrição dinamicamente para receber pedidos.
-- O *Chain of Responsibility* é **frequentemente usado em conjunto com o** *Composite*. Neste caso, **quando um componente folha recebe um pedido, ele pode passá-lo através de uma corrente de todos os componentes pai até a raiz do objeto árvore**.
+  - O *[Command](#command)* estabelece conexões unidirecionais entre remetentes e destinatários.
+  - O *[Mediator](#mediator)* elimina as conexões diretas entre remetentes e destinatários, forçando-os a se comunicar indiretamente através de um objeto mediador.
+  - O *[Observer](#observer)* permite que destinatários inscrevam-se ou cancelem sua inscrição dinamicamente para receber pedidos.
+- O *Chain of Responsibility* é **frequentemente usado em conjunto com o** *[Composite](#composite)*. Neste caso, **quando um componente folha recebe um pedido, ele pode passá-lo através de uma corrente de todos os componentes pai até a raiz do objeto árvore**.
 - **Handlers** em uma *Chain of Responsibility* **podem ser implementados como** um *Command*. Neste caso, você **pode executar várias operações diferentes sobre o mesmo objeto contexto, representado por um pedido**.
   - Contudo, há outra abordagem, onde o próprio pedido é um objeto *Command*. Neste caso, você ***pode executar a mesma operação em uma série de diferentes contextos ligados em uma corrente***.
-- O *Chain of Responsibility* e o *Decorator* têm **estruturas de classe muito parecidas**. *Ambos* os padrões *dependem de* **composição recursiva** *para passar a execução através de uma série de objetos*. Contudo, há algumas diferenças cruciais.
+- O *Chain of Responsibility* e o *[Decorator](#decorator)* têm **estruturas de classe muito parecidas**. *Ambos* os padrões *dependem de* **[composição recursiva](#composicao-recursiva)** *para passar a execução através de uma série de objetos*. Contudo, há algumas diferenças cruciais.
   - Os **handlers** do *Chain of Responsibility* podem ***executar operações arbitrárias independentemente uma das outras***. Eles também podem ***parar o pedido de ser passado adiante em qualquer ponto***. Por outro lado, vários decoradores podem estender o comportamento do objeto enquanto mantém ele consistente com a interface base. Além disso, os decoradores não tem permissão para quebrar o fluxo do pedido.
 
 ![](src/imagens/command.png)
 
-### Command
+### <a id="command"></a>Command
 
 #### Definição
 
@@ -1535,7 +1523,7 @@ Standard Console::Logger:This is an error information.
 3. Utilize o padrão quando **você quer implementar operações reversíveis**.
    - Embora haja muitas formas de implementar o desfazer/refazer, ***o padrão*** *Command* ***é talvez a mais popular de todas***.
    - Para ser capaz de reverter operações, você precisa implementar o histórico de operações realizadas. ***O histórico de um*** *Command* ***é uma pilha que contém todos os objetos comando executados junto com seus backups do estado da aplicação relacionados***. Esse método tem duas desvantagens:
-     1. Se *não for fácil salvar o estado da aplicação por parte dela ser privada*. Esse problema *pode ser facilmente mitigado com o* padrão *Memento*. 
+     1. Se *não for fácil salvar o estado da aplicação por parte dela ser privada*. Esse problema *pode ser facilmente mitigado com o* padrão *[Memento](#memento)*. 
      2. Os *backups de estado podem consumir uma considerável quantidade de RAM*. Portanto, algumas vezes *você pode recorrer a uma implementação alternativa: ao invés de restaurar a um estado passado*, o *Command* faz a *operação inversa*. A operação reversa também cobra um preço: ela pode ter sua implementação difícil ou até impossível.
 
 #### Classes de exemplo
@@ -1608,8 +1596,8 @@ Estoque [Nome: ABC, Quantidade: 10] vendido
 #### Pontos Positivos👍
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
-- **Fácil desacoplação de classes:** você pode *desacoplar classes que invocam operações de classes que fazem essas operações*. Isso também respeita o ***Single Responsibility Principle***.
-- **Facilidade em acrescentar novos comandos:** você pode *introduzir novos comandos na aplicação sem quebrar o código cliente existente*. Isso também respeita o **Open-Closed Principle**.
+- **Fácil desacoplação de classes:** você pode *desacoplar classes que invocam operações de classes que fazem essas operações*. Isso também respeita o ***[Single Responsibility Principle](#single-responsibility-principle)***.
+- **Facilidade em acrescentar novos comandos:** você pode *introduzir novos comandos na aplicação sem quebrar o código cliente existente*. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle).
 -  Você pode **implementar desfazer/refazer**.
 -  Você pode **implementar a execução adiada de operações**.
 -  Você pode **montar um conjunto de comandos simples em um complexo**.
@@ -1621,20 +1609,20 @@ Estoque [Nome: ABC, Quantidade: 10] vendido
 #### Relações com outros padrões
 
 - Os padrões *Chain of Responsibility*, *Command*, *Mediator* e *Observer* **abrangem várias maneiras de se conectar remetentes e destinatários de pedidos**:
-  - O *Chain of Responsibility* passa um pedido sequencialmente ao longo de um corrente dinâmica de potenciais destinatários até que um deles atua no pedido.
+  - O *[Chain of Responsibility](#chain-of-responsability)* passa um pedido sequencialmente ao longo de um corrente dinâmica de potenciais destinatários até que um deles atua no pedido.
   - O *Command* ***estabelece conexões unidirecionais entre remetentes e destinatários***.
-  - O *Mediator* elimina as conexões diretas entre remetentes e destinatários, forçando-os a se comunicar indiretamente através de um objeto mediador.
-  - O *Observer* permite que destinatários inscrevam-se ou cancelem sua inscrição dinamicamente para receber pedidos.
+  - O *[Mediator](#mediator)* elimina as conexões diretas entre remetentes e destinatários, forçando-os a se comunicar indiretamente através de um objeto mediador.
+  - O *[Observer](#observer)* permite que destinatários inscrevam-se ou cancelem sua inscrição dinamicamente para receber pedidos.
 - **Handlers** em uma *Chain of Responsibility* podem ser implementados como um *Command*. Neste caso, você pode executar várias operações diferentes sobre o mesmo objeto contexto, representado por um pedido.
   - Contudo, há outra abordagem, onde o próprio pedido é um objeto *Command*. Neste caso, você pode executar a mesma operação em uma série de diferentes contextos ligados em uma corrente.
-- Você pode **usar o** *Command* e o *Memento* **juntos quando implementando um** *“desfazer”*. Neste caso, os *Command* são **responsáveis pela realização de várias operações sobre um objeto alvo**, enquanto que os *Memento* salvam o estado daquele objeto momentos antes de um comando ser executado.
-- O *Command* e o *Strategy* podem ser **parecidos porque você pode usar ambos para parametrizar um objeto com alguma ação**. Contudo, eles têm **propósitos bem diferentes**.
+- Você pode **usar o** *Command* e o *[Memento](#memento)* **juntos quando implementando um** *“desfazer”*. Neste caso, os *Command* são **responsáveis pela realização de várias operações sobre um objeto alvo**, enquanto que os *Memento* salvam o estado daquele objeto momentos antes de um comando ser executado.
+- O *Command* e o *[Strategy](#strategy)* podem ser **parecidos porque você pode usar ambos para parametrizar um objeto com alguma ação**. Contudo, eles têm **propósitos bem diferentes**.
   - Você pode usar o *Command* para ***converter qualquer operação em um objeto***. Os parâmetros da operação se transformam em campos daquele objeto. ***A conversão permite que você atrase a execução de uma operação, transforme-a em uma fila, armazene o histórico de comandos, envie comandos para serviços remotos, etc***.
   - Por outro lado, o *Strategy* geralmente descreve diferentes maneiras de fazer a mesma coisa, permitindo que você troque esses algoritmos dentro de uma única classe contexto.
-- O *Prototype* pode *ajudar quando você precisa salvar cópias de comandos no histórico*.
-- Você pode tratar um *Visitor* ***como uma poderosa versão do padrão*** *Command*. Seus objetos ***podem executar operações sobre vários objetos de diferentes classes***.
+- O *[Prototype](#prototype)* pode *ajudar quando você precisa salvar cópias de comandos no histórico*.
+- Você pode tratar um *[Visitor](#visitor)* ***como uma poderosa versão do padrão*** *Command*. Seus objetos ***podem executar operações sobre vários objetos de diferentes classes***.
 
-### Interpreter
+### <a id="interpreter"></a>Interpreter
 
 #### Definição
 
@@ -1727,14 +1715,14 @@ Julia é uma mulher casada? Resposta: true
 
 #### Relações com outros padrões
 
-- Ele é considerado em sua forma mais geral (isto é, uma operação distribuída por uma hierarquia de classes com base no padrão *Composite*), quase todo uso do padrão *Composite* também conterá o padrão *Interpreter*. Mas o padrão *Interpreter* ***deve ser reservado para os casos em que você deseja pensar nessa hierarquia de classes como definindo um idioma***.
-- O *Interpreter* pode usar o *State* para ***definir contextos de análise***.
-- A árvore de sintaxe abstrata de *Interpreter* é um *Composite* (portanto, *Iterator* e *Visitor* também são aplicáveis).
-- Os ***símbolos de terminais dentro da árvore de sintaxe abstrata*** do *Interpreter* ***podem ser compartilhados com o*** *Flyweight*.
+- Ele é considerado em sua forma mais geral (isto é, uma operação distribuída por uma hierarquia de classes com base no padrão *[Composite](#composite)*), quase todo uso do padrão *Composite* também conterá o padrão *Interpreter*. Mas o padrão *Interpreter* ***deve ser reservado para os casos em que você deseja pensar nessa hierarquia de classes como definindo um idioma***.
+- O *Interpreter* pode usar o *[State](#state)* para ***definir contextos de análise***.
+- A árvore de sintaxe abstrata de *Interpreter* é um *Composite* (portanto, *[Iterator](#iterator)* e *[Visitor](#visitor)* também são aplicáveis).
+- Os ***símbolos de terminais dentro da árvore de sintaxe abstrata*** do *Interpreter* ***podem ser compartilhados com o*** *[Flyweight](#flyweight)*.
 
 ![](src/imagens/iterator.png)
 
-### Iterator
+### <a id="iterator"></a>Iterator
 
 #### Definição
 
@@ -1818,8 +1806,8 @@ Nome: Larissa
 #### Pontos Positivos👍
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
-- **Melhor separação de código:** você pode ***limpar o código cliente e as coleções ao extrair os pesados algoritmos de travessia para classes separadas***. Isso também respeita o ***Single Responsibility Principle***.
-- **Fácil implementação:** você pode ***implementar novos tipos de coleções e iteradores e passá-los para o código existente sem quebrar coisa alguma***. Isso também respeita o **Open-Closed Principle**.
+- **Melhor separação de código:** você pode ***limpar o código cliente e as coleções ao extrair os pesados algoritmos de travessia para classes separadas***. Isso também respeita o ***[Single Responsibility Principle](#single-responsibility-principle)***.
+- **Fácil implementação:** você pode ***implementar novos tipos de coleções e iteradores e passá-los para o código existente sem quebrar coisa alguma***. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle).
 - **Iterar usando a mesma coleção:** você pode iterar sobre a mesma coleção em paralelo ***porque cada objeto iterador contém seu próprio estado de iteração***. Pelas mesmas razões, ***você pode atrasar uma iteração e continuá-la quando necessário***.
 
 #### Pontos Negativos👎
@@ -1831,14 +1819,14 @@ Nome: Larissa
 
 #### Relações com outros padrões
 
-- Você pode usar o *Iterator* para **percorrer árvores** *Composite*.
-- Você pode usar o *Factory Method* junto com o *Iterator* para **permitir que uma coleção de subclasses retornem diferentes tipos de iteradores que são compatíveis com as coleções**.
-- Você pode usar o *Memento* junto com o *Iterator* para **capturar o estado de iteração atual e revertê-lo se necessário**.
-- Você pode usar o *Visitor* junto com o Iterator para **percorrer uma estrutura de dados complexas e executar alguma operação sobre seus elementos, mesmo se eles todos tenham classes diferentes**.
+- Você pode usar o *Iterator* para **percorrer árvores** *[Composite](#composite)*.
+- Você pode usar o [*Factory Method*](#factory-method) junto com o *Iterator* para **permitir que uma coleção de subclasses retornem diferentes tipos de iteradores que são compatíveis com as coleções**.
+- Você pode usar o *[Memento](#memento)* junto com o *Iterator* para **capturar o estado de iteração atual e revertê-lo se necessário**.
+- Você pode usar o *[Visitor](#visitor)* junto com o Iterator para **percorrer uma estrutura de dados complexas e executar alguma operação sobre seus elementos, mesmo se eles todos tenham classes diferentes**.
 
 ![](src/imagens/mediator.png)
 
-### Mediator
+### <a id="mediator"></a>Mediator
 
 #### Definição
 
@@ -1846,7 +1834,7 @@ Nome: Larissa
 
 #### Aplicabilidade
 
-1. Utilize o padrão quando é **difícil mudar algumas das classes porque elas estão firmemente acopladas a várias outras classes**.
+1. Utilize o padrão quando é **difícil mudar algumas das classes porque elas estão firmemente [acopladas](#acoplamento) a várias outras classes**.
    - O padrão lhe permite extrair todas as relações entre classes para uma classe separada, isolando quaisquer mudanças para um componente específico do resto dos componentes.
 2. Utilize o padrão quando você não pode **reutilizar um componente em um programa diferente porque ele é muito dependente de outros componentes**.
    - ***Após você aplicar o*** *Mediator*, ***componentes individuais se tornam alheios aos outros componentes***. Eles ainda podem se comunicar entre si, mas de forma indireta, através do objeto mediador. Para reutilizar um componente em uma aplicação diferente, você precisa fornecer a ele uma nova classe mediadora.
@@ -1893,24 +1881,24 @@ fun main() {
 #### Pontos Positivos👍
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
-- **Manutenção:** você pode *extrair as comunicações entre vários componentes para um único lugar*, tornando as de mais fácil entendimento e manutenção. Isso também respeita o ***Single Responsibility Principle***.
-- **Acréscimo de novos mediadores:** você pode *introduzir novos mediadores sem ter que mudar os próprios componentes*. Isso também respeita o **Open-Closed Principle**.
-- Você pode **reduzir o acoplamento entre os vários componentes de um programa**.
+- **Manutenção:** você pode *extrair as comunicações entre vários componentes para um único lugar*, tornando as de mais fácil entendimento e manutenção. Isso também respeita o ***[Single Responsibility Principle](#single-responsibility-principle)***.
+- **Acréscimo de novos mediadores:** você pode *introduzir novos mediadores sem ter que mudar os próprios componentes*. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle).
+- Você pode **reduzir o [acoplamento](#acoplamento) entre os vários componentes de um programa**.
 - Você pode **reutilizar componentes individuais mais facilmente**.
 
 #### Pontos Negativos👎
 
-- Com o tempo **um mediador pode evoluir para um god object**. Um **god object** vai totalmente contra o ***Single Responsability Principle***.
+- Com o tempo **um mediador pode evoluir para um god object**. Um **[god object](#god-object)** vai totalmente contra o ***[Single Responsibility Principle](#single-responsibility-principle)***.
 
 #### Relações com outros padrões
 
 - Os padrões *Chain of Responsibility*, *Command*, *Mediator* e *Observer* **abrangem várias maneiras de se conectar remetentes e destinatários de pedidos**:
-  - O *Chain of Responsibility* passa um pedido sequencialmente ao longo de um corrente dinâmica de potenciais destinatários até que um deles atua no pedido.
-  - O *Command* estabelece conexões unidirecionais entre remetentes e destinatários.
+  - O *[Chain of Responsibility](#chain-of-responsability)* passa um pedido sequencialmente ao longo de um corrente dinâmica de potenciais destinatários até que um deles atua no pedido.
+  - O *[Command](#command)* estabelece conexões unidirecionais entre remetentes e destinatários.
   - O *Mediator* ***elimina as conexões diretas entre remetentes e destinatários, forçando-os a se comunicar indiretamente através de um objeto mediador***.
-  - O *Observer* permite que destinatários inscrevam-se ou cancelem sua inscrição dinamicamente para receber pedidos.
-- O *Facade* e o *Mediator* **têm trabalhos parecidos**: eles ***tentam organizar uma colaboração entre classes firmemente acopladas***.
-  - O *Facade* define uma interface simplificada para um subsistema de objetos, mas ele não introduz qualquer nova funcionalidade. O próprio subsistema não está ciente da fachada. Objetos dentro do subsistema podem se comunicar diretamente.
+  - O *[Observer](#observer)* permite que destinatários inscrevam-se ou cancelem sua inscrição dinamicamente para receber pedidos.
+- O *[Facade](#facade)* e o *Mediator* **têm trabalhos parecidos**: eles ***tentam organizar uma colaboração entre classes firmemente acopladas***.
+  - O *[Facade](#facade)* define uma interface simplificada para um subsistema de objetos, mas ele não introduz qualquer nova funcionalidade. O próprio subsistema não está ciente da fachada. Objetos dentro do subsistema podem se comunicar diretamente.
   - O *Mediator* ***centraliza a comunicação entre componentes do sistema. Os componentes só sabem do objeto mediador e não se comunicam diretamente***.
 - **A diferença entre o** *Mediator* **e o** *Observer* **é bem obscura**. Na maioria dos casos, você pode **implementar qualquer um desses padrões; mas às vezes você pode aplicar ambos simultaneamente**. Vamos ver como podemos fazer isso.
   - O objetivo primário do *Mediator* é ***eliminar dependências múltiplas entre um conjunto de componentes do sistema. Ao invés disso, esses componentes se tornam dependentes de um único objeto mediador***. O objetivo do *Observer* é estabelecer comunicações de uma via dinâmicas entre objetos, onde alguns deles agem como subordinados de outros.
@@ -1919,7 +1907,7 @@ fun main() {
 
 ![](src/imagens/memento.png)
 
-### Memento
+### <a id="memento"></a>Memento
 
 #### Definição
 
@@ -1929,7 +1917,7 @@ fun main() {
 
 1. Utilize o padrão quando você quer **produzir retratos do estado de um objeto para ser capaz de restaurar um estado anterior do objeto**.
    - O padrão *Memento* ***permite que você faça cópias completas do estado de um objeto, incluindo campos privados, e armazená-los separadamente do objeto***. Embora a maioria das pessoas vão lembrar desse padrão graças ao caso “desfazer”, ele também é indispensável quando se está lidando com transações (isto é, se você precisa reverter uma operação quando se depara com um erro).
-2. Utilize o padrão quando o **acesso direto para os campos/getters/setters de um objeto viola seu encapsulamento**.
+2. Utilize o padrão quando o **acesso direto para os campos/getters/setters de um objeto viola seu [encapsulamento](#encapsulamento)**.
    - O padrão *Memento* ***faz o próprio objeto ser responsável por criar um retrato de seu estado. Nenhum outro objeto pode ler o retrato, fazendo do estado original do objeto algo seguro e confiável***.
 
 #### Classes de exemplo
@@ -1992,7 +1980,7 @@ Second saved state: State #3
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
 - **Histórico de estado:** você pode ***simplificar o código da originadora permitindo que a cuidadora mantenha o histórico do estado da originadora***.
-- Você pode **produzir retratos do estado de um objeto sem violar seu encapsulamento**.
+- Você pode **produzir retratos do estado de um objeto sem violar seu [encapsulamento](#encapsulamento)**.
 
 #### Pontos Negativos👎
 
@@ -2002,11 +1990,11 @@ Second saved state: State #3
 
 #### Relações com outros padrões
 
-- **Você pode usar o** *Command* **e o** *Memento* **juntos quando implementando um** *“desfazer”*. Neste caso, os *Command* são responsáveis pela realização de várias operações sobre um objeto alvo, enquanto que os *Memento* **salvam o estado daquele objeto momentos antes de um comando ser executado**.
-- Você pode usar o *Memento* junto com o *Iterator* para **capturar o estado de iteração atual e revertê-lo se necessário**.
-- Algumas vezes o *Prototype* **pode ser uma alternativa mais simples a um** *Memento*. Isso funciona se o **objeto no qual você quer armazenar na história é razoavelmente intuitivo e não tem ligações para recursos externos**, ou as ligações são fáceis de se restabelecer.
+- **Você pode usar o** *[Command](#command)* **e o** *Memento* **juntos quando implementando um** *“desfazer”*. Neste caso, os *Command* são responsáveis pela realização de várias operações sobre um objeto alvo, enquanto que os *Memento* **salvam o estado daquele objeto momentos antes de um comando ser executado**.
+- Você pode usar o *Memento* junto com o *[Iterator](#iterator)* para **capturar o estado de iteração atual e revertê-lo se necessário**.
+- Algumas vezes o *[Prototype](#prototype)* **pode ser uma alternativa mais simples a um** *Memento*. Isso funciona se o **objeto no qual você quer armazenar na história é razoavelmente intuitivo e não tem ligações para recursos externos**, ou as ligações são fáceis de se restabelecer.
 
-### Null Object
+### <a id="null-object"></a>Null Object
 
 **Definição**
 
@@ -2093,9 +2081,9 @@ Não existe esse nome na lista
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
 
 - **Melhor tratamento de valores nulos no projeto:** uma consequência interessante da aplicação desse padrão é que ele *remove a necessidade de ter lógica especial para verificar cada valor nulo*. 
-- **Uso de herança:** esse padrão demonstra bem as *características da herança*, pois ele *permite que o código cliente possa ser utilizado, mesmo para o caso de um objeto nulo*.
+- **Uso de herança:** esse padrão demonstra bem as *características da [herança](#heranca)*, pois ele *permite que o código cliente possa ser utilizado, mesmo para o caso de um objeto nulo*.
 
-> **Dica:** Uma bom teste para verificar se o uso de herança é adequado em uma determinada situação é ver se faz sentido substituir a implementação por uma de suas subclasses em todos os contextos. Isso respeita o ***Princípio da Substituição de Liskov***.
+> **Dica:** Uma bom teste para verificar se o uso de herança é adequado em uma determinada situação é ver se faz sentido substituir a implementação por uma de suas subclasses em todos os contextos. Isso respeita o ***[Princípio da Substituição de Liskov](#liskov-substitution-principle)***.
 
 #### Pontos Negativos👎
 
@@ -2104,15 +2092,15 @@ Não existe esse nome na lista
 
 #### Relação com outros padrões
 
-- **A classe do padrão** *Null Object* **geralmente é implementada como um padrão** *Singleton*. Como um ***objeto nulo geralmente não tem nenhum estado, seu estado não pode ser alterado***, portanto, várias instâncias são idênticas. Em vez de usar várias instâncias idênticas, ***o sistema pode apenas usar uma única instância repetidamente***.
-- **Um objeto nulo não se transforma em um objeto real**. Se o objeto decidir parar de fornecer um comportamento que não faz nada e *começar a fornecer um comportamento real, então ele não é um objeto nulo*. **Se um objeto que não faz nada** (ou seja, um objeto nulo), **sofre mudanças para um objeto real**, então ele *deve ser implementado com o padrão State ou talvez o padrão Proxy*. Nesse caso, um Estado Nulo (ou **State Null**) pode ser usado ou o padrão *Proxy* pode conter um objeto nulo.
+- **A classe do padrão** *Null Object* **geralmente é implementada como um padrão** *[Singleton](#singleton)*. Como um ***objeto nulo geralmente não tem nenhum estado, seu estado não pode ser alterado***, portanto, várias instâncias são idênticas. Em vez de usar várias instâncias idênticas, ***o sistema pode apenas usar uma única instância repetidamente***.
+- **Um objeto nulo não se transforma em um objeto real**. Se o objeto decidir parar de fornecer um comportamento que não faz nada e *começar a fornecer um comportamento real, então ele não é um objeto nulo*. **Se um objeto que não faz nada** (ou seja, um objeto nulo), **sofre mudanças para um objeto real**, então ele *deve ser implementado com o padrão [State](#state) ou talvez o padrão [Proxy](#proxy)*. Nesse caso, um Estado Nulo (ou **State Null**) pode ser usado ou o padrão *Proxy* pode conter um objeto nulo.
 - **O uso de um objeto nulo pode ser semelhante ao uso do padrão *Proxy***, mas *os dois padrões têm finalidades diferentes*. Um objeto *Proxy* acessa o um objeto real de forma indireta controlando assim o acesso. Um colaborador nulo não oculta um objeto real e controla o acesso a ele, ele substitui o objeto real. Um objeto *Proxy* pode eventualmente sofrer mudanças para começar a agir como um objeto real. Um objeto nulo não sofrerá mudanças para começar a fornecer um comportamento real, ele sempre fornecerá um comportamento nulo, ou seja um comportamento que não faz nada.
 - **Um objeto nulo pode ser um caso especial do padrão *Strategy***. O padrão *Strategy* especifica várias classes com diferentes abordagens para realizar uma tarefa. Por exemplo: s*e uma das classes Strategy não faz nada de forma consistente* (essa classe pode ser chamada de ConcreteStrategy, por exemplo), *essa classe é um classe Null Object*.
 - **Um objeto nulo pode ser um caso especial do padrão** *State*. Normalmente, cada classe de estado (*State*) tem alguns métodos que não fazem nada, ou seja, métodos nulos. Isso acontece porque eles não são apropriados para aquele tipo de estado. Na verdade, um determinado método é frequentemente implementado para fazer algo útil na maioria dos estados, mas a ação de não fazer nada , ou seja, uma ação nula, acontece em pelo menos um estado. Se uma determinada classe de estado implementa a maioria de seus métodos nulos ou pelo menos fornecer resultados nulos, ele se torna um estado nulo.
-- **Um objeto nulo pode ser usado para** permitir que uma classe do padrão *Visitor* *inspecione uma hierarquia com segurança e trate de uma situação nula*.
+- **Um objeto nulo pode ser usado para** permitir que uma classe do padrão *[Visitor](#visitor)* *inspecione uma hierarquia com segurança e trate de uma situação nula*.
 
 ![](src/imagens/observer.png)
-### Observer
+### <a id="observer"></a>Observer
 
 #### Definição
 
@@ -2216,8 +2204,8 @@ Binary String: 1010
 #### Pontos Positivos👍
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
-- **Acréscimo de novas classes assinantes:** você pode *introduzir novas classes assinantes sem ter que mudar o código da publicadora (e vice versa se existe uma interface publicadora)*. Isso também respeita o **Open-Closed Principle**.
-- **Uso de composição ao invés de implementação:** o código trabalha com notificação via composição ao invés de implementação, o que *permite a evolução mais eficiente do projeto, além do número de instâncias observadoras poder ser atualizado de forma dinâmica*.
+- **Acréscimo de novas classes assinantes:** você pode *introduzir novas classes assinantes sem ter que mudar o código da publicadora (e vice versa se existe uma interface publicadora)*. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle).
+- **Uso de composição ao invés de implementação:** o código trabalha com notificação via [composição](#composicao) ao invés de implementação, o que *permite a evolução mais eficiente do projeto, além do número de instâncias observadoras poder ser atualizado de forma dinâmica*.
 - Você pode **estabelecer relações entre objetos durante a execução**.
 
 #### Pontos Negativos👎
@@ -2229,9 +2217,9 @@ Binary String: 1010
 #### Relação com outros padrões
 
 - Os padrões *Chain of Responsibility*, *Command*, *Mediator* e *Observer* **abrangem várias maneiras de se conectar remetentes e destinatários de pedidos**:
-  - O *Chain of Responsibility* passa um pedido sequencialmente ao longo de um corrente dinâmica de potenciais destinatários até que um deles atua no pedido.
-  - O *Command* estabelece conexões unidirecionais entre remetentes e destinatários.
-  - O *Mediator* elimina as conexões diretas entre remetentes e destinatários, forçando-os a se comunicar indiretamente através de um objeto mediador.
+  - O *[Chain of Responsibility](#chain-of-responsability)* passa um pedido sequencialmente ao longo de um corrente dinâmica de potenciais destinatários até que um deles atua no pedido.
+  - O *[Command](#commmand)* estabelece conexões unidirecionais entre remetentes e destinatários.
+  - O *[Mediator](#mediator)* elimina as conexões diretas entre remetentes e destinatários, forçando-os a se comunicar indiretamente através de um objeto mediador.
   - O *Observer* ***permite que destinatários inscrevam-se ou cancelem sua inscrição dinamicamente para receber pedidos***.
 - **A diferença entre o** *Mediator* **e o** *Observer* **é bem obscura**. Na maioria dos casos, você pode **implementar qualquer um desses padrões; mas às vezes você pode aplicar ambos simultaneamente**. Vamos ver como podemos fazer isso.
   - O objetivo primário do *Mediator* é ***eliminar dependências múltiplas entre um conjunto de componentes do sistema. Ao invés disso, esses componentes se tornam dependentes de um único objeto mediador***. O objetivo do *Observer* é estabelecer comunicações de uma via dinâmicas entre objetos, onde alguns deles agem como subordinados de outros.
@@ -2239,7 +2227,7 @@ Binary String: 1010
   - Quando você está confuso, lembre-se que ***você pode implementar o padrão*** *Mediator* ***de outras maneiras***. Por exemplo, você pode ligar permanentemente todos os componentes ao mesmo objeto mediador. Essa implementação não se parece com o *Observer* mas ainda irá ser uma instância do padrão *Mediator*. Agora imagine um programa onde todos os componentes se tornaram publicadores permitindo conexões dinâmicas entre si. Não haverá um objeto mediador centralizado, somente um conjunto distribuído de observadores.
 
 ![](src/imagens/state.png)
-### State
+### <a id="state"></a>State
 
 #### Definição
 
@@ -2250,9 +2238,9 @@ Binary String: 1010
 1. Utilize o padrão quando você tem um **objeto que se comporta de maneira diferente dependendo do seu estado atual, quando o número de estados é enorme, e quando o código estado específico muda com frequência**.
    - O padrão sugere que você extraia todo o código estado específico para um conjunto de classes distintas. Como resultado, ***você pode adicionar novos estados ou mudar os existentes independentemente uns dos outros, reduzindo o custo da manutenção***.
 2. Utilize o padrão quando você tem uma **classe populada com condicionais gigantes que alteram como a classe se comporta de acordo com os valores atuais dos campos da classe**.
-   - O padrão State permite que você ***extraia ramificações dessas condicionais para dentro de métodos de classes correspondentes***. Ao fazer isso, você também ***limpa para fora da classe principal os campos temporários e os métodos auxiliares envolvidos no código estado específico***.
+   - O padrão *State* permite que você ***extraia ramificações dessas condicionais para dentro de métodos de classes correspondentes***. Ao fazer isso, você também ***limpa para fora da classe principal os campos temporários e os métodos auxiliares envolvidos no código estado específico***.
 3. Utilize o padrão quando **você tem muito código duplicado em muitos estados parecidos e transições de uma máquina de estado baseada em condições**.
-   - O padrão State permite que você ***componha hierarquias de classes estado e reduza a duplicação ao extrair código comum para dentro de classes abstratas base***.
+   - O padrão *State* permite que você ***componha hierarquias de classes estado e reduza a duplicação ao extrair código comum para dentro de classes abstratas base***.
 
 #### Classes de exemplo
 
@@ -2315,8 +2303,8 @@ Estado Parado
 #### Pontos Positivos👍
 
 - **Leitura mais eficiente do código:** assim como todos os outros padrões de projeto, quando usamos esse padrão em nosso projeto, isso torna o nosso *código mais legível e organizado*. Além disso, ela *facilita a leitura e entendimento por parte de outros programadores.*
-- **Fácil organização:** organiza o *código relacionado a estados particulares em classes separadas*. Isso também respeita o ***Single Responsibility Principle***.
-- **Acréscimo de novos estados:** você pode *introduzir novos estados sem mudar classes de estado ou contexto existentes*. Isso também respeita o **Open-Closed Principle**.
+- **Fácil organização:** organiza o *código relacionado a estados particulares em classes separadas*. Isso também respeita o ***[Single Responsibility Principle](#single-responsibility-principle)***.
+- **Acréscimo de novos estados:** você pode *introduzir novos estados sem mudar classes de estado ou contexto existentes*. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle).
 - **Código simplificado:** simplifica *o código de contexto ao eliminar condicionais de máquinas de estado pesadas*.
 
 #### Pontos Negativos👎
@@ -2325,11 +2313,11 @@ Estado Parado
 
 #### Relação com outros padrões
 
-- O *Bridge*, *State*, *Strategy* (e de certa forma o *Adapter*) têm estruturas muito parecidas. De fato, **todos esses padrões estão baseados em *composição***. Contudo, **todos eles resolvem problemas diferentes**. Um padrão não é apenas uma receita para estruturar seu código de uma maneira específica. Ele também pode **comunicar a outros desenvolvedores o problema que o padrão resolve**.
-- **O** *State* **pode ser considerado como uma extensão do** *Strategy*. Ambos padrões são baseados em composição: eles mudam o comportamento do contexto ao delegar algum trabalho para objetos auxiliares. O *Strategy* faz esses objetos serem completamente independentes e alheios entre si. Contudo, o *State* **não restringe dependências entre estados concretos, permitindo que eles alterem o estado do contexto à vontade**.
+- O *[Bridge](#bridge)*, *State*, *[Strategy](#strategy)* (e de certa forma o *[Adapter](#adapter)*) têm estruturas muito parecidas. De fato, **todos esses padrões estão baseados em *[composição](#composicao)***. Contudo, **todos eles resolvem problemas diferentes**. Um padrão não é apenas uma receita para estruturar seu código de uma maneira específica. Ele também pode **comunicar a outros desenvolvedores o problema que o padrão resolve**.
+- **O** *State* **pode ser considerado como uma extensão do** *[Strategy](#strategy)*. Ambos padrões são baseados em composição: eles mudam o comportamento do contexto ao delegar algum trabalho para objetos auxiliares. O *Strategy* faz esses objetos serem completamente independentes e alheios entre si. Contudo, o *State* **não restringe dependências entre estados concretos, permitindo que eles alterem o estado do contexto à vontade**.
 
 ![](src/imagens/strategy.png)
-### Strategy
+### <a id="strategy"></a>Strategy
 
 #### Definição
 
@@ -2403,9 +2391,9 @@ fun main() {
 
 - **Leitura mais eficiente:** quando usamos esse padrão em nosso projeto, ou em parte dele, isso torna o nosso *código mais legível e organizado*. Além disso, ela facilita a leitura e entendimento por parte de outros programadores.
 - **Reutilização de código:**  isso é bem evidente nesse padrão de projeto, sendo que as famílias de algoritmos podem ser *utilizadas por outras classes com diversos contextos diferentes*. 
-- Você pode **substituir a herança por composição**.
+- Você pode **substituir a [herança](#heranca) por [composição](#composicao)**.
 - **Evolução eficiente no seu projeto:** Isso é possível porque o foco aqui é a **composição**. Isso *evita que as classes e subclasses sejam alteradas caso novas funcionalidades sejam adicionadas ou atualizadas*. 
-- **Acréscimos de novas estratégias:** você pode introduzir novas estratégias sem mudar o contexto. A partir dessa estrutura, *novas implementações dele podem ser criadas e introduzidas posteriormente*. Isso também respeita o **Open-Closed Principle**.
+- **Acréscimos de novas estratégias:** você pode introduzir novas estratégias sem mudar o contexto. A partir dessa estrutura, *novas implementações dele podem ser criadas e introduzidas posteriormente*. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle).
 - **Isolamento das implementações:** você pode *isolar os detalhes de implementação de um algoritmo do código que usa ele*.
 - **A lógica condicional na classe principal é reduzida:** como a escolha do algoritmo está na implementação do objeto que está compondo a classe, isso *elimina a necessidade de ter condicionais para selecionar a lógica a ser executada*. 
 - **A implementação pode ser trocada em tempo de execução:** isso faz com que o *comportamento da classe possa ser trocado dinamicamente*. Além disso, o seu projeto se *torna mais dinâmico permitindo assim mais opções de funcionalidades*.
@@ -2413,32 +2401,32 @@ fun main() {
 #### Pontos Negativos👎
 
 - **Complexidade na criação do objeto:** a instância da dependência *precisa ser criada e configurada*. Caso o atributo seja nulo, *a classe pode apresentar um comportamento inesperado*. 
-- **Aumento no número de classes:** há uma para cada algoritmo, criando uma *maior dificuldade em seu gerenciamento*. Isso pode ser muito ruim, se houverem muitas funcionalidades que não podem ser implementadas por classes de uma mesma família de classes Strategy.
-- **Complexidade do projeto:** o projeto pode ficar mais *complexo caso uma solução com herança seja mais simples de implementar e manter*.
+- **Aumento no número de classes:** há uma para cada algoritmo, criando uma *maior dificuldade em seu gerenciamento*. Isso pode ser muito ruim, se houverem muitas funcionalidades que não podem ser implementadas por classes de uma mesma família de classes *Strategy*.
+- **Complexidade do projeto:** o projeto pode ficar mais *complexo caso uma solução com [herança](#heranca) seja mais simples de implementar e manter*.
 - **Casos desnecessários:** se você só tem um par de algoritmos e eles raramente mudam, *não há motivo real para deixar o programa mais complicado com novas classes e interfaces que vêm junto com o padrão*.
 - **Conhecimento das estratégias no projeto:**  os clientes devem estar *cientes das diferenças entre as estratégias para serem capazes de selecionar a adequada*.
 - **Em alguns contextos prefira usar funções anônimas ao invés do** *Strategy*:  Muitas linguagens de programação modernas tem suporte do tipo funcional que permite que você implemente diferentes versões de um algoritmo dentro de um conjunto de funções anônimas. Então *você poderia usar essas funções exatamente como se estivesse usando objetos estratégia, mas sem inchar seu código com classes e interfaces adicionais*.
 
 #### Relação com outros padrões
 
-- O padrão *Strategy* é semelhante ao padrão *Template Method*, exceto em sua **granularidade**.
-  - O *Template Method* é ***baseado em herança***: ele *permite que você altere partes de um algoritmo ao estender essas partes em subclasses*. 
-  - O *Strategy* é ***baseado em composição***: você pode ***alterar partes do comportamento de um objeto ao suprir ele como diferentes estratégias que correspondem a aquele comportamento***. 
+- O padrão *Strategy* é semelhante ao padrão *[Template Method](#template-method)*, exceto em sua **[granularidade](#granularidade)**.
+  - O *Template Method* é ***baseado em [herança](#heranca)***: ele *permite que você altere partes de um algoritmo ao estender essas partes em subclasses*. 
+  - O *Strategy* é ***baseado em [composição](#composicao)***: você pode ***alterar partes do comportamento de um objeto ao suprir ele como diferentes estratégias que correspondem a aquele comportamento***. 
   - O *Template Method* ***funciona a nível de classe, então é estático***. O *Strategy* trabalha a ***nível de objeto, permitindo que você troque os comportamentos durante a execução***.
-- O padrão *Strategy* é semelhante ao padrão *State*, exceto em sua ***intenção***. 
+- O padrão *Strategy* é semelhante ao padrão *[State](#state)*, exceto em sua ***intenção***. 
   - Nesse contexto, o *State* ***pode ser considerado como uma extensão do*** *Strategy*. ***Ambos padrões são baseados em composição***: eles mudam o comportamento do contexto ao delegar algum trabalho para objetos auxiliares. 
   - O *Strategy* ***faz esses objetos serem completamente independentes e alheios entre si***. Contudo, o *State* não restringe dependências entre estados concretos, permitindo que eles alterem o estado do contexto à vontade.
-- O padrão Strategy permite que você ***mude o que tem dentro de um objeto***. Já o padrão *Decorator* permite que você ***mude a aparência externa de um objeto***.
-- O *Command* e o *Strategy* podem ser **parecidos porque você pode usar ambos para parametrizar um objeto com alguma ação**. Contudo, eles têm **propósitos bem diferentes**.
+- O padrão Strategy permite que você ***mude o que tem dentro de um objeto***. Já o padrão *[Decorator](#decorator)* permite que você ***mude a aparência externa de um objeto***.
+- O *[Command](#command)* e o *Strategy* podem ser **parecidos porque você pode usar ambos para parametrizar um objeto com alguma ação**. Contudo, eles têm **propósitos bem diferentes**.
   - Você pode usar o *Command* para converter qualquer operação em um objeto. Os parâmetros da operação se transformam em campos daquele objeto. A conversão permite que você atrase a execução de uma operação, transforme-a em uma fila, armazene o histórico de comandos, envie comandos para serviços remotos, etc.
   - Por outro lado, o *Strategy* ***geralmente descreve diferentes maneiras de fazer a mesma coisa, permitindo que você troque esses algoritmos dentro de uma única classe contexto***.
-- Os padrões *State*, *Strategy*, *Bridge* (e até certo ponto o padrão *Adapter*) têm ***estruturas de solução semelhantes***. Todos eles compartilham elementos do **Handle-Body Idioms**. 
+- Os padrões *State*, *Strategy*, *[Bridge](#bridge)* (e até certo ponto o padrão *[Adapter](#adapter)*) têm ***estruturas de solução semelhantes***. Todos eles compartilham elementos do **[Handle-Body Idioms](#handle-body-idioms)**. 
   - ***Todos esses padrões estão baseados em composição***, o que é delegar o trabalho para outros objetos. Contudo, eles ***diferem em intenções***, ou seja, eles resolvem problemas diferentes. Um padrão não é apenas uma receita para estruturar seu código de uma maneira específica. Ele também pode comunicar a outros desenvolvedores o problema que o padrão resolve.
-- O padrão *Strategy* tem ***duas implementações diferentes***, a primeira é semelhante ao padrão *State*. A diferença está no seu **Binding Times** (O padrão Strategy só tem o seu Binding Times uma vez, enquanto o padrão *State* é mais dinâmico).
-- Objetos do padrão *Strategy* costumam usar bem o padrão *Flyweight*.
+- O padrão *Strategy* tem ***duas implementações diferentes***, a primeira é semelhante ao padrão *State*. A diferença está no seu **[Binding Times](#binding-times)** (O padrão Strategy só tem o seu Binding Times uma vez, enquanto o padrão *State* é mais dinâmico).
+- Objetos do padrão *Strategy* costumam usar bem o padrão *[Flyweight](#flyweight)*.
 
 ![](src/imagens/template-method.png)
-### Template Method
+### <a id="template-method"></a>Template Method
 
 #### Definição
 
@@ -2447,9 +2435,9 @@ fun main() {
 #### Aplicabilidade
 
 1. Utilize o padrão quando você quer **deixar os clientes estender apenas etapas particulares de um algoritmo, mas não todo o algoritmo e sua estrutura**.
-   - O Template Method permite que você ***transforme um algoritmo monolítico em uma série de etapas individuais que podem facilmente ser estendidas por subclasses enquanto ainda mantém intacta a estrutura definida em uma superclasse***.
+   - O *Template Method* permite que você ***transforme um algoritmo monolítico em uma série de etapas individuais que podem facilmente ser estendidas por subclasses enquanto ainda mantém intacta a estrutura definida em uma superclasse***.
 2. Utilize o padrão quando você tem **várias classes que contém algoritmos quase idênticos com algumas diferenças menores. Como resultado, você pode querer modificar todas as classes quando o algoritmo muda**.
-   - Quando você transforma tal algoritmo em um Template Method, ***você também pode erguer as etapas com implementações similares para dentro de uma superclasse, eliminando duplicação de código***. Códigos que variam entre subclasses podem permanecer dentro das subclasses.
+   - Quando você transforma tal algoritmo em um *Template Method*, ***você também pode erguer as etapas com implementações similares para dentro de uma superclasse, eliminando duplicação de código***. Códigos que variam entre subclasses podem permanecer dentro das subclasses.
 
 #### Classes de exemplo
 
@@ -2511,18 +2499,18 @@ Football Game Finished!
 
 #### Pontos Negativos👎
 
-- **Violação do Liskov Substitution Principle:** você pode violar o *Princípio da Substituição de Liskov* ao *suprimir uma etapa padrão de implementação através da subclasse*.
-- **Dificuldade na implementação:** implementações do padrão *Template Method* tendem a ser *mais difíceis de se manter quanto mais etapas eles tiverem*.
+- **Violação do Liskov Substitution Principle:** você pode violar o *[Princípio da Substituição de Liskov](#liskov-substitution-principle)* ao *suprimir uma etapa padrão de implementação através da subclasse*.
+- **Dificuldade na implementação:** implementações do padrão *[Template Method](#template-method)* tendem a ser *mais difíceis de se manter quanto mais etapas eles tiverem*.
 - Alguns clientes podem ser **limitados ao fornecer o esqueleto de um algoritmo**.
 
 #### Relação com outros padrões
 
-- O *Factory Method* **é uma especialização do** *Template Method*. Ao mesmo tempo, o *Factory Method* pode servir como um *Template Method* grande.
-- O *Template Method*  é **baseado em herança**: ele *permite que você altere partes de um algoritmo ao estender essas partes em subclasses*. O *Strategy* é baseado em composição: você pode alterar partes do comportamento de um objeto ao suprir ele como diferentes estratégias que correspondem a aquele comportamento. O *Template Method* ***funciona a nível de classe, então é estático***. O *Strategy* trabalha a nível de objeto, permitindo que você troque os comportamentos durante a execução.
+- O [*Factory Method*](#factory-method) é uma especialização do *Template Method*. Ao mesmo tempo, o [*Factory Method*](#factory-method) pode servir como um *Template Method* grande.
+- O *Template Method*  é **baseado em [herança](#heranca)**: ele *permite que você altere partes de um algoritmo ao estender essas partes em subclasses*. O *[Strategy](#strategy)* é baseado em [**composição**](#composicao): você pode alterar partes do comportamento de um objeto ao suprir ele como diferentes estratégias que correspondem a aquele comportamento. O *Template Method* ***funciona a nível de classe, então é estático***. O *Strategy* trabalha a nível de objeto, permitindo que você troque os comportamentos durante a execução.
 
 ![](src/imagens/visitor.png)
 
-### Visitor
+### <a id="Visitor"></a>Visitor
 
 #### Definição
 
@@ -2614,8 +2602,8 @@ Displaying Computador.
 #### Pontos Positivos👍
 
 - **Leitura mais eficiente:** quando usamos esse padrão em nosso projeto, ou em parte dele, isso torna o nosso *código mais legível e organizado*. Além disso, ela facilita a leitura e entendimento por parte de outros programadores.
-- **Acréscimo de novos comportamentos:** você pode *introduzir um novo comportamento que pode funcionar com objetos de diferentes classes sem mudar essas classes*. Isso também respeita o **Open-Closed Principle**.
-- **Facilidade de mover múltiplas versões:** você pode *mover múltiplas versões do mesmo comportamento para dentro da mesma classe*. Isso também respeita o ***Single Responsibility Principle***.
+- **Acréscimo de novos comportamentos:** você pode *introduzir um novo comportamento que pode funcionar com objetos de diferentes classes sem mudar essas classes*. Isso também respeita o [***Open-Closed Principle***](#open-closed-principle).
+- **Facilidade de mover múltiplas versões:** você pode *mover múltiplas versões do mesmo comportamento para dentro da mesma classe*. Isso também respeita o ***[Single Responsibility Principle](#single-responsibility-principle)***.
 - **Informações do objeto visitante:** um objeto visitante *pode acumular algumas informações úteis enquanto trabalha com vários objetos*. Isso pode ser interessante quando você quer percorrer algum objeto de estrutura complexa, tais como um objeto árvore, e aplicar o visitante para cada objeto da estrutura.
 
 #### Pontos Negativos👎
@@ -2625,34 +2613,34 @@ Displaying Computador.
 
 #### Relação com outros padrões
 
-- Você pode tratar um *Visitor* ***como uma poderosa versão do padrão*** *Command*. Seus objetos ***podem executar operações sobre vários objetos de diferentes classes***.
-- Você pode usar o Visitor para *executar uma operação sobre uma árvore Composite inteira*.
-- Você pode usar o *Visitor* junto com o Iterator para **percorrer uma estrutura de dados complexas e executar alguma operação sobre seus elementos, mesmo se eles todos tenham classes diferentes**.
+- Você pode tratar um *Visitor* ***como uma poderosa versão do padrão*** *[Command](#command)*. Seus objetos ***podem executar operações sobre vários objetos de diferentes classes***.
+- Você pode usar o *Visitor* para *executar uma operação sobre uma árvore [Composite](#composite) inteira*.
+- Você pode usar o *Visitor* junto com o *[Iterator](#iterator)* para **percorrer uma estrutura de dados complexas e executar alguma operação sobre seus elementos, mesmo se eles todos tenham classes diferentes**.
 
 ## Glossário
 
->  **Acoplamento:** é a união ou ligação entre dois ou mais corpos, formando um único conjunto. Esse corpo pode ser representado por classes, entidades, métodos, componentes, tabelas etc. Quando falamos, por exemplo, de relacionamento entre classes, tabelas, domínios, sub-sistemas, casos de uso etc. estamos falando de acoplamento. Podemos afirmar que no contexto de um software *qualquer relacionamento gera acoplamento*.
+>  <a id="acoplamento"></a>**Acoplamento:** é a união ou ligação entre dois ou mais corpos, formando um único conjunto. Esse corpo pode ser representado por classes, entidades, métodos, componentes, tabelas etc. Quando falamos, por exemplo, de relacionamento entre classes, tabelas, domínios, sub-sistemas, casos de uso etc. estamos falando de acoplamento. Podemos afirmar que no contexto de um software *qualquer relacionamento gera acoplamento*.
 >
 >  - **Baixo Acoplamento:** quando um sistema possui entre seus componentes uma relação de **interdependência fraca**, significa que a **dependência entre seus componentes** é baixa, ou seja, estão acoplados, **mas fracamente acoplados**.
 >  - **Alto Acoplamento**: quando um sistema possui entre seus componentes uma relação de **interdependência forte**, significa que a **dependência entre seus componentes** é alta, ou seja, estão acoplados, **mas fortemente acoplados**.
 
-> **AntiPattern:** ele é o oposto do Design Pattern, ou seja, quando um AntiPattern é usado o seu código pode se tornar ineficiente ou contra produtivo na prática.
+> <a id="anti-pattern"></a>**AntiPattern:** ele é o oposto do Design Pattern, ou seja, quando um AntiPattern é usado o seu código pode se tornar ineficiente ou contra produtivo na prática.
 
-> **Binding Times (ou tempo de vinculação) :** é o momento do ciclo de vida do programa em que uma variável é atribuída a seu tipo (inteiro, string, etc). Muitas propriedades de uma linguagem de programação são definidas durante sua criação. Por exemplo, o significado de palavras-chave como ***while*** ou ***for***, ou o tamanho do tipo de dados de uma variável, são propriedades definidas em tempo de design da linguagem. 
+> <a id="binding-times"></a>**Binding Times (ou tempo de vinculação) :** é o momento do ciclo de vida do programa em que uma variável é atribuída a seu tipo (inteiro, string, etc). Muitas propriedades de uma linguagem de programação são definidas durante sua criação. Por exemplo, o significado de palavras-chave como ***while*** ou ***for***, ou o tamanho do tipo de dados de uma variável, são propriedades definidas em tempo de design da linguagem. 
 >
 > **Observação:** Linguagens orientadas a objetos tem o seu tempo de vinculação de forma tardia e atribuem tipos em tempo de execução quando a variável recebe um valor do teclado ou de outra fonte.
 
-> **Buffer:** Em ciência da computação, **buffer de dados** (ou, simplesmente, **buffer**) é uma região de memória física utilizada para armazenar temporariamente os dados enquanto eles estão sendo movidos de um lugar para outro. 
+> <a id="buffer"></a>**Buffer:** Em ciência da computação, **buffer de dados** (ou, simplesmente, **buffer**) é uma região de memória física utilizada para armazenar temporariamente os dados enquanto eles estão sendo movidos de um lugar para outro. 
 
-> **Code Smells:** os *Code Smells*  (ou também chamado de **cheiros de código**) são *indicadores de problemas que podem ser abordados durante a refatoração*. Os *Code Smells* são *fáceis de detectar e corrigir, mas podem ser apenas sintomas de um problema mais profundo em um código*.
+> <a id="code-smells"></a>**Code Smells:** os *Code Smells*  (ou também chamado de **cheiros de código**) são *indicadores de problemas que podem ser abordados durante a refatoração*. Os *Code Smells* são *fáceis de detectar e corrigir, mas podem ser apenas sintomas de um problema mais profundo em um código*.
 
-> **Coesão:** uma classe coesa é aquela que possui uma única responsabilidade. Além disso, elas são vitais em um sistema orientado a objetos.
+> <a id="coesao"></a>**Coesão:** uma classe coesa é aquela que possui uma única responsabilidade. Além disso, elas são vitais em um sistema orientado a objetos.
 
-> **Composição (de Objetos):** em ciência da computação, composição de objetos é uma maneira de se combinar objetos simples ou tipos de dados em objetos mais complexos. Ela costuma ser usada como alternativa ao uso de **Herança**.
+> <a id="composicao"></a>**Composição (de Objetos):** em ciência da computação, composição de objetos é uma maneira de se combinar objetos simples ou tipos de dados em objetos mais complexos. Ela costuma ser usada como alternativa ao uso de **Herança**.
 
-> **Composição Recursiva:** ela acontece quando uma **Classe Derivada** (também chamada de classe composta) permite abstrair a implementação da **Classe Base** que a está compondo,  permitindo que diversas classes diferentes possam ser colocadas naquela posição, isso através do polimorfismo. Isso permite que uma instância da mesma classe possa ser utilizada para compô-la, tornando possível a criação de uma grande estrutura dessa forma.
+> <a id="composicao-recursiva"></a>**Composição Recursiva:** ela acontece quando uma **Classe Derivada** (também chamada de classe composta) permite abstrair a implementação da **Classe Base** que a está compondo,  permitindo que diversas classes diferentes possam ser colocadas naquela posição, isso através do polimorfismo. Isso permite que uma instância da mesma classe possa ser utilizada para compô-la, tornando possível a criação de uma grande estrutura dessa forma.
 
-> **Declaração de objetos:** a declaração de objetos *combina uma declaração de classe com a declaração de uma única instância dessa classe*. Ou seja, ela efetivamente define uma classe e uma variável dessa classe em uma única instrução. 
+> <a id="declaracao-objetos"></a>**Declaração de objetos:** a declaração de objetos *combina uma declaração de classe com a declaração de uma única instância dessa classe*. Ou seja, ela efetivamente define uma classe e uma variável dessa classe em uma única instrução. 
 >
 > **Usos da declaração de objetos:**
 >
@@ -2662,39 +2650,74 @@ Displaying Computador.
 > - Utilize objetos *Singletons* em *qualquer contexto em que um objeto comum (uma instância de uma classe) possa ser usado*.
 > - Também podemos **declarar objetos em uma classe**. Esses objetos também *têm apenas uma instância; eles não têm uma instância separada por instância da classe que a contêm*.
 
-> **Encapsulamento:** Conceitua-se encapsulamento como sendo o ***processo utilizado para proteger os campos e operações de uma classe*** (atributos e métodos), ***permitindo que apenas os membros públicos sejam acessados pelos usuários de determinada classe.***
+> <a id="encapsulamento"></a>**Encapsulamento:** Conceitua-se encapsulamento como sendo o ***processo utilizado para proteger os campos e operações de uma classe*** (atributos e métodos), ***permitindo que apenas os membros públicos sejam acessados pelos usuários de determinada classe.***
 
-> **God Object:** é um objeto que *sabe demais* ou *faz demais*. Ou seja, ele faz ***todas as tarefas em uma única classe ou objeto***. 
+> <a id="god-object"></a>**God Object:** é um objeto que *sabe demais* ou *faz demais*. Ou seja, ele faz ***todas as tarefas em uma única classe ou objeto***. 
 
-> **Granularidade (de Dados)**: é a extensão à qual um sistema é dividido em partes pequenas, ou o sistema propriamente dito ou sua descrição ou observação. 
+> <a id="granularidade"></a>**Granularidade (de Dados)**: é a extensão à qual um sistema é dividido em partes pequenas, ou o sistema propriamente dito ou sua descrição ou observação. 
 
-> **Handler:** Na programação de computadores, um handle ou uma alça é uma ***referência abstrata a um recurso usado quando o software aplicativo faz referência a blocos de memória ou objetos gerenciados por outro sistema informático***, como um banco de dados ou um sistema operacional.
+> <a id="handler"></a>**Handler:** Na programação de computadores, um handle ou uma alça é uma ***referência abstrata a um recurso usado quando o software aplicativo faz referência a blocos de memória ou objetos gerenciados por outro sistema informático***, como um banco de dados ou um sistema operacional.
 
-> **Handle-Body Idioms (Idioma de Alça-Corpo):** é usado quando dois objetos são compostos para aparecer como um único objeto. Um objeto, chamado de identificador (ou alça), gerencia a interface, enquanto outro objeto, chamado de corpo, fornece a lógica do aplicativo
+> <a id="handle-body-idioms"></a>**Handle-Body Idioms (Idioma de Alça-Corpo):** é usado quando dois objetos são compostos para aparecer como um único objeto. Um objeto, chamado de identificador (ou alça), gerencia a interface, enquanto outro objeto, chamado de corpo, fornece a lógica do aplicativo
 
-> **Herança:** é um mecanismo que permite que características comuns a diversas classes sejam fatoradas em uma classe base, ou superclasse. Esse importante conceito possibilita que as classes compartilhem seus atributos, métodos e outros membros da classe entre si. Para a ligação entre as classes, a herança adota um relacionamento esquematizado hierarquicamente. Na Herança temos dois tipos principais de classe:
+> <a id="heranca"></a>**Herança:** é um mecanismo que permite que características comuns a diversas classes sejam fatoradas em uma classe base, ou superclasse. Esse importante conceito possibilita que as classes compartilhem seus atributos, métodos e outros membros da classe entre si. Para a ligação entre as classes, a herança adota um relacionamento esquematizado hierarquicamente. Na Herança temos dois tipos principais de classe:
 >
 > - **Classe Base**: a classe que concede as características a uma outra classe.
 > - **Classe Derivada**: a classe que herda as características da classe base.
 
-> **Hook Class:**
+> <a id="hook-class"></a>**Hook Class (ou Classes Gancho):** é uma classe que compõe da superclasse e possui um **hook method**. Ou seja, em vez dos hook method serem definidos na mesma classe, eles são definidos em uma outra classe que compõe a classe principal (essa classe é a hook class). Da mesma forma que o **hook method**, a **hook class** é uma técnica utilizada pelos padrões para chegar a uma solução para um problema mais específico. 
+>
+> **Exemplo**
+>
+> ```kotlin
+> //ClassePrincipal
+> class ClassePrincipal{
+>     fun metodoPrincipal(){
+>         //executa lógica comum...
+>         val componente = ClassGancho()
+>         componente.metodoGancho()
+>         //executa lógica comum...
+>     }
+> }
+> //ClasseGancho ou também conhecida como Hook Class
+> class ClasseGancho{
+>     fun metodoGancho(){/*...*/}
+> }
+> ```
 
-> **Hook Method (ou Método Gancho):** são métodos que ***permitem extensão***. A superclasse possui um método principal público que é invocado pelos seus clientes. Esse método delega parte de sua execução para o hook method, que é um método abstrato que deve ser implementado
-> pela subclasse. Ele funciona como um “gancho” no qual uma nova lógica de execução para a classe pode ser “pendurada”. Cada subclasse o implementa provendo uma lógica diferente. Como essa lógica pode ser invocada a partir do mesmo método público, definido na superclasse, os hook methods permitem que o objeto possua um comportamento diferente de acordo com a subclasse instanciada. 
+> <a id="hook-method"></a>**Hook Method (ou Método Gancho):** são métodos que ***permitem extensão***. A superclasse possui um método principal público que é invocado pelos seus clientes. Esse método delega parte de sua execução para o hook method, que é um método abstrato que deve ser implementado
+> pela subclasse. Ele funciona como um “gancho” no qual uma nova lógica de execução para a classe pode ser “pendurada”. Cada subclasse o implementa provendo uma lógica diferente. Como essa lógica *pode ser invocada a partir do mesmo método público, definido na superclasse, os hook methods permitem que o objeto possua um comportamento diferente de acordo com a subclasse instanciada*. 
+>
+> **Exemplo** 
+>
+> ```kotlin
+> //SuperClasse
+> class SuperClasse{
+>     
+>     //esse método delegou a sua execução para a função métodoGancho
+>     fun metodoPrincipal(){
+>         //executa lógica comum...
+>         metodoGancho()
+>         //executa lógica comum...
+>     }
+>     //Também conhecido como Hook Method
+>     private fun metodoGancho(){/*...*/}
+> }
+> ```
 
-> **Liskov Substitution Principle:** esse princípio diz que ***"As classes derivadas devem ser substituíveis por suas classes bases"***. Para mais detalhes [clique aqui](https://github.com/marceloalves95/SOLID-Kotlin). 
+> <a id="liskov-substitution-principle"></a>**Liskov Substitution Principle:** esse princípio diz que ***"As classes derivadas devem ser substituíveis por suas classes bases"***. Para mais detalhes [clique aqui](https://github.com/marceloalves95/SOLID-Kotlin). 
 
-> **Open-Closed Principle:** esse princípio diz que "***Você deve ser capaz de estender um comportamento de uma classe sem a necessidade de modificá-lo"***. Para mais detalhes [clique aqui](https://github.com/marceloalves95/SOLID-Kotlin). 
+> <a id="open-closed-principle"></a>**Open-Closed Principle:** esse princípio diz que "***Você deve ser capaz de estender um comportamento de uma classe sem a necessidade de modificá-lo"***. Para mais detalhes [clique aqui](https://github.com/marceloalves95/SOLID-Kotlin). 
 
-> **Polimorfismo:** é o princípio pelo qual duas ou mais classes derivadas da mesma superclasse, ou classe base,  podem invocar métodos que têm a mesma assinatura, mas comportamentos distintos.
+> <a id="polimorfismo"></a>**Polimorfismo:** é o princípio pelo qual duas ou mais classes derivadas da mesma superclasse, ou classe base,  podem invocar métodos que têm a mesma assinatura, mas comportamentos distintos.
 
-> **Propriedades:** como sabemos, no mundo real qualquer objeto possui elementos que o definem. Dentro da programação orientada a objetos, essas características são nomeadas propriedades. Por exemplo, as propriedades de um objeto “Cachorro” poderiam ser “Tamanho”, “Raça” e “Idade”, por exemplo.
+> <a id="propriedades"></a>**Propriedades:** como sabemos, no mundo real qualquer objeto possui elementos que o definem. Dentro da programação orientada a objetos, essas características são nomeadas propriedades. Por exemplo, as propriedades de um objeto “Cachorro” poderiam ser “Tamanho”, “Raça” e “Idade”, por exemplo.
 
-> **Recursividade:** Em programação, a recursividade é um mecanismo útil e poderoso que ***permite a uma função chamar a si mesma direta ou indiretamente***, ou seja, uma função é dita recursiva se ***ela contém pelo menos uma chamada explícita ou implícita a si própria***.
+> <a id="recursividade"></a>**Recursividade:** Em programação, a recursividade é um mecanismo útil e poderoso que ***permite a uma função chamar a si mesma direta ou indiretamente***, ou seja, uma função é dita recursiva se ***ela contém pelo menos uma chamada explícita ou implícita a si própria***.
 
-> **Refatoração:** A refatoração é uma forma *disciplinada de reestruturar o código quando pequenas mudanças são feitas nele para melhorar o design*. Um aspecto importante de uma refatoração é que ela melhora o design sem mudar o comportamento do design; uma refatoração *não adiciona nem remove funcionalidade*.
+> <a id="refatoracao"></a>**Refatoração:** A refatoração é uma forma *disciplinada de reestruturar o código quando pequenas mudanças são feitas nele para melhorar o design*. Um aspecto importante de uma refatoração é que ela melhora o design sem mudar o comportamento do design; uma refatoração *não adiciona nem remove funcionalidade*.
 
-> **Single Responsibility Principle:** esse princípio diz que ***"Uma classe deve ter um, e somente um, motivo para mudar"***. Para mais detalhes [clique aqui](https://github.com/marceloalves95/SOLID-Kotlin). 
+> <a id="single-responsibility-principle"></a>**Single Responsibility Principle:** esse princípio diz que ***"Uma classe deve ter um, e somente um, motivo para mudar"***. Para mais detalhes [clique aqui](https://github.com/marceloalves95/SOLID-Kotlin). 
 
 ## Fontes
 
