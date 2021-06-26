@@ -465,7 +465,7 @@ Sending an SMS notification
 - As classes *[Abstract Factory](#abstract-factory)* são **quase sempre baseadas em um conjunto de** *Factory Method*, mas você também pode usar o *[Prototype](#prototype)* para **compor métodos dessas classes**.
 - Você pode usar o *Factory Method* junto com o *[Iterator](#Iterator)* para **permitir que uma coleção de subclasses retornem diferentes tipos de iteradores que são compatíveis com as coleções**.
 - O *[Prototype](#prototype)* não é baseado em [herança](#heranca), então ele não tem os inconvenientes dela. Por outro lado, o *[Prototype](#prototype)* precisa de uma inicialização complicada do objeto clonado. O *Factory Method* é **baseado em herança mas não precisa de uma etapa de inicialização**.
-- O *Factory Method* **é uma especialização do** *[Template Method](#Template Method)*. Ao mesmo tempo, o *Factory Method* pode servir como um *[Template Method](#Template Method)* grande.
+- O *Factory Method* **é uma especialização do** *[Template Method](#template-method)*. Ao mesmo tempo, o *Factory Method* pode servir como um *[Template Method](#template-method)* grande.
 
 ![](src/imagens/prototype.png) 
 ### <a id="prototype"></a>Prototype
@@ -621,7 +621,7 @@ Printing with object: Singleton@29453f44
 #### Pontos Negativos👎
 
 - **Viola o** ***[Single Responsibility Principle](#single-responsibility-principle)***. O padrão *resolve dois problemas de uma só vez*.
-- **O padrão Singleton pode mascarar um design ruim: **por exemplo, quando os *componentes do programa sabem muito sobre cada um*.
+- **O padrão Singleton pode mascarar um design ruim:** por exemplo, quando os *componentes do programa sabem muito sobre cada um*.
 - **Tratamento especial:** o padrão requer *tratamento especial em um ambiente multithread para que múltiplas threads não possam criar um objeto Singleton várias vezes*.
 - **Dificuldade em realizar testes unitários:** pode ser difícil realizar testes unitários do código cliente do Singleton *porque muitos frameworks de teste dependem de [herança](#heranca) quando produzem objetos simulados*. Já que o construtor da classe Singleton é privado e sobrescrever métodos estáticos é impossível na maioria das linguagem, você terá que pensar em uma maneira criativa de simular o Singleton. Ou apenas não escreva os testes. Ou não use o padrão Singleton.
 - **Problema de desempenho:** utilizar a versão de inicialização direta, ainda na declaração da instância Singleton, *pode trazer problemas de desempenho se seu software não for utilizar com frequência a classe que implementa o padrão*.
